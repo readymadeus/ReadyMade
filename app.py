@@ -15,10 +15,11 @@ from models import User
 import traceback
 from werkzeug import secure_filename
 import csv 
+import convert
 from models import User, Project, Input, Control, Output 
 
 app=Flask(__name__)
-UPLOAD_FOLDER='/Users/priyer/Box Sync/GSR/ReadyMade/RM/files/uploads'
+UPLOAD_FOLDER='/Users/priyer/Box Sync/GSR/ReadyMade/RM/static/files/uploads'
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
@@ -172,12 +173,14 @@ def showvars():
                 if file and allowed_file(file.filename):
                     print "Loading..."
                     filename=secure_filename(file.filename)
+                    folder=app.config['UPLOAD_FOLDER']
                     filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
                     file.save(filepath)
                     #Save filename and file location in Projects
                     userid=session['userid']
                     Project.query.filter(Project.userid==userid).update({"file_name":filename,"file_location":filepath})
                     db_session.commit()
+                    convert.csv_to_json(filename,folder)
                     return render_template("goto_inds.html",varfile=filename)
         except:
             print traceback.format_exc()
@@ -200,14 +203,17 @@ def reauth():
 
 @app.route("/select_vars",methods=["GET","POST"])
 def selectIndicators():
-    vars=[]
     if "vars" in session.keys() and session["vars"] is not None:
         vars=session["vars"]
         if session["type"]=="Input":
             session["type"]="Control"
         elif session["type"]=="Control":
-            session["type"]=="Output"
+            session["type"]="Output"
+        else:
+            print "type of session",session["type"]
+            return redirect(url_for("visualize")) 
     else:
+        vars=[]
         userid=session["userid"]
         p=Project.query.filter(Project.userid==userid).first()
         filename=p.file_name
@@ -217,7 +223,7 @@ def selectIndicators():
             vars=datareader.next()
             session["vars"]=vars
             session["type"]="Input"
-    return render_template("select_inds.html",type=session["type"],vars=vars)
+    return render_template("select_inds.html",vartype=session["type"],vars=vars)
 
 @app.route("/logout", methods=["GET", "POST"])
 @login_required
@@ -225,6 +231,9 @@ def logout():
     session.pop('userid',None)
     session.pop('username',None)
     session.pop('vars',None)
+    session.pop('type',None)
+    session.clear()
+    session["__invalidate__"] = True
     logout_user()
     flash("Logged out.")
     return redirect(url_for("login"))
@@ -248,35 +257,42 @@ def signup():
 
 @app.route("/store",methods=["POST","GET"])
 def readinputs():
+    print "request form in /store",request.form
     if request.form is not None:
-        inputs=request.form['variables']
+        inputs=request.form.getlist('variables')
         print "inputs",inputs
-        vars=session["vars"]
-        vars=vars-inputs
-        print "vars",vars
+        '''vars=session["vars"]
+        vars=list(set(vars)-set(inputs))
+        session["vars"]=vars'''
         userid=session["userid"]
         p=Project.query.filter(Project.userid==userid).first()
         for i in inputs:
-            io=Input(i,p.id)
+            if session["type"]=="Input":
+                io=Input(i,p.id)
+            elif session["type"]=="Control":
+                io=Control(i,p.id)
+            else :
+                io=Output(i,p.id)
             db_session.add(io)
+
         db_session.commit()
         #Set the type of variable being stored here
-        return 
+        return redirect(url_for("selectIndicators"))
 
-
-@app.route("/inputvars")
-def load_input_vars():
-    vars=[]
+@app.route("/visualize")
+def visualize():
     userid=session["userid"]
     p=Project.query.filter(Project.userid==userid).first()
-    filename=p.file_name
-    file_loc=p.file_location
-    with open(file_loc) as prfile:
-        vars=prfile.readline()
-        vars=vars.split(",")
-        session["vars"]=vars
-        #print vars
-    return render_template("input_vars.html",vars=vars)
+    inputs=Input.query.filter(Project.id==p.id).all()
+    outputs=Output.query.filter(Project.id==p.id).all()
+    controls=Control.query.filter(Project.id==p.id).all()
+    ivars=[i.varname for i in inputs if i.varname is not None]
+    cvars=[c.varname for c in controls if c.varname is not None]
+    ovars=[o.varname for o in outputs if o.varname is not None]
+    print ivars,cvars,ovars
+    '''xvar=""
+    yvar="loans_disbursed"
+    return render_template("scatter.html",independent=xvar,dependent=yvar)'''
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

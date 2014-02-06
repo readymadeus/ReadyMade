@@ -57,41 +57,41 @@ class Project(Base):
 class Input(Base):
 	__tablename__ = 'Inputs'
 	id=Column(Integer,primary_key=True)
-	name=Column(String(20))
+	varname=Column(String(500))
 	project=Column(Integer,ForeignKey('Project.id'))
 
-	def __init__(self,name,project):
-		self.name=name
+	def __init__(self,varname,project):
+		self.varname=varname
 		self.project=project
 
 	def __repr__(self):
-		return '<Inputs %r>' %self.id
-	
+		return '<Input %r>' %self.varname
+
 class Output(Base):
 	__tablename__ = 'Outputs'
 	id=Column(Integer,primary_key=True)
-	name=Column(String(20))
+	varname=Column(String(500))
 	project=Column(Integer,ForeignKey('Project.id'))
 
-	def __init__(self,name,project):
-		self.name=name
+	def __init__(self,varname,project):
+		self.varname=varname
 		self.project=project
 
 	def __repr__(self):
-		return '<Outputs %r>' %self.name
+		return '<Output %r>' %self.varname
 
 class Control(Base):
 	__tablename__ = 'Controls'
 	id=Column(Integer,primary_key=True)
-	name=Column(String(20))
+	varname=Column(String(500))
 	project=Column(Integer,ForeignKey('Project.id'))
 
-	def __init__(self,name,project):
-		self.name=name
+	def __init__(self,varname,project):
+		self.varname=varname
 		self.project=project
 
 	def __repr__(self):
-		return '<Controls %r>' %self.name
+		return '<Controls %r>' %self.varname
 	
 
 class Statistics(Base):

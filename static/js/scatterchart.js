@@ -1,21 +1,26 @@
 $.ajax({
   type: 'GET',
-  url: '../static/files/uploads/coffeedat.json',
+  url: '../data/coffedat.json',
   async: false,
   contentType:"jsonp",
   dataType: 'jsonp',
-  
+  success: function (response) {
+    // do stuff with response.
+    console.log(response)
+  }
 });
 
-    
+    scatterx='TOTAL_SALES';
+    scattery='LOANS_DISBURSED';
     var data = [];
-    for(i=0;i<jsondat.length;i++){
-          xval=jsondat[i][scatterx];
-          yval=jsondat[i][scattery];
+    for(i=0;i<coffee.length;i++){
+          xval=coffee[i][scatterx];
+          yval=coffee[i][scattery];
           if(xval!=null && yval!=null){
             data.push([xval,yval]);
           }
     }
+    console.log(data);
        
     var margin = {top: 20, right: 15, bottom: 60, left: 60}
       , width = 960 - margin.left - margin.right
@@ -29,13 +34,13 @@ $.ajax({
     	      .domain([0, d3.max(data, function(d) { return d[1]; })])
     	      .range([ height, 0 ]);
  
-    var chart = d3.select('div#content')
+    var chart = d3.select('body')
 	.append('svg:svg')
 	.attr('width', width + margin.right + margin.left)
 	.attr('height', height + margin.top + margin.bottom)
 	.attr('class', 'chart');
  
-  var div=d3.select('div#content').append("div")
+  var div=d3.select('body').append("div")
   .attr('class','tooltip')
   .style("opacity",0);
 
@@ -99,15 +104,15 @@ $.ajax({
     g.append("text")
     .attr("class","xlabel")
     .attr("text-anchor","center")
-    .attr("x",width-300)
-    .attr("y",height-50)
+    .attr("x",width-100)
+    .attr("y",height+20)
     .text(scatterx);
 
      g.append("text")
     .attr("class","ylabel")
     .attr("text-anchor","center")
-    .attr("x",8)
-    .attr("y",-5)
+    .attr("x",10)
+    .attr("y",10)
     .text(scattery);
 
 
