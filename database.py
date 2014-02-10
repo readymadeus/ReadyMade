@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 
-SQLALCHEMY_DATBASE_URI='postgresql://bqpsxeonpaptz:O5lVxebs56qLeUTv9YotCU0Z3Z@ec2-174-129-197-200.compute-1.amazonaws.com/df2k3fqdn06r9c'
+SQLALCHEMY_DATBASE_URI='postgresql+psycopg2:://bqpsxeonpaptz:O5lVxebs56qLeUTv9YotCU0Z3Z@ec2-174-129-197-200.compute-1.amazonaws.com/df2k3fqdn06r9c'
 # "postgresql+pg8000://scott:tiger@localhost/test"
 engine = create_engine(SQLALCHEMY_DATBASE_URI, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
