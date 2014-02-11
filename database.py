@@ -7,7 +7,7 @@ username="jbqpsxeonpaptz"
 password="O5lVxebs56qLeUTv9YotCU0Z3Z"
 db="df2k3fqdn06r9c"
 host="ec2-174-129-197-200.compute-1.amazonaws.com"
-SQLALCHEMY_DATBASE_URI='postgresql://'+username+':'+password+'/'+db
+SQLALCHEMY_DATBASE_URI='postgresql+psycopg2://'+username+':'+password+'@'+host+'/'+db
 # "postgresql+pg8000://scott:tiger@localhost/test"
 engine = create_engine(SQLALCHEMY_DATBASE_URI, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
