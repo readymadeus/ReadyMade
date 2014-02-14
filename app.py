@@ -90,7 +90,7 @@ def login():
         project=[]
         userfound=False;
         from models import Project, User
-        u=User.query.filter(User.username==username,User.password==password).first()
+        u=User.query.filter(User.username==username).filter(User.password==password).first()
         #u=db_session.query(q)
         #print u.id
         if u is not None:
@@ -300,5 +300,5 @@ def shutdown_session(exception=None):
 
 if __name__=="__main__":
     app.debug=True
-    app.run(port=8080)
+    app.run(host="0.0.0.0", port=8080)
 
