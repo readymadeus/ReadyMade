@@ -42,6 +42,6 @@ def insertUsers(values):
 def queryUser(username,password):
     from models import User
     print username,password
-    user=User.query.filter(User.username==username,User.password==password)
+    user=User.query.filter(User.username==username).filter(User.password==password)
     print "success"
     return user
