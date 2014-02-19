@@ -3,12 +3,9 @@ from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-username="jbqpsxeonpaptz"
-password="O5lVxebs56qLeUTv9YotCU0Z3Z"
-db="df2k3fqdn06r9c"
-host="ec2-174-129-197-200.compute-1.amazonaws.com"
-SQLALCHEMY_DATBASE_URI='postgresql+psycopg2://'+username+':'+password+'@'+host+'/'+db
-#SQLALCHEMY_DATBASE_URI='mysql://rm:rm@localhost/readymade'
+
+
+SQLALCHEMY_DATBASE_URI='mysql://rm:rm@localhost/readymade'
 engine = create_engine(SQLALCHEMY_DATBASE_URI, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
@@ -42,6 +39,6 @@ def insertUsers(values):
 def queryUser(username,password):
     from models import User
     print username,password
-    user=User.query.filter(User.username==username,User.password==password)
+    user=User.query.filter(User.username==username).filter(User.password==password)
     print "success"
     return user
