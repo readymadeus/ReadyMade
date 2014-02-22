@@ -1,17 +1,124 @@
-<!doctype html>
-<title>Login Demo</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<div class=page>
-  <h1>Login Demo</h1>
-  <div class=metanav>
-  {% if current_user.is_authenticated() %}
-    Welcome, {{ current_user.name }} | <a href="{{ url_for('logout') }}">log out</a>
-  {% else %}
-    You are not logged in | <a href="{{ url_for('login') }}">log in</a>
-  {% endif %}
-  </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  {% block body %}{% endblock %}
-</div>
+<!DOCTYPE html>
+<html>
+  
+  <head data-gwd-animation-mode="quickMode">
+    {% block head %}
+    <title>{% block title %}ReadyMade {% endblock %} </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="Google Web Designer 1.0.0.924">
+    <style type="text/css">
+      body{
+        position: absolute;
+        width: 1024px;
+        height: 100%;
+      }
+      .content {
+        width: 100%;
+        height: 100%;
+        
+      }
+      .header {
+        width: 140%;
+        height: 50%;
+        background-color: rgb(55,55,55);
+      }
+      .title-position {
+        position: absolute;
+        width: 155px;
+        text-align: left;
+        height: 109.9124472574px;
+        left: 820.1943467504988px;
+        top: 29.166666666498493px;
+      }
+      
+      .title-font {
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-family:'Playfair Display';
+        font-size: 96px;
+      }
+      .subtitle-position {
+        position: absolute;
+        text-align: right;
+        font-family: Play;
+        font-size: 48px;
+        width: 960.6026392962px;
+        height: 64.9303797468px;
+        left: 372.0455891724px;
+        top: 159.14978902950023px;
+      }
+      .subtitle-font {
+        font-family:'Playfair Display';
+        color: rgb(205,201,201);
+        font-size: 48px;
+      }
+
+      .content{
+        width: 140%;
+        height: 50%;
+        background-color: #FFF;
+      }
+
+      .footer{
+        position: absolute;
+        top: 100%;
+      }
+      
+      .steps{
+        width:40%;
+        float: left;
+        margin-left: 100px;
+        margin-top: 50px;
+      }
+
+      .vline {
+        background-color: #000;
+        width: 0.05%;
+        float: left;
+        height: 90%;
+      }
+
+
+      .login{
+        width:50%;
+        float: right;
+        margin-top: 50px;
+      }
+
+      .login-title{
+        font-family: 'Roboto Slab';
+        font-size: 28px;
+      }
+
+      .login-text{
+        font-family: 'Roboto Slab';
+        font-size: 22px;
+      }
+
+      .icons{
+        width:50px;
+        height: 50px;
+      }
+
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css">
+    <div class="header">
+      <div class="title-position"><span class="title-font">ReadyMade</span>
+      </div>
+      <div class="subtitle-position"><span class="subtitle-font">Automatic Project Impact Assessment Tool</span>
+      </div>
+    </div>
+    {% endblock %}
+  </head>
+  
+  <body>
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+    <div id="footer" class="footer">
+      {% block footer %}
+      &copy; Copyright 2014 by Team ReadyMade</a>.
+      {% endblock %}
+    </div>    
+  </body>
+
+</html>
