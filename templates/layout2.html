@@ -18,7 +18,7 @@
       }
       .header {
         width: 140%;
-        height: 50%;
+        height: 40%;
         background-color: rgb(55,55,55);
       }
       .title-position {
@@ -104,6 +104,34 @@
         height: 40px;
         font-family: "Roboto Slab";
         font-size: 18px;
+        overflow: visible;
+      }
+
+      .bigbuttons{
+        width: 100px;
+        height: 40px;
+        font-family: "Roboto Slab";
+        font-size: 18px;
+        overflow: visible;
+      }
+
+      .subheader{
+        width: 140%;
+        height: 70px;
+      }
+
+      .box{
+        width:15%;
+        background-color: rgb(105,105,105);
+        border-radius: 10px;
+        border: 1px solid;
+        float:left;
+        text-align: center;
+      }
+
+      .logout{
+        width: 25%;
+        float: right;
       }
 
     </style>
@@ -113,6 +141,20 @@
       </div>
       <div class="subtitle-position"><span class="subtitle-font">Automatic Project Impact Assessment Tool</span>
       </div>
+    </div>
+    <div class="subheader">
+        <div class="box subtitle-font">Upload</div>
+        <div class="box subtitle-font">Answer</div>
+        <div class="box subtitle-font">Analyze</div>
+        <div style="width:40%;"></div>
+        <form action="logout" method="GET"
+        <div class="logout">
+          <button class="buttons">Logout</button>
+        </div>
+        </form>
+    </div>
+
+      
     </div>
     {% endblock %}
   </head>
