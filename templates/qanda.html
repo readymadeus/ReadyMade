@@ -2,5 +2,7 @@
 {% extends "layout2.html" %}
 {% block title %} Questionnaire {% endblock %}
 {% block content %}
-      
+      <div class="questions">
+        <p>What is the name of your organization? <input name="orgname" onkeypress="keyHandler(event)"></p>
+      </div>
 {% endblock %}
