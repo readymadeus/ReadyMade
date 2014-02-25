@@ -136,11 +136,11 @@ def upload():
         try:
             print request.form
             orgname=request.form["orgname"]
-            pands=request.form["product"]
+            pands=request.form["pands"]
             client=request.form["client"]
-            users=request.form["sec_client"]
+            users=request.form["users"]
             mission=request.form["mission"]
-            sector=request.form["industry"]
+            sector=request.form["sector"]
             from models import Project, User
             #userid=request.cookies.get('userid')
             userid=session["userid"]
@@ -149,8 +149,8 @@ def upload():
                 p=Project(userid,orgname,sector,pands,client,users,mission)
             #p=Project(userid=u.id,orgname=orgname,name="project1",p_user=client,prods=pands,sector=sector,s_user=users,mission=mission)
                 print p
-                #db_session.add(p)
-                #db_session.commit()
+                db_session.add(p)
+                db_session.commit()
                 return render_template("indicators.html")
         except:
             print traceback.format_exc()
@@ -299,7 +299,10 @@ def shutdown_session(exception=None):
     db_session.remove()
 
 if __name__=="__main__":
+<<<<<<< HEAD
     app.debug=True
     app.run(host="0.0.0.0",port=8080)
-
+=======
+    app.run(host="0.0.0.0", port=8080)
+>>>>>>> 7c0ebe413bb2b4691e6f91f63177a7e6340e4a8d
 

@@ -2,7 +2,55 @@
 {% extends "layout2.html" %}
 {% block title %} Questionnaire {% endblock %}
 {% block content %}
-      <div class="questions">
-        <p>What is the name of your organization? <input name="orgname" onkeypress="keyHandler(event)"></p>
+    <script type="text/javascript">
+        var ques= new Array();
+        var labels= new Array();
+        var orgname=""
+        var client=""
+        var count=0;
+        ques[0]="What is the name of your organization?"
+        ques[1]="What is the url of your organization?"
+        labels[1]="url"
+        labels[2]="product"
+        labels[3]="client"
+        labels[4]="sec_client"
+        labels[5]="mission"
+        labels[6]="industry"
+
+        function keyHandler(e){
+          var ENTERKEY=13;
+          if(e.keyCode==ENTERKEY){
+            count=count+1;  
+            orgname=$('#orgname').val();
+            ques[2]="Describe "+orgname+"'s product or service you would like to evaluate."
+            ques[3]="Who is "+orgname+"'s direct customer/client?"
+            client=$('#client').val();
+            ques[4]="Does "+client+" serve others?"
+            ques[5]="What is "+orgname+"'s mission statement in one sentence?"
+            ques[6]="What is "+orgname+"'s sector?"
+            if(count==ques.length){
+            	$(".questions").append("<p>Thank you for your responses! Press enter to Submit</p>");
+            }else if (count<ques.length){
+            	next_ques(count);
+            }else{
+            	$(".questions").append("<button class=\"buttons\">Submit</button>");
+            	return
+            }	
+            
+          }
+        }
+        
+        function next_ques(i){
+          $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" onkeypress=keyHandler(event)></p>");
+        }
+
+    
+    </script>
+      <p class="smalltext"><strong>Please hit enter to answer other questions</strong></p>
+      <form action="{{url_for('upload')}}" method="POST">
+      <div class="questions smalltext">
+        <p>What is the name of your organization? <input id="orgname" name="orgname" onkeypress="keyHandler(event)"></p>
       </div>
+      
+      </form>
 {% endblock %}

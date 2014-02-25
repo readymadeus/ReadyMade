@@ -5,39 +5,18 @@
     {% block head %}
     <title>{% block title %}ReadyMade {% endblock %} </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-      <script type="text/javascript">
-        var ques= new Array();
-        var client=""
-        var count=0;
-        ques[0]="What is the name of your organization?"
-        ques[1]="What is the url of your organization?"
-        ques[2]="Describe "+orgname+"'s product or service you would like to evaluate."
-        ques[3]="Who is "+orgname+"'s direct customer/client?"
-        ques[4]="Does "+client+" serve others?"
-        ques[5]="What is "+orgname+"'s mission statement in one sentence?"
-        ques[6]="is in the following industry or sector."
-
-        function keyHandler(e){
-          var ENTERKEY=13;
-          if(e.keyCode==ENTERKEY){
-            count=count+1;
-            next_ques(count);
-          }
-        }
-        
-        function next_ques(int index){
-          $(".questions").append("<p>"+ques[index]+"<input name=\"orgname\" onkeypress=\"keyHandler(event)\"></p>");
-        }
-
-    
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <style type="text/css">
       body{
         position: absolute;
         width: 1024px;
         height: 100%;
       }
+
+      input{
+        font:inherit;
+      }
+
       .content {
         width: 100%;
         height: 100%;
@@ -94,6 +73,13 @@
         width:40%;
         float: left;
         margin-left: 100px;
+        margin-top: 50px;
+      }
+
+      .right{
+        width:40%;
+        float: right;
+        margin-right: 100px;
         margin-top: 50px;
       }
 
@@ -167,6 +153,12 @@
         font-size: 24px;
       }
 
+      .smalltext {
+        color: rgb(0,0,0);
+        font-family:'Roboto Slab';
+        font-size: 12px;
+      }
+
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css">
     <div class="header">
@@ -192,7 +184,7 @@
   
   <body>
     <div id="content" class="content">{% block content %}{% endblock %}</div>
-    <div id="footer" class="footer">
+    <div id="footer" class="footer smalltext">
       {% block footer %}
       &copy; Copyright 2014 by Team ReadyMade</a>.
       {% endblock %}
