@@ -149,8 +149,8 @@ def upload():
                 p=Project(userid,orgname,sector,pands,client,users,mission)
             #p=Project(userid=u.id,orgname=orgname,name="project1",p_user=client,prods=pands,sector=sector,s_user=users,mission=mission)
                 print p
-                #db_session.add(p)
-                #db_session.commit()
+                db_session.add(p)
+                db_session.commit()
                 return render_template("indicators.html")
         except:
             print traceback.format_exc()
