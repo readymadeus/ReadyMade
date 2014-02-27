@@ -73,7 +73,7 @@ login_manager = LoginManager()
 
 login_manager.anonymous_user = Anonymous
 login_manager.login_view = "login"
-login_manager.login_message = u"Please log in to access this page."
+#login_manager.login_message = u"Please log in to access this page."
 login_manager.refresh_view = "reauth"
 login_manager.setup_app(app)
 
@@ -83,7 +83,6 @@ def hello():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    print "login"
     if request.method == "POST" and "username" in request.form:
         username = str(request.form["username"])
         password = str(request.form["password"])
@@ -91,13 +90,8 @@ def login():
         userfound=False;
         from models import Project, User
         u=User.query.filter(User.username==username).filter(User.password==password).first()
-        #u=db_session.query(q)
-        #print u.id
         if u is not None:
-            print "found"
             userfound=True
-            '''resp=make_response(render_template("projects.html"))
-            resp.set_cookie('userid',u.id)'''
             session['userid'] = u.id
             session['username']=u.username
         if userfound:
@@ -116,15 +110,13 @@ def login():
 
 @app.route('/interview',methods=["POST","GET"])
 def questionnaire():
-    responses=[]
-    return render_template("qanda.html",responses=responses)
-
-'''@app.route('/set_cookie/<cookie>&&<value>/')
-def cookie_insertion(cookie,value):
-    redirect_to_index = redirect('/')
-    response = make_response(render_template("projects.html",username=username,projects=project))  
-    response.set_cookie(cookie,value=value)
-    return response'''
+    try:
+        userid=session['userid']
+        responses=[]
+        return render_template("qanda.html",responses=responses)
+    except KeyError:
+        flash('Please login to access the page')
+        return redirect(url_for('login'))
 
 @app.route('/answer',methods=["POST","GET"])
 def answer():
@@ -134,7 +126,6 @@ def answer():
 def upload():
     if request.method == "POST" and request.form is not None:
         try:
-            print request.form
             orgname=request.form["orgname"]
             pands=request.form["product"]
             client=request.form["client"]
@@ -142,15 +133,16 @@ def upload():
             mission=request.form["mission"]
             sector=request.form["industry"]
             from models import Project, User
-            #userid=request.cookies.get('userid')
             userid=session["userid"]
             print "userid",userid
             if(userid is not None):
                 p=Project(userid,orgname,sector,pands,client,users,mission)
-            #p=Project(userid=u.id,orgname=orgname,name="project1",p_user=client,prods=pands,sector=sector,s_user=users,mission=mission)
-                print p
-                db_session.add(p)
-                db_session.commit()
+                try:
+                    db_session.add(p)
+                    db_session.commit()
+                except Exception as e:
+                    print e
+                    flash("Try again.")
                 return render_template("indicators.html")
         except:
             print traceback.format_exc()
@@ -205,13 +197,6 @@ def reauth():
 def selectIndicators():
     if "vars" in session.keys() and session["vars"] is not None:
         vars=session["vars"]
-        if session["type"]=="Input":
-            session["type"]="Control"
-        elif session["type"]=="Control":
-            session["type"]="Output"
-        else:
-            print "type of session",session["type"]
-            return redirect(url_for("visualize")) 
     else:
         vars=[]
         userid=session["userid"]
@@ -226,15 +211,11 @@ def selectIndicators():
     return render_template("select_inds.html",vartype=session["type"],vars=vars)
 
 @app.route("/logout", methods=["GET", "POST"])
-@login_required
 def logout():
-    session.pop('userid',None)
-    session.pop('username',None)
-    session.pop('vars',None)
-    session.pop('type',None)
-    session.clear()
-    session["__invalidate__"] = True
+    app.secret_key = os.urandom(32)
+   
     logout_user()
+    
     flash("Logged out.")
     return redirect(url_for("login"))
 
@@ -244,15 +225,17 @@ def gotosignup():
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
-    print request.form
     if request.method=='POST' and request.form is not None:
         username=request.form["username"]
         email=request.form["email"]
         password=request.form["password"]
-        status=insertUsers([username,email,password])
-        if status==1:
+        u=insertUsers([username,email,password])
+        if u!=0:
+            session['userid'] = u.id
+            session['username']=u.username
             return render_template("projects.html",username=username)
         else:
+            flash("Username/Email already exists. Please try a different one.")
             return render_template("signup.html")
 
 @app.route("/store",methods=["POST","GET"])
@@ -260,23 +243,32 @@ def readinputs():
     print "request form in /store",request.form
     if request.form is not None:
         inputs=request.form.getlist('variables')
-        print "inputs",inputs
-        '''vars=session["vars"]
-        vars=list(set(vars)-set(inputs))
-        session["vars"]=vars'''
-        userid=session["userid"]
-        p=Project.query.filter(Project.userid==userid).first()
-        for i in inputs:
-            if session["type"]=="Input":
-                io=Input(i,p.id)
-            elif session["type"]=="Control":
-                io=Control(i,p.id)
-            else :
-                io=Output(i,p.id)
-            db_session.add(io)
-
-        db_session.commit()
-        #Set the type of variable being stored here
+        if(len(inputs)==0):
+            flash("Please select at least one variable")
+        else:
+            try:
+                print "Variable type and variables"
+                print session["type"],inputs
+                if session["type"]=="Input":
+                    session["type"]="Control"
+                elif session["type"]=="Control":
+                    session["type"]="Output"
+                else:
+                    print "type of session",session["type"]
+                    return redirect(url_for("visualize")) 
+            except KeyError:
+                session["type"]="Input"
+            userid=session["userid"]
+            p=Project.query.filter(Project.userid==userid).first()
+            for i in inputs:
+                if session["type"]=="Input":
+                    io=Input(i,p.id)
+                elif session["type"]=="Control":
+                    io=Control(i,p.id)
+                else :
+                    io=Output(i,p.id)
+                db_session.add(io)
+            db_session.commit()
         return redirect(url_for("selectIndicators"))
 
 @app.route("/visualize")
@@ -290,9 +282,8 @@ def visualize():
     cvars=[c.varname for c in controls if c.varname is not None]
     ovars=[o.varname for o in outputs if o.varname is not None]
     print ivars,cvars,ovars
-    '''xvar=""
-    yvar="loans_disbursed"
-    return render_template("scatter.html",independent=xvar,dependent=yvar)'''
+    params=[ivars,cvars,ovars]
+    return render_template("scatter.html",params=params)
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

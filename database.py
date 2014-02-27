@@ -27,15 +27,14 @@ def init_db():
 
 def insertUsers(values):
     from models import User
-    try:
-        print values
+    try: 
         u=User(str(values[0]),str(values[1]),str(values[2]))
-        #u=User('use','emia','eere')
         print u
         db_session.add(u)
         db_session.commit()
-        return 1
-    except:
+        return u
+    except Exception as e:
+        print e
         return 0
 
 
