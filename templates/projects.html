@@ -1,12 +1,22 @@
 {% extends "layout2.html" %}
 {% block title %} Welcome {% endblock %}
 {% block content %}
-    <form action="interview" method="POST">
+	<script type="text/javascript">
+	function gotoproject(pid)
+	{
+		$("input:hidden[name=pid]").val(pid);
+		document.prjform.submit();		
+	}
+	</script>
+    <form name="prjform" action="interview" method="POST">
+    	
         <div class="login-text">Welcome,&nbsp; {{username}}
-        <br><strong> Your Projects&nbsp; </strong>
-        <p>{{project}}</p>
-          <button class="buttons">Add New</button>
+        <br><strong> Your Projects&nbsp; </strong> <button class="buttons">Add New</button> 	  
+        {% for p in projects %}
+        <p>{{p.name}}<button class="smallbuttons" type="button" onclick=javascript:gotoproject("{{p.id}}")>Go</button></p>
+        {% endfor %}    
         </div>
+        <input type="hidden" name="pid">
     </form>
       
 {% endblock %}

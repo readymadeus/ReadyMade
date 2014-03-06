@@ -1,0 +1,62 @@
+    
+{% extends "layout2.html" %}
+{% block title %} Questionnaire {% endblock %}
+{% block content %}
+    <script type="text/javascript">
+
+        var ques= new Array();
+        var labels= new Array();
+        var orgname="{{params[0]}}"
+        var client="{{params[3]}}"
+        var count=-1;
+        var values=new Array();
+        ques[0]="What is the name of your organization?"
+        ques[1]="What is the url of your organization?"
+        ques[2]="Describe "+orgname+"\'s product or service you would like to evaluate."
+        ques[3]="Who is "+orgname+"\'s direct customer/client?"
+        ques[4]="Does "+client+"\'s serve others?"
+        ques[5]="What is "+orgname+"\'s mission statement in one sentence?"
+        ques[6]="What is "+orgname+"\'s sector?"
+        labels[0]="orgname"
+        labels[1]="url"
+        labels[2]="product"
+        labels[3]="client"
+        labels[4]="sec_client"
+        labels[5]="mission"
+        labels[6]="industry"
+        values[0]="{{params[0]}}"
+        values[1]="www.sample.com"
+        values[2]="{{params[2]}}"
+        values[3]="{{params[3]}}"
+        values[4]="{{params[4]}}"
+        values[5]="{{params[5]}}"
+        values[6]="{{params[6]}}"
+        
+        $(document).ready(divHandler);
+
+        $('input').on('input', function() {
+            $('#update').val("true");
+        });
+        function divHandler(){
+          for(count=0;count<labels.length;count++){
+            next_ques(count);
+          }
+          $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
+        }
+        
+        function next_ques(i){
+          $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" value="+String(values[i])+"></p>");
+        }
+
+    
+    </script>
+      <p class="smalltext"><strong>Please hit enter to answer other questions</strong></p>
+      <form action="{{url_for('upload')}}" method="POST">
+      <div class="questions smalltext">
+        <p>What is the name of your project? <input id="name" name="name" value="{{params[1]}}"></p>
+
+      </div>
+      <input type="hidden" name="update" value="false">
+      </form>
+
+{% endblock %}

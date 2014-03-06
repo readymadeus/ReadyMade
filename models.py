@@ -41,10 +41,11 @@ class Project(Base):
 	stats=relationship('Statistics')
 
 
-	def __init__(self,userid,orgname,sector,prods,p_user,s_user,mission):
+	def __init__(self,userid,orgname,name,sector,prods,p_user,s_user,mission):
 		self.userid=userid
 		self.sector=sector
 		self.orgname=orgname
+		self.name=name
 		self.sector=sector
 		self.prods=prods
 		self.p_user=p_user
@@ -52,7 +53,7 @@ class Project(Base):
 		self.mission=mission
 
 	def __repr__(self):
-		return '<Project %r,%r,%r,%r>' %(self.id,self.orgname,self.file_name,self.file_location)
+		return '<Project %r,%r,%r,%r,%r,%r,%r,%r,%r,%r>' %(self.id,self.orgname,self.name,self.sector,self.prods,self.p_user,self.s_user,self.mission,self.file_name,self.file_location)
 
 class Input(Base):
 	__tablename__ = 'Inputs'

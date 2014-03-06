@@ -1,0 +1,4 @@
+jsondat=[{"mobile\tmean\tsdev\tlow\thigh\tsum\tn": "no\t-29180.0171771188\t46462.4397928974\t-62005\t460160\t-180069886\t6171"},
+{"mobile\tmean\tsdev\tlow\thigh\tsum\tn": "yes\t150638.991603694\t153253.092361907\t-62005\t579500\t179411039\t1191"},
+{"mobile\tmean\tsdev\tlow\thigh\tsum\tn": "unknown\t43927.8666666667\t113960.38845197\t-61094\t333262\t658918\t15"},
+]

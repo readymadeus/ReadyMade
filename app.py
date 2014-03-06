@@ -19,7 +19,7 @@ import convert
 from models import User, Project, Input, Control, Output 
 
 app=Flask(__name__)
-UPLOAD_FOLDER='/Users/priyer/Box Sync/GSR/ReadyMade/RM/static/files/uploads'
+UPLOAD_FOLDER='./static/files/uploads'
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
@@ -96,12 +96,19 @@ def login():
             session['username']=u.username
         if userfound:
             remember = request.form.get("remember", "no") == "yes"
-            projects=Project.query.filter(Project.userid==u.id).first()
+            projects=Project.query.filter(Project.userid==u.id).all()
             if projects is not None:
-                project=projects
+                print projects
+                projs=[]
+                pids=[]
+                for p in projects:
+                    projs.append(p)
+                    pids.append(p.id)
+                session['pid']=pids
             else:
-                project=[]
-            return render_template("projects.html",username=u.username,projects=project)
+                pids=[]
+                projs=[]    
+            return render_template("projects.html",username=u.username,projects=projs)
         else:
             flash(u"Invalid username.")
     return render_template("rm_main.html")
@@ -110,13 +117,27 @@ def login():
 
 @app.route('/interview',methods=["POST","GET"])
 def questionnaire():
-    try:
-        userid=session['userid']
-        responses=[]
-        return render_template("qanda.html",responses=responses)
-    except KeyError:
-        flash('Please login to access the page')
-        return redirect(url_for('login'))
+        if "pid" in request.form and request.form['pid']!="":
+            pid=request.form['pid']
+            session['pid']=pid
+            p=Project.query.filter(Project.id==pid).first()
+            params=[]
+            params.append(p.orgname)
+            params.append(p.name)
+            params.append(p.prods)
+            params.append(p.p_user)
+            params.append(p.s_user)
+            params.append(p.mission)
+            params.append(p.sector)
+            return render_template("project.html",params=params)
+        else:
+            try:
+                userid=session['userid']
+                responses=[]
+                return render_template("qanda.html",responses=responses)
+            except KeyError:
+                flash('Please login to access the page')
+                return redirect(url_for('login'))
 
 @app.route('/answer',methods=["POST","GET"])
 def answer():
@@ -126,7 +147,11 @@ def answer():
 def upload():
     if request.method == "POST" and request.form is not None:
         try:
+            print request.form
+            if request.form["update"]=="false":
+                return render_template("indicators.html")
             orgname=request.form["orgname"]
+            name=request.form["name"]
             pands=request.form["product"]
             client=request.form["client"]
             users=request.form["sec_client"]
@@ -134,15 +159,14 @@ def upload():
             sector=request.form["industry"]
             from models import Project, User
             userid=session["userid"]
-            print "userid",userid
             if(userid is not None):
-                p=Project(userid,orgname,sector,pands,client,users,mission)
+                p=Project(userid,orgname,name,sector,pands,client,users,mission)
                 try:
                     db_session.add(p)
                     db_session.commit()
                 except Exception as e:
                     print e
-                    flash("Try again.")
+                    flash("Project Name already exists. Please enter a different one")
                 return render_template("indicators.html")
         except:
             print traceback.format_exc()
@@ -161,18 +185,17 @@ def showvars():
             file=request.files['varlist']
             print file
             if True:
-                #file=request.form['varlist']
                 if file and allowed_file(file.filename):
                     print "Loading..."
                     filename=secure_filename(file.filename)
                     folder=app.config['UPLOAD_FOLDER']
                     filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    print filepath
                     file.save(filepath)
-                    #Save filename and file location in Projects
                     userid=session['userid']
                     Project.query.filter(Project.userid==userid).update({"file_name":filename,"file_location":filepath})
                     db_session.commit()
-                    convert.csv_to_json(filename,folder)
+                    convert.transform(filepath,folder)
                     return render_template("goto_inds.html",varfile=filename)
         except:
             print traceback.format_exc()
@@ -273,17 +296,26 @@ def readinputs():
 
 @app.route("/visualize")
 def visualize():
-    userid=session["userid"]
-    p=Project.query.filter(Project.userid==userid).first()
-    inputs=Input.query.filter(Project.id==p.id).all()
-    outputs=Output.query.filter(Project.id==p.id).all()
-    controls=Control.query.filter(Project.id==p.id).all()
-    ivars=[i.varname for i in inputs if i.varname is not None]
-    cvars=[c.varname for c in controls if c.varname is not None]
-    ovars=[o.varname for o in outputs if o.varname is not None]
-    print ivars,cvars,ovars
-    params=[ivars,cvars,ovars]
-    return render_template("scatter.html",params=params)
+    try:
+        userid=session["userid"]
+        p=Project.query.filter(Project.userid==userid).first()
+        inputs=Input.query.filter(Project.id==p.id).all()
+        print p.id
+        outputs=Output.query.filter(Project.id==p.id).all()
+        controls=Control.query.filter(Project.id==p.id).all()
+        ivars=[i.varname for i in inputs if i.varname is not None]
+        cvars=[c.varname for c in controls if c.varname is not None]
+        ovars=[o.varname for o in outputs if o.varname is not None]
+        print ivars,cvars,ovars
+        params=[ivars,cvars,ovars]
+        return render_template("scatter.html",params=params)
+    except Exception as e:
+        print e
+        return redirect(url_for("login"))
+
+@app.route("/project")
+def project():
+    return render_template("project.html",orgname="Sample")
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

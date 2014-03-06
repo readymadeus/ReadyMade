@@ -7,9 +7,11 @@
         var labels= new Array();
         var orgname=""
         var client=""
-        var count=0;
+        var count=-1;
+
         ques[0]="What is the name of your organization?"
         ques[1]="What is the url of your organization?"
+        labels[0]="orgname"
         labels[1]="url"
         labels[2]="product"
         labels[3]="client"
@@ -49,7 +51,7 @@
       <p class="smalltext"><strong>Please hit enter to answer other questions</strong></p>
       <form action="{{url_for('upload')}}" method="POST">
       <div class="questions smalltext">
-        <p>What is the name of your organization? <input id="orgname" name="orgname" onkeypress="keyHandler(event)"></p>
+        <p>What is the name of your project? <input id="name" name="name" onkeypress="keyHandler(event)"></p>
       </div>
       
       </form>
