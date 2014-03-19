@@ -17,9 +17,15 @@
   {% endif %}
 {% endwith %}
   <form action="/store" method="POST">
+  {% if vartype=="Control" %}
   {% for var in vars %}
   <input type="checkbox" name="variables" value="{{var}}"><label class="smalltext">{{var}}</label><br>
   {%endfor%}
+  {% else %}
+  {% for var in vars %}
+  <input type="radio" name="variables" value="{{var}}"><label class="smalltext">{{var}}</label><br>
+  {%endfor%}
+  {% endif %}
   <button class="buttons">Submit</button>
 </div>
 </form>

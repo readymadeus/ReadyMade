@@ -1,5 +1,4 @@
 import csv
-import json
 import re,os
 import pandas as pd
 
@@ -9,18 +8,9 @@ def transform(csvfilename,folder):
 	csvfile = open(csvfilename, 'rU')
 	filename=re.findall(pattern,csvfilename)[0]
 	filepath=os.path.join(folder, filename)
-	jsonfile = open(filepath+".json", 'w')
-	r=csv.reader(csvfile,delimiter=' ')
-	fieldnames=r.next()
-	print fieldnames
-	fieldnames=[f.replace(' ','_') for f in fieldnames]
-	fieldnames=tuple(fieldnames)
-	reader = csv.DictReader(csvfile, fieldnames)
-	jsonfile.write("jsondat=[")
-	for row in reader:
-	    json.dump(row, jsonfile)
-	    jsonfile.write(',\n')
-	jsonfile.write("]")
+	csvf=pd.read_csv(csvfilename)
+	return csvf
+	
 
 def test(csvfilename):
 	pattern='([a-zA-Z0-9_]+?)\.'
@@ -28,6 +18,24 @@ def test(csvfilename):
 	csvfile=pd.read_csv(csvfilename)
 	print csvfile
 
+'''
+
+
+Step#1: What is the index you want to set?
+If none, default will be chosen
+
+Step#2: Select input, control, output variables.
+
+Step#3: Show correlations between controls and input variable.
+If any of the correlations are higher than 0.6, ask user if they're sure they wanna use both the variables.
+
+Question for Clair: Ask the user about only one input at a time
+
+Optional: Understand this later
+Step#4: Once the variables are chosen, run linear regressions using the forward method.
+Add controls one by one.
+
+'''
 
 if __name__=='__main__':
 	test('./static/files/uploads/dhs_cell.csv')

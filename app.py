@@ -15,8 +15,10 @@ from models import User
 import traceback
 from werkzeug import secure_filename
 import csv 
-import convert
-from models import User, Project, Input, Control, Output 
+import convert,analysis
+import numpy as np
+from models import User, Project, Input, Control, Output, Analysis
+import traceback
 
 app=Flask(__name__)
 UPLOAD_FOLDER='./static/files/uploads'
@@ -113,7 +115,50 @@ def login():
             flash(u"Invalid username.")
     return render_template("rm_main.html")
 
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    session.pop("type",None)
+    app.secret_key = os.urandom(32)
+    logout_user()   
+    flash("Logged out.")
+    return redirect(url_for("login"))
 
+@app.route("/gotosignup",methods=["GET"])
+def gotosignup():
+    return render_template("signup.html")
+
+@app.route("/signup", methods=["GET","POST"])
+def signup():
+    if request.method=='POST' and request.form is not None:
+        username=request.form["username"]
+        email=request.form["email"]
+        password=request.form["password"]
+        u=insertUsers([username,email,password])
+        if u!=0:
+            session['userid'] = u.id
+            session['username']=u.username
+            return render_template("projects.html",username=username)
+        else:
+            flash("Username/Email already exists. Please try a different one.")
+            return render_template("signup.html")
+
+@login_manager.user_loader
+def load_user(id):
+    return USERS.get(int(id))
+
+
+@app.route("/reauth", methods=["GET", "POST"])
+@login_required
+def reauth():
+    if request.method == "POST":
+        confirm_login()
+        flash(u"Reauthenticated.")
+        return redirect(request.args.get("next") or url_for("login"))
+    return render_template("reauth.html")
+
+@app.route("/project")
+def project():
+    return render_template("project.html",orgname="Sample")
 
 @app.route('/interview',methods=["POST","GET"])
 def questionnaire():
@@ -159,11 +204,13 @@ def upload():
             sector=request.form["industry"]
             from models import Project, User
             userid=session["userid"]
-            if(userid is not None):
+            if(userid is not None): 
                 p=Project(userid,orgname,name,sector,pands,client,users,mission)
                 try:
+                    print "Project",p
                     db_session.add(p)
                     db_session.commit()
+                    print "Successfully added project to database"
                 except Exception as e:
                     print e
                     flash("Project Name already exists. Please enter a different one")
@@ -184,8 +231,7 @@ def showvars():
         try:
             file=request.files['varlist']
             print file
-            if True:
-                if file and allowed_file(file.filename):
+            if file and allowed_file(file.filename):
                     print "Loading..."
                     filename=secure_filename(file.filename)
                     folder=app.config['UPLOAD_FOLDER']
@@ -194,33 +240,23 @@ def showvars():
                     file.save(filepath)
                     userid=session['userid']
                     Project.query.filter(Project.userid==userid).update({"file_name":filename,"file_location":filepath})
+                    pid=session['pid']
+                    analysis=Analysis(pid)
+                    db_session.add(analysis)
                     db_session.commit()
-                    convert.transform(filepath,folder)
-                    return render_template("goto_inds.html",varfile=filename)
+                    print "in showvars function"
+                    return redirect(url_for("selectIndicators"))
         except:
             print traceback.format_exc()
-            
-
     return render_template("indicators.html",varfile=filename)
-
-@login_manager.user_loader
-def load_user(id):
-    return USERS.get(int(id))
-
-@app.route("/reauth", methods=["GET", "POST"])
-@login_required
-def reauth():
-    if request.method == "POST":
-        confirm_login()
-        flash(u"Reauthenticated.")
-        return redirect(request.args.get("next") or url_for("login"))
-    return render_template("reauth.html")
 
 @app.route("/select_vars",methods=["GET","POST"])
 def selectIndicators():
     if "vars" in session.keys() and session["vars"] is not None:
         vars=session["vars"]
+        print "here 1"
     else:
+        print "here 2"
         vars=[]
         userid=session["userid"]
         p=Project.query.filter(Project.userid==userid).first()
@@ -233,33 +269,6 @@ def selectIndicators():
             session["type"]="Input"
     return render_template("select_inds.html",vartype=session["type"],vars=vars)
 
-@app.route("/logout", methods=["GET", "POST"])
-def logout():
-    app.secret_key = os.urandom(32)
-   
-    logout_user()
-    
-    flash("Logged out.")
-    return redirect(url_for("login"))
-
-@app.route("/gotosignup",methods=["GET"])
-def gotosignup():
-    return render_template("signup.html")
-
-@app.route("/signup", methods=["GET","POST"])
-def signup():
-    if request.method=='POST' and request.form is not None:
-        username=request.form["username"]
-        email=request.form["email"]
-        password=request.form["password"]
-        u=insertUsers([username,email,password])
-        if u!=0:
-            session['userid'] = u.id
-            session['username']=u.username
-            return render_template("projects.html",username=username)
-        else:
-            flash("Username/Email already exists. Please try a different one.")
-            return render_template("signup.html")
 
 @app.route("/store",methods=["POST","GET"])
 def readinputs():
@@ -269,53 +278,79 @@ def readinputs():
         if(len(inputs)==0):
             flash("Please select at least one variable")
         else:
-            try:
+            userid=session["userid"]
+            pid=session["pid"]
+            a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
+            try:  
                 print "Variable type and variables"
                 print session["type"],inputs
                 if session["type"]=="Input":
+                    for i in inputs:
+                     io=Input(i,a.id)
+                     db_session.add(io)
+                    db_session.commit() 
                     session["type"]="Control"
                 elif session["type"]=="Control":
+                    for i in inputs:
+                      io=Control(i,a.id)
+                      db_session.add(io)
+                    db_session.commit()      
                     session["type"]="Output"
                 else:
+                    for i in inputs:
+                      io=Output(i,a.id)
+                      db_session.add(io)
+                    db_session.commit()  
                     print "type of session",session["type"]
-                    return redirect(url_for("visualize")) 
+                    return redirect(url_for("upload_data")) 
             except KeyError:
                 session["type"]="Input"
-            userid=session["userid"]
-            p=Project.query.filter(Project.userid==userid).first()
-            for i in inputs:
-                if session["type"]=="Input":
-                    io=Input(i,p.id)
-                elif session["type"]=="Control":
-                    io=Control(i,p.id)
-                else :
-                    io=Output(i,p.id)
-                db_session.add(io)
-            db_session.commit()
-        return redirect(url_for("selectIndicators"))
+            return redirect(url_for("selectIndicators"))  
+                
+
+@app.route("/upload_data")
+def upload_data():
+    return redirect(url_for("visualize"))
 
 @app.route("/visualize")
 def visualize():
     try:
         userid=session["userid"]
-        p=Project.query.filter(Project.userid==userid).first()
-        inputs=Input.query.filter(Project.id==p.id).all()
-        print p.id
-        outputs=Output.query.filter(Project.id==p.id).all()
-        controls=Control.query.filter(Project.id==p.id).all()
+        pid=session["pid"]
+        p=Project.query.filter(Project.id==pid).first()
+        a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
+        inputs=Input.query.filter(Input.analysis==a.id).all()
+        outputs=Output.query.filter(Output.analysis==a.id).all()
+        controls=Control.query.filter(Control.analysis==a.id).all()
         ivars=[i.varname for i in inputs if i.varname is not None]
         cvars=[c.varname for c in controls if c.varname is not None]
         ovars=[o.varname for o in outputs if o.varname is not None]
-        print ivars,cvars,ovars
-        params=[ivars,cvars,ovars]
+        filename=p.file_name
+        file_loc=p.file_location
+        csvf=convert.transform(filename,file_loc)
+        print "Inputs",ivars
+        print "Controls",cvars
+        params=[]
+        count=0
+        for i in ivars: 
+            for c in cvars:
+                pltfile=analysis.scatter(csvf[i],csvf[c],count,i,c)
+                x=csvf[i].replace('NaN',0)
+                y=csvf[c].replace('NaN',0)
+                corr=np.corrcoef(x,y)[0][1]
+                count+=1
+                params.append((pltfile,corr))
         return render_template("scatter.html",params=params)
     except Exception as e:
-        print e
+        print traceback.format_exc()
         return redirect(url_for("login"))
+        '''
+        To-do:
+        Check if coefs>0.6
+        Freeze values of coefficients 
+        '''
 
-@app.route("/project")
-def project():
-    return render_template("project.html",orgname="Sample")
+@app.route
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

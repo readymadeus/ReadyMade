@@ -1,7 +1,8 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship, backref
 from database import Base
+from datetime import datetime
 
 #Base = declarative_base()
 class User(Base):
@@ -35,10 +36,7 @@ class Project(Base):
 	other_user=Column(String(100))
 	file_name=Column(String(100))
 	file_location=Column(String(100))
-	inputs=relationship('Input')
-	outputs=relationship('Output')
-	controls=relationship('Control')
-	stats=relationship('Statistics')
+	analysis=relationship('Analysis')
 
 
 	def __init__(self,userid,orgname,name,sector,prods,p_user,s_user,mission):
@@ -55,15 +53,31 @@ class Project(Base):
 	def __repr__(self):
 		return '<Project %r,%r,%r,%r,%r,%r,%r,%r,%r,%r>' %(self.id,self.orgname,self.name,self.sector,self.prods,self.p_user,self.s_user,self.mission,self.file_name,self.file_location)
 
+class Analysis(Base):
+	__tablename__ = 'Analysis'
+	id=Column(Integer,primary_key=True)
+	projid=Column(Integer,ForeignKey('Project.id'))
+	create_date=Column(DateTime,default=datetime.now)
+	inputs=relationship('Input')
+	outputs=relationship('Output')
+	controls=relationship('Control')
+	stats=relationship('Statistics')
+
+	def __init__(self,projid):
+		self.projid=projid
+
+	def __repr__(self):
+		return '<Analysis %r>' %self.id
+
 class Input(Base):
 	__tablename__ = 'Inputs'
 	id=Column(Integer,primary_key=True)
 	varname=Column(String(500))
-	project=Column(Integer,ForeignKey('Project.id'))
+	analysis=Column(Integer,ForeignKey('Analysis.id'))
 
-	def __init__(self,varname,project):
+	def __init__(self,varname,analysis):
 		self.varname=varname
-		self.project=project
+		self.analysis=analysis
 
 	def __repr__(self):
 		return '<Input %r>' %self.varname
@@ -72,11 +86,11 @@ class Output(Base):
 	__tablename__ = 'Outputs'
 	id=Column(Integer,primary_key=True)
 	varname=Column(String(500))
-	project=Column(Integer,ForeignKey('Project.id'))
+	analysis=Column(Integer,ForeignKey('Analysis.id'))
 
-	def __init__(self,varname,project):
+	def __init__(self,varname,analysis):
 		self.varname=varname
-		self.project=project
+		self.analysis=analysis
 
 	def __repr__(self):
 		return '<Output %r>' %self.varname
@@ -85,11 +99,11 @@ class Control(Base):
 	__tablename__ = 'Controls'
 	id=Column(Integer,primary_key=True)
 	varname=Column(String(500))
-	project=Column(Integer,ForeignKey('Project.id'))
+	analysis=Column(Integer,ForeignKey('Analysis.id'))
 
-	def __init__(self,varname,project):
+	def __init__(self,varname,analysis):
 		self.varname=varname
-		self.project=project
+		self.analysis=analysis
 
 	def __repr__(self):
 		return '<Controls %r>' %self.varname
@@ -98,12 +112,13 @@ class Control(Base):
 class Statistics(Base):
 	__tablename__ = 'Statistics'
 	id=Column(Integer,primary_key=True)
-	project=Column(Integer,ForeignKey('Project.id'))
+	analysis=Column(Integer,ForeignKey('Analysis.id'))
 	stat=Column(String(50))
 	input=Column(String(100))
 	measure=Column(Integer)
 
-	def __init__(self,stat,measure):
+	def __init__(self,analysis,stat,measure):
+		self.analysis=analysis
 		self.measure=measure
 		self.stat=stat
 

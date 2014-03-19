@@ -1,19 +1,15 @@
 {% extends "layout2.html" %}
-{% block title %} Upload File {% endblock %}
+{% block title %} Correlations {% endblock %}
 {% block content %} 
-<div class="left">
- {{params[0]}}
+<div class="plots">
+{% for p in params %}
+<div class="plot">
+<img src="{{p[0]}}" height="500" width="500"></img>
+<p class="smalltext"><strong>Correlation coefficient: {{p[1]}}</strong></p>
 </div>
-<div class="center">
-{{params[1]}}
-</div>
-<div class="right">
-{{params[2]}}
-</div>
-<!-- <script type="text/javascript">
-  scatterx="Number_of_suppliers";
-  scattery="Volume_of_sales_(lbs)";
-</script>     
-<script type="text/javascript" src="coffeedat.json"></script>
-<script type="text/javascript" src="scatterchart.js"></script> -->
+{% endfor %}
+</div>	
+<form action="regress" method="POST">
+<button class="buttons">Next Step: Regression Analysis</button>
+</form>
 {% endblock %}
