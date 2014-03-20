@@ -2,12 +2,11 @@ import csv
 import re,os
 import pandas as pd
 
-def transform(csvfilename,folder):
+def transform(csvfilename):
 	pattern='([a-zA-Z0-9_]+?)\.'
 	print csvfilename
 	csvfile = open(csvfilename, 'rU')
 	filename=re.findall(pattern,csvfilename)[0]
-	filepath=os.path.join(folder, filename)
 	csvf=pd.read_csv(csvfilename)
 	return csvf
 	

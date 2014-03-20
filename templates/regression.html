@@ -1,0 +1,7 @@
+{% extends "layout2.html" %}
+{% block title %} Regressions {% endblock %}
+{% block content %} 
+{%for line in summary%}
+<p class="mediumtext" id="result">{{line}}</p>
+{% endfor %}
+{% endblock %}

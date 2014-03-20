@@ -1,7 +1,27 @@
 {% extends "layout2.html" %}
 {% block title %} Correlations {% endblock %}
 {% block content %} 
-<div class="plots">
+<style type="text/css">
+      .footer{
+        position: relative;
+        top: 200%;
+      }
+
+       .top{
+        height:50%;
+        
+      }
+
+      .bottom{
+      	float: left;
+        height:50%;
+       
+      }
+
+</style>
+<p class="login-title">Scatterplots and Correlation Coefficients</p>
+<form action="{{url_for('regress')}}" method="POST">
+<div class="top">
 {% for p in params %}
 <div class="plot">
 <img src="{{p[0]}}" height="500" width="500"></img>
@@ -9,7 +29,12 @@
 </div>
 {% endfor %}
 </div>	
-<form action="regress" method="POST">
+<div class="bottom">
+<p class="login-text">Please select the controls you would like to use for the regression analysis</p>
+{% for val in vars %}
+<input type="checkbox" name="variables" value="{{val}}"><label class="smalltext">{{val}}</label>
+{% endfor %}
 <button class="buttons">Next Step: Regression Analysis</button>
+</div>
 </form>
 {% endblock %}
