@@ -24,22 +24,20 @@ import StringIO as sio
 
 
 app=Flask(__name__)
-UPLOAD_FOLDER='./static/files/uploads'
+UPLOAD_FOLDER='../readymade.us/static/files/uploads'
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 username=""
 
 import sys
-sys.stdout = open('applogs.txt', 'w')
+
 
 if not app.debug:
-	print "Debug Logs Defined"
 	import logging
 	from logging.handlers import RotatingFileHandler
-	rfh=RotatingFileHandler('app.log',mode='a',maxBytes=1024*1024*100,backupCount=5)
+	rfh=RotatingFileHandler('../readymade.us/app.log',mode='a',maxBytes=1024*1024*100,backupCount=5)
 	app.logger.addHandler(rfh)
-	rfh.setLevel(logging.ERROR)
 	formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 	rfh.setFormatter(formatter)
 
@@ -217,16 +215,17 @@ def upload():
 			if(userid is not None): 
 				p=Project(userid,orgname,name,sector,pands,client,users,mission)
 				try:
-					print "Project",p
+					app.logger.debug("Adding project to the database")
+					app.logger.debug(p)
 					db_session.add(p)
 					db_session.commit()
-					print "Successfully added project to database"
+					app.logger.debug("Successfully added project to database")
 				except Exception as e:
-					print e
+					app.logger.exception(e)
 					flash("Project Name already exists. Please enter a different one")
 				return render_template("indicators.html")
 		except:
-			print traceback.format_exc()
+			app.logger.exception(traceback.format_exc())
 	return redirect(url_for('questionnaire'))
 
 def allowed_file(filename):
@@ -238,13 +237,12 @@ def showvars():
 	if request.method == "POST":
 		try:
 			file=request.files['varlist']
-			print file
 			if file and allowed_file(file.filename):
-					print "Loading..."
+					app.logger.debug("Loading...")
 					filename=secure_filename(file.filename)
 					folder=app.config['UPLOAD_FOLDER']
 					filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
-					print filepath
+					app.logger.debug(filepath)
 					file.save(filepath)
 					userid=session["userid"]
 					pid=session["pid"]
@@ -254,7 +252,7 @@ def showvars():
 					db_session.commit()
 					return redirect(url_for("selectIndicators"))
 		except:
-			print traceback.format_exc()
+			app.logger.exception(traceback.format_exc())
 			return render_template("indicators.html",varfile=filename)
 
 @app.route("/select_vars",methods=["GET","POST"])
@@ -286,8 +284,6 @@ def readinputs():
 			pid=session["pid"]
 			a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
 			try:  
-				print "Variable type and variables"
-				print session["type"],inputs
 				if session["type"]=="Input":
 					for i in inputs:
 					 io=Input(i,a.id)
@@ -305,9 +301,9 @@ def readinputs():
 					  io=Output(i,a.id)
 					  db_session.add(io)
 					db_session.commit()  
-					print "type of session",session["type"]
 					return redirect(url_for("upload_data")) 
-			except KeyError:
+			except KeyError as e:
+				app.logger.exception(e)
 				session["type"]="Input"
 			return redirect(url_for("selectIndicators"))  
 				
@@ -332,8 +328,6 @@ def visualize():
 		filename=p.file_name
 		file_loc=p.file_location
 		csvf=convert.transform(file_loc)
-		print "Inputs",ivars
-		print "Controls",cvars
 		params=[]
 		controls=[]
 		count=0
@@ -351,7 +345,7 @@ def visualize():
 				params.append((pltfile,corr))
 		return render_template("scatter.html",params=params,vars=controls)
 	except Exception as e:
-		print traceback.format_exc()
+		app.logger.exception(traceback.format_exc())
 		return redirect(url_for("login"))
 		'''
 		To-do:
@@ -392,13 +386,11 @@ def regress():
 
 @app.errorhandler(500)
 def internal_error(exception):
-	print "in errorhandler"
 	app.logger.exception(exception)
 	return render_template('500.html'),500
 
 @app.errorhandler(404)
 def internal_error(exception):
-	print "in errorhandler 2"
 	app.logger.exception(exception)
 	return render_template('500.html'),404
 

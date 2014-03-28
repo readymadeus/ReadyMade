@@ -1,0 +1,35 @@
+2014-03-28 00:30:38,211 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-03-28 14:52:37,075 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 250, in showvars
+    pid=session["pid1"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid1'
+Traceback (most recent call last):
+  File "app.py", line 250, in showvars
+    pid=session["pid1"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid1'
+2014-03-28 15:00:20,111 - __main__ - DEBUG - Loading...
+2014-03-28 15:00:20,112 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-28 15:00:20,121 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 247, in showvars
+    userid=session["userid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'userid'
+Traceback (most recent call last):
+  File "app.py", line 247, in showvars
+    userid=session["userid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'userid'
