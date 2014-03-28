@@ -22,6 +22,7 @@ import traceback
 import pandas as pd
 import StringIO as sio
 
+
 app=Flask(__name__)
 UPLOAD_FOLDER='./static/files/uploads'
 ALLOWED_EXTENSIONS=set(['csv'])
@@ -29,11 +30,19 @@ current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 username=""
 
-'''
-app.config['SQLALCHEMY_DATBASE_URI']='mysql://rm:rm@localhost/readymade'
-db=SQLAlchemy(app)
-print db
-'''
+import sys
+sys.stdout = open('applogs.txt', 'w')
+
+if not app.debug:
+	print "Debug Logs Defined"
+	import logging
+	from logging.handlers import RotatingFileHandler
+	rfh=RotatingFileHandler('app.log',mode='a',maxBytes=1024*1024*100,backupCount=5)
+	app.logger.addHandler(rfh)
+	rfh.setLevel(logging.ERROR)
+	formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+	rfh.setFormatter(formatter)
+
 # Utility
 util = Blueprint('util', __name__, url_prefix='/util')
 
@@ -370,7 +379,7 @@ def regress():
 		output=sio.StringIO()
 		output.write(model.summary)
 		contents=output.getvalue()
-		rpath='./static/files/regress.rtf'
+		rpath='./static/files/regress.txt'
 		f=open(rpath,'w+')
 		f.write(contents)
 		f.close()
@@ -381,13 +390,25 @@ def regress():
 	else:
 		return redirect(url_for("logout"))
 
+@app.errorhandler(500)
+def internal_error(exception):
+	print "in errorhandler"
+	app.logger.exception(exception)
+	return render_template('500.html'),500
+
+@app.errorhandler(404)
+def internal_error(exception):
+	print "in errorhandler 2"
+	app.logger.exception(exception)
+	return render_template('500.html'),404
+
 @app.teardown_appcontext
 def shutdown_session(exception=None):
 	db_session.remove()
 
 
+
 if __name__=="__main__":
-	app.debug=True
-	app.run(host="0.0.0.0",port=8080)
+	app.run(host="localhost",port=8080)
 
 

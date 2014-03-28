@@ -1,7 +1,16 @@
 {% extends "layout2.html" %}
 {% block title %} Regressions {% endblock %}
+<style type="text/css">
+      .footer{
+        height: 10%
+        width:40%;
+        position: relative;
+        top: 200%;
+        float: left;
+      }
+</style>
 {% block content %} 
 {%for line in summary%}
-<p class="mediumtext" id="result">{{line}}</p>
+<p class="mediumtext" id="result" style="text-align:center;">{{line}}</p>
 {% endfor %}
 {% endblock %}

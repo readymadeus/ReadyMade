@@ -1,27 +1,31 @@
 
 -------------------------Summary of Regression Analysis-------------------------
 
-Formula: Y ~ <Volume purchased from rural producers (lb)>
-             + <Export volume for product financed (lbs)> + <Total working capital debt (US$)>
-             + <intercept>
+Formula: Y ~ <Amount of RC working capital loan (US$) disbursed>
+             + <Country daily minimum wage> + <Total revenue (US$) - adjusted>
+             + <Average price per pound paid by enterprise to rural producers (US$)>
+             + <Total number of farmers certified organic> + <intercept>
 
 Number of Observations:         104
-Number of Degrees of Freedom:   4
+Number of Degrees of Freedom:   6
 
-R-squared:         0.3970
-Adj R-squared:     0.3790
+R-squared:         1.0000
+Adj R-squared:     1.0000
 
-Rmse:          369093.4518
+Rmse:              0.0000
 
-F-stat (3, 100):    21.9503, p-value:     0.0000
+F-stat (5, 98):        inf, p-value:     0.0000
 
-Degrees of Freedom: model 3, resid 100
+Degrees of Freedom: model 5, resid 98
 
 -----------------------Summary of Estimated Coefficients------------------------
       Variable       Coef    Std Err     t-stat    p-value    CI 2.5%   CI 97.5%
 --------------------------------------------------------------------------------
-Volume purchased from rural producers (lb)     0.0319     0.0209       1.53     0.1293    -0.0090     0.0728
-Export volume for product financed (lbs)    -0.0413     0.0234      -1.76     0.0807    -0.0871     0.0046
-Total working capital debt (US$)     0.1904     0.0330       5.76     0.0000     0.1256     0.2551
-     intercept 227896.6279 44232.6863       5.15     0.0000 141200.5628 314592.6931
+Amount of RC working capital loan (US$) disbursed     1.0000     0.0000 13993952209847590.00     0.0000     1.0000     1.0000
+Country daily minimum wage    -0.0000     0.0000      -1.17     0.2464    -0.0000     0.0000
+Total revenue (US$) - adjusted     0.0000     0.0000       8.93     0.0000     0.0000     0.0000
+Average price per pound paid by enterprise to rural producers (US$)     0.0000     0.0000       0.00     1.0000    -0.0000     0.0000
+Total number of farmers certified organic     0.0000     0.0000       0.55     0.5825    -0.0000     0.0000
+--------------------------------------------------------------------------------
+     intercept     0.0000     0.0000       0.06     0.9529    -0.0000     0.0000
 ---------------------------------End of Summary---------------------------------
