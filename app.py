@@ -21,13 +21,11 @@ from models import User, Project, Input, Control, Output, Analysis
 import traceback
 import pandas as pd
 import StringIO as sio
-
+import config
 
 app=Flask(__name__)
-UPLOAD_FOLDER='./readymade.us/static/files/uploads'
-LOG_FILE='./readymade.us/app.log'
-#UPLOAD_FOLDER='./static/files/uploads'
-#LOG_FILE='./app.log'
+UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
+LOG_FILE=config.ROOT_PATH+'/app.log'
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
@@ -342,14 +340,15 @@ def visualize():
 			for c in cvars:
 				x=csvf[i].fillna(0)
 				y=csvf[c].fillna(0)
-				pltfile=analysis.scatter(x,y,count,i,c)
+				pltfile=analysis.scatter(x,y,count,i,c,config.ROOT_PATH)
 				corr=np.corrcoef(x,y)[0][1]
 				count+=1
 				params.append((pltfile,corr))
 		return render_template("scatter.html",params=params,vars=controls)
 	except Exception as e:
 		app.logger.exception(traceback.format_exc())
-		return redirect(url_for("login"))
+		flash('Sorry, an internal error occurred.')
+		return redirect(url_for("logout"))
 		'''
 		To-do:
 		Check if coefs>0.6
