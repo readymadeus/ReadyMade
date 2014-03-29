@@ -24,7 +24,10 @@ import StringIO as sio
 
 
 app=Flask(__name__)
-UPLOAD_FOLDER='../readymade.us/static/files/uploads'
+UPLOAD_FOLDER='./readymade.us/static/files/uploads'
+LOG_FILE='./readymade.us/app.log'
+#UPLOAD_FOLDER='./static/files/uploads'
+#LOG_FILE='./app.log'
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
@@ -36,7 +39,7 @@ import sys
 if not app.debug:
 	import logging
 	from logging.handlers import RotatingFileHandler
-	rfh=RotatingFileHandler('../readymade.us/app.log',mode='a',maxBytes=1024*1024*100,backupCount=5)
+	rfh=RotatingFileHandler(LOG_FILE,mode='a',maxBytes=1024*1024*100,backupCount=5)
 	app.logger.addHandler(rfh)
 	formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 	rfh.setFormatter(formatter)
@@ -337,9 +340,9 @@ def visualize():
 		 controls.append(c)
 		for i in ivars: 
 			for c in cvars:
-				pltfile=analysis.scatter(csvf[i],csvf[c],count,i,c)
-				x=csvf[i].replace('NaN',0)
-				y=csvf[c].replace('NaN',0)
+				x=csvf[i].fillna(0)
+				y=csvf[c].fillna(0)
+				pltfile=analysis.scatter(x,y,count,i,c)
 				corr=np.corrcoef(x,y)[0][1]
 				count+=1
 				params.append((pltfile,corr))
