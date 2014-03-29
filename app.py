@@ -26,6 +26,8 @@ import config
 app=Flask(__name__)
 UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
 LOG_FILE=config.ROOT_PATH+'/app.log'
+PLOTPATH=config.ROOT_PATH+"/static/images/plots/scatter"
+os.chmod(LOG_FILE,0777)
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
@@ -340,7 +342,7 @@ def visualize():
 			for c in cvars:
 				x=csvf[i].fillna(0)
 				y=csvf[c].fillna(0)
-				pltfile=analysis.scatter(x,y,count,i,c,config.ROOT_PATH)
+				pltfile=analysis.scatter(x,y,count,i,c,PLOTPATH)
 				corr=np.corrcoef(x,y)[0][1]
 				count+=1
 				params.append((pltfile,corr))
