@@ -373,9 +373,9 @@ def regress():
 		out=session['output'][0]
 		y=csvf[out]
 		inp=session['input'][0]
-		reg[inp]=csvf[inp].replace('nan',0)
+		reg[inp]=csvf[inp].fillna(0)
 		for var in variables:
-			reg[var]=csvf[var].replace('nan',0)
+			reg[var]=csvf[var].fillna(0)
 		model=pd.ols(y=y,x=reg)
 		output=sio.StringIO()
 		output.write(model.summary)
