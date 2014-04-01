@@ -21,12 +21,13 @@ from models import User, Project, Input, Control, Output, Analysis
 import traceback
 import pandas as pd
 import StringIO as sio
+import config
 
 app=Flask(__name__)
-ROOT_PATH='.'
-UPLOAD_FOLDER=ROOT_PATH+'/static/files/uploads'
-LOG_FILE=ROOT_PATH+'/app.log'
-PLOTPATH=ROOT_PATH+"/static/images/plots/scatter"
+
+UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
+LOG_FILE=config.ROOT_PATH+'/app.log'
+PLOTPATH=config.ROOT_PATH+"/static/images/plots/scatter"
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
