@@ -28,10 +28,12 @@ app=Flask(__name__)
 UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
 LOG_FILE=config.ROOT_PATH+'/app.log'
 PLOTPATH=config.ROOT_PATH+"/static/images/plots/scatter"
+REGRESS_PATH=config.ROOT_PATH+'/static/files/regress.txt'
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 app.config['PLOTPATH']=PLOTPATH
+app.config['REGRESS_PATH']=REGRESS_PATH
 username=""
 
 import sys
@@ -380,7 +382,7 @@ def regress():
 		output=sio.StringIO()
 		output.write(model.summary)
 		contents=output.getvalue()
-		rpath='./static/files/regress.txt'
+		rpath=app.config['REGRESS_PATH']
 		f=open(rpath,'w+')
 		f.write(contents)
 		f.close()
