@@ -345,9 +345,10 @@ def visualize():
 				x=csvf[i].fillna(0)
 				y=csvf[c].fillna(0)
 				pltfile=analysis.scatter(x,y,count,i,c,pltpath)
+				filepath='../static/images/plots/'+pltfile
 				corr=np.corrcoef(x,y)[0][1]
 				count+=1
-				params.append((pltfile,corr))
+				params.append((filepath,corr))
 		return render_template("scatter.html",params=params,vars=controls)
 	except Exception as e:
 		app.logger.exception(traceback.format_exc())

@@ -6,6 +6,7 @@ import os
 
 def scatter(x,y,count,xlabel,ylabel,plotpath):
 	fig=plotpath+str(count)+".png"
+	filename="scatter"+str(count)+".png"
 	figure=plt.figure()
 	ax=figure.add_subplot(111)
 	ax.scatter(x,y)
@@ -14,4 +15,4 @@ def scatter(x,y,count,xlabel,ylabel,plotpath):
 	ax.set_xlabel(xlabel)
 	ax.set_ylabel(ylabel)
 	figure.savefig(fig)
-	return fig
+	return filename
