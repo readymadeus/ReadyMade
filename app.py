@@ -21,16 +21,16 @@ from models import User, Project, Input, Control, Output, Analysis
 import traceback
 import pandas as pd
 import StringIO as sio
-import config
 
 app=Flask(__name__)
-UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
-LOG_FILE=config.ROOT_PATH+'/app.log'
-PLOTPATH=config.ROOT_PATH+"/static/images/plots/scatter"
-os.chmod(LOG_FILE,0777)
+ROOT_PATH='.'
+UPLOAD_FOLDER=ROOT_PATH+'/static/files/uploads'
+LOG_FILE=ROOT_PATH+'/app.log'
+PLOTPATH=ROOT_PATH+"/static/images/plots/scatter"
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
+app.config['PLOTPATH']=PLOTPATH
 username=""
 
 import sys
@@ -336,13 +336,14 @@ def visualize():
 		count=0
 		session['output']=[o for o in ovars]
 		session['input']=[i for i in ivars]
+		pltpath=app.config['PLOTPATH']
 		for c in cvars:
 		 controls.append(c)
 		for i in ivars: 
 			for c in cvars:
 				x=csvf[i].fillna(0)
 				y=csvf[c].fillna(0)
-				pltfile=analysis.scatter(x,y,count,i,c,PLOTPATH)
+				pltfile=analysis.scatter(x,y,count,i,c,pltpath)
 				corr=np.corrcoef(x,y)[0][1]
 				count+=1
 				params.append((pltfile,corr))
