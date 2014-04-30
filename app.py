@@ -1,6 +1,6 @@
 import os
 import models
-from flask import Flask, request, render_template, redirect, url_for, flash, Blueprint,make_response,session
+from flask import Flask, request, render_template, redirect, url_for, flash, Blueprint,make_response
 from flask.ext.login import (LoginManager, current_user, login_required,
 							login_user, logout_user, UserMixin,
 							confirm_login, fresh_login_required)
@@ -22,13 +22,17 @@ import traceback
 import pandas as pd
 import StringIO as sio
 import config
+import itertools
+import statsmodels.formula.api as sm
 
 app=Flask(__name__)
+data=dict()
+session=dict()
 
 UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
 LOG_FILE=config.ROOT_PATH+'/app.log'
-PLOTPATH=config.ROOT_PATH+"/static/images/plots/scatter"
-REGRESS_PATH=config.ROOT_PATH+'/static/files/regress.txt'
+PLOTPATH=config.ROOT_PATH+"/static/images/plots"
+REGRESS_PATH=config.ROOT_PATH+'/static/files/regressions/'
 ALLOWED_EXTENSIONS=set(['csv'])
 current_dir=os.getcwd()
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
@@ -203,11 +207,66 @@ def questionnaire():
 def answer():
 	return render_template("select_inds.html")
 
+@app.route('/variables',methods=["POST","GET"])
+def variables():
+	if request.method=="POST" and request.form is not None:
+		try:
+			if 'vartype' in request.form:
+				pid=session["pid"]
+				p=Project.query.filter_by(id=pid).first()
+				orgname=p.orgname
+				pands=p.prods
+				aid=session["aid"]
+				a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
+				if request.form["vartype"]=="input":
+					inputs=request.form.getlist("inputs")
+					for inp in inputs:
+						if len(inp)>0:
+							io=Input("",inp,aid)
+						 	db_session.add(io)
+							db_session.commit() 
+					return render_template("output_vars.html",orgname=orgname,pands=pands)
+				elif request.form["vartype"]=="output":
+					outputs=request.form.getlist("outputs")
+					for out in outputs:
+						if len(out)>0:
+							io=Output("",out,aid)
+						 	db_session.add(io)
+							db_session.commit() 
+					return render_template("control_vars.html",orgname=orgname,pands=pands)
+				else:
+					return render_template("input_vars.html",orgname=orgname,pands=pands)	
+			else:
+				if 'update' in request.form:
+					session["update"]=request.form["update"]
+				pid=session["pid"]
+				p=Project.query.filter_by(id=pid).first()
+				orgname=p.orgname
+				pands=p.prods
+				analysis=Analysis(pid)
+				db_session.add(analysis)
+				db_session.commit()
+				session["aid"]=analysis.id
+				return render_template("input_vars.html",orgname=orgname,pands=pands)
+		except:
+			app.logger.exception(traceback.format_exc())
+		
+
 @app.route('/upload',methods=["POST","GET"])
 def upload():
 	if request.method == "POST" and request.form is not None:
 		try:
-			if request.form["update"]=="false":
+			pid=session["pid"]
+			#a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
+			aid=session["aid"]
+			controls=request.form.getlist("controls")			
+			for c in controls:
+				if len(c)>0:
+					io=Control("",c,aid)
+					db_session.add(io)
+					db_session.commit()
+			#TODO: Updating project information needs to go while entering input variables
+			if session["update"]=="false":
 				return render_template("indicators.html")
 			orgname=request.form["orgname"]
 			name=request.form["name"]
@@ -250,11 +309,9 @@ def showvars():
 					filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
 					app.logger.debug(filepath)
 					file.save(filepath)
-					userid=session["userid"]
+					session["pid"]=67
 					pid=session["pid"]
-					Project.query.filter(Project.id==pid).update({"file_name":filename,"file_location":filepath})
-					analysis=Analysis(pid)
-					db_session.add(analysis)
+					Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
 					db_session.commit()
 					return redirect(url_for("selectIndicators"))
 		except:
@@ -268,130 +325,335 @@ def selectIndicators():
 	else:
 		vars=[]
 		pid=session["pid"]
-		p=Project.query.filter(Project.id==pid).first()
+		p=Project.query.filter_by(id=pid).first()
 		filename=p.file_name
 		file_loc=p.file_location
 		with open(str(file_loc),"rU") as csvfile:
 			datareader=csv.reader(csvfile,delimiter=',')
 			vars=datareader.next()
+			print "Variable header ",vars
 			session["vars"]=vars
 			session["type"]="Input"
-	return render_template("select_inds.html",vartype=session["type"],vars=vars)
+	uservars=getUserVars(session["type"])
+	print "User variables for type  ",session["type"],"  are  ",uservars
+	return render_template("select_inds.html",vartype=session["type"],vars=vars,uservars=uservars)
 
+def getUserVars(vartype):
+	aid=session["aid"]
+	print "Analysis id is",aid
+	uservars=[]
+	if vartype=="Input":
+		inps=Input.query.filter_by(analysis=aid).all()
+		print inps
+		uservars=[inp.uservarname for inp in inps]
+		return uservars
+	elif vartype=="Output":
+		outs=Output.query.filter_by(analysis=aid).all()
+		uservars=[out.uservarname for out in outs]
+		return uservars
+	elif vartype=="Control":
+		conts=Control.query.filter_by(analysis=aid).all()
+		uservars=[cont.uservarname for cont in conts]
+		return uservars
+	else:
+		return uservars
+
+@app.route("/reselect_vars/<vartype>",methods=["GET","POST"])
+def reselectIndicators(vartype):
+	vars=session["vars"]
+	uservars=getUserVars(vartype)
+	print "User variables for type  ",session["type"],"  are  ",uservars
+	return render_template("select_inds.html",vartype=vartype,vars=vars,uservars=uservars)
+
+def getUserVars(vartype):
+	aid=session["aid"]
+	print "Analysis id is",aid
+	uservars=[]
+	if vartype=="Input":
+		inps=Input.query.filter_by(analysis=aid).all()
+		print inps
+		uservars=[inp.uservarname for inp in inps]
+		return uservars
+	elif vartype=="Output":
+		outs=Output.query.filter_by(analysis=aid).all()
+		uservars=[out.uservarname for out in outs]
+		return uservars
+	elif vartype=="Control":
+		conts=Control.query.filter_by(analysis=aid).all()
+		uservars=[cont.uservarname for cont in conts]
+		return uservars
+	else:
+		return uservars
 
 @app.route("/store",methods=["POST","GET"])
 def readinputs():
 	if request.form is not None:
-		inputs=request.form.getlist('variables')
-		if(len(inputs)==0):
+		uservars=request.form.keys()
+		vardict={}
+		for uvar in uservars:
+			vardict[uvar]=request.form.getlist(uvar)
+		print "Variable dictionary",vardict
+		if(len(vardict.values())==0):
 			flash("Please select at least one variable")
+			return redirect(url_for("selectIndicators"))
 		else:
-			userid=session["userid"]
-			pid=session["pid"]
-			a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
+			#userid=session["userid"]
+			session["userid"]=16
+			userid=16
+			#pid=session["pid"]
+			session["pid"]=67
+			pid=67
+			aid=session["aid"]
 			try:  
 				if session["type"]=="Input":
-					for i in inputs:
-					 io=Input(i,a.id)
-					 db_session.add(io)
-					db_session.commit() 
+					uvars=[uvar for uvar in uservars]
+					for uvar,varnames in vardict.items():
+						for varname in varnames:
+							if varname!='nodata':
+								print "User var and actual variable",uvar, varname
+								io=Input(varname,uvar,aid)
+								db_session.add(io)
+					db_session.commit()
 					session["type"]="Control"
 				elif session["type"]=="Control":
-					for i in inputs:
-					  io=Control(i,a.id)
-					  db_session.add(io)
-					db_session.commit()      
+					uvars=[uvar for uvar in uservars]
+					for uvar,varnames in vardict.items():
+						for varname in varnames:
+							if varname!='nodata':
+								print "User var and actual variable",uvar, varname
+								io=Control(varname,uvar,aid)
+								db_session.add(io)
+					db_session.commit()
 					session["type"]="Output"
 				else:
-					for i in inputs:
-					  io=Output(i,a.id)
-					  db_session.add(io)
-					db_session.commit()  
-					return redirect(url_for("upload_data")) 
+					uvars=[uvar for uvar in uservars]
+					for uvar,varnames in vardict.items():
+						for varname in varnames:
+							if varname!='nodata':
+								print "User var and actual variable",uvar, varname
+								io=Output(varname,uvar,aid)
+								db_session.add(io)
+					db_session.commit()
+					return redirect(url_for("transform_data")) 
 			except KeyError as e:
 				app.logger.exception(e)
 				session["type"]="Input"
 			return redirect(url_for("selectIndicators"))  
 				
 
-@app.route("/upload_data")
-def upload_data():
-	return redirect(url_for("visualize"))
+@app.route("/transform_data")
+def transform_data():
+	#pid=session["pid"]
+	aid=session["aid"]
+	pid=67
+	p=Project.query.filter(Project.id==pid).first()
+	inputs=Input.query.filter(Input.analysis==aid).all()
+	controls=Control.query.filter(Control.analysis==aid).all()
+	outputs=Output.query.filter(Output.analysis==aid).all()
+	ovars=[o.varname for o in outputs if o.varname != None and o.varname!='']
+	ivars=[i.varname for i in inputs if i.varname != None and i.varname!='']
+	cvars=[c.varname for c in controls if c.varname != None and c.varname!='']
+	filename=p.file_name
+	file_loc=p.file_location
+	csvf=convert.transform(file_loc)
+	indices=[]
+	var_out_info=[]
+	print "ivars",ivars
+	for i in ivars:
+		#Replace missing data
+		print "ivalue",i
+		try:
+			csvf[i]=csvf[i].fillna(0)
+			#Removing outliers
+			outinfo=remOutliers(csvf[i])
+			indices=outinfo[0]
+			csvf=csvf.drop(indices)
+			var_out_info.append((i,outinfo[1],outinfo[2],outinfo[3]))
+			print "Length of the data frame after removing input outliers",len(csvf.index)
+		except TypeError as e:
+			app.logger.exception(traceback.format_exc())
+			flash('Please select only numeric fields')
+			
+	#Output Variables
+	for o in ovars:
+		try:
+			csvf[o]=csvf[o].fillna(0)
+			#Removing outliers
+			outinfo=remOutliers(csvf[o])
+			indices=outinfo[0]
+			csvf=csvf.drop(indices)
+			var_out_info.append((o,outinfo[1],outinfo[2],outinfo[3]))
+			print "Length of the data frame after removing output outliers ",len(csvf.index)
+		except TypeError as e:
+			app.logger.exception(traceback.format_exc())
+			flash('Please select only numeric fields')
+	session['output']=ovars
+	session['input']=ivars
+	session['control']=cvars
+	data[pid]=csvf
+	return render_template("outliers.html",data=var_out_info)
 
-@app.route("/visualize")
-def visualize():
+def remOutliers(data):
+    outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]
+    print outliers
+    indices=outliers.index
+    removed=len(outliers)
+    total=len(data)
+    percent=(float(removed)/float(total))*100
+    return (indices,removed,total,percent)
+	
+
+@app.route("/correlations",methods=["GET","POST"])
+def correlations():
+	ovars=session['output']
+	ivars=session['input']
+	cvars=session['control']
+	if len(ovars)>1:
+		return redirect(url_for("showcorr",vartype="output"))
+	elif len(ivars)>1:
+		session["rout"]=ovars
+		return redirect(url_for("showcorr",vartype="input"))
+	elif len(cvars)>1:
+		session["rout"]=ovars
+		session["rinp"]=ivars
+		return redirect(url_for("showcorr",vartype="control"))
+	else:
+		session["rout"]=ovars
+		session["rinp"]=ivars
+		session["rcont"]=cvars
+		return redirect(url_for("showcorr",vartype="regress"))
+
+
+@app.route("/visualize/<vartype>",methods=["POST","GET"])
+def showcorr(vartype=None):
 	try:
-		userid=session["userid"]
+		vartype=str(vartype)
+		if request.form is not None and "vartype" in request.form:
+			vartype=request.form["vartype"]
+		print "vartype",vartype
+		if vartype=="regress":
+			if "rcont" not in session:
+				session["rcont"]=request.form.getlist('variables')
+			return redirect(url_for("regress"))
+		elif vartype=="output":
+			print "Still vartype is", vartype
+			corrvars=session['output']
+		elif vartype=="input":
+			if "rout" not in session:
+				session["rout"]=request.form.getlist('variables')
+			print session["rout"]
+			corrvars=session["input"]
+		else:
+			if "rinp" not in session:
+				session["rinp"]=request.form.getlist('variables')
+			corrvars=session["control"]
+			ivars=session["input"]
 		pid=session["pid"]
-		p=Project.query.filter(Project.id==pid).first()
-		a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
-		inputs=Input.query.filter(Input.analysis==a.id).all()
-		outputs=Output.query.filter(Output.analysis==a.id).all()
-		controls=Control.query.filter(Control.analysis==a.id).all()
-		ivars=[i.varname for i in inputs if i.varname is not None]
-		cvars=[c.varname for c in controls if c.varname is not None]
-		ovars=[o.varname for o in outputs if o.varname is not None]
-		filename=p.file_name
-		file_loc=p.file_location
-		csvf=convert.transform(file_loc)
-		params=[]
-		controls=[]
+		csvf=data[pid]
+		params=[]	
 		count=0
-		session['output']=[o for o in ovars]
-		session['input']=[i for i in ivars]
-		pltpath=app.config['PLOTPATH']
-		for c in cvars:
-		 controls.append(c)
-		for i in ivars: 
-			for c in cvars:
-				x=csvf[i].fillna(0)
-				y=csvf[c].fillna(0)
-				pltfile=analysis.scatter(x,y,count,i,c,pltpath)
-				filepath='../static/images/plots/'+pltfile
-				corr=np.corrcoef(x,y)[0][1]
+		pltpath=app.config['PLOTPATH']+'/'+vartype+'/scatter'
+		#Plotting the scatterplots
+		i=0
+		if vartype=="control":
+			combos=itertools.combinations(corrvars+ivars,2)
+		else:
+			combos=itertools.combinations(corrvars,2)
+		for combo in combos:
+			x=csvf[combo[0]].fillna(0)
+			y=csvf[combo[1]].fillna(0)
+			corr=np.corrcoef(x,y)[0][1]
+			corr=round(corr,2)
+			if corr>=0.70:
+				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+				filepath='../static/images/plots/'+vartype+'/'+pltfile
+				print "scatter",filepath
 				count+=1
 				params.append((filepath,corr))
-		return render_template("scatter.html",params=params,vars=controls)
+		if count==0:
+			print "count is 0 and vartype is ",vartype
+			msg="none"
+		else:
+			msg="corr"
+		return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype,msg=msg)
 	except Exception as e:
 		app.logger.exception(traceback.format_exc())
 		flash('Sorry, an internal error occurred.')
-		return redirect(url_for("logout"))
-		'''
-		To-do:
-		Check if coefs>0.6
-		Freeze values of coefficients 
-		'''
+		#return redirect(url_for("logout"))
+
 
 @app.route("/regress",methods=["POST","GET"])
 def regress():
-	if request.method=="POST" and "variables" in request.form:
-		variables=request.form.getlist('variables')
+	if True:
 		pid=session["pid"]
-		p=Project.query.filter(Project.id==pid).first()
+		'''p=Project.query.filter(Project.id==pid).first()
 		filename=p.file_name
 		file_loc=p.file_location
-		csvf=convert.transform(file_loc)
+		csvf=convert.transform(file_loc)'''
+		regs=[]
+		csvf=data[pid]
 		reg=pd.DataFrame()
-		out=session['output'][0]
-		y=csvf[out]
-		inp=session['input'][0]
-		reg[inp]=csvf[inp].fillna(0)
-		for var in variables:
-			reg[var]=csvf[var].fillna(0)
-		model=pd.ols(y=y,x=reg)
-		output=sio.StringIO()
-		output.write(model.summary)
-		contents=output.getvalue()
-		rpath=app.config['REGRESS_PATH']
-		f=open(rpath,'w+')
-		f.write(contents)
-		f.close()
-		f=open(rpath,'r')
-		lines=f.readlines()
-		f.close()
-		return render_template("regression.html",summary=lines)
+		outs=session['rout']
+		inps=session['rinp']
+		controls=session['rcont']
+		count=0
+		print outs
+		print inps
+		print controls
+		for o in outs:
+			r=[]
+			inputData=[]
+			controlData=[]
+			y=csvf[o]
+			for i in inps:
+				reg[i]=csvf[i]
+			for control in controls:
+				reg[control]=csvf[control]
+			print reg
+			model=pd.ols(y=y,x=reg)
+			formula=o+"~"+'+'.join(inps)+"+"+'+'.join(controls)
+			res=model.summary_as_matrix
+			r.append(formula)
+			r.append(round(model.r2_adj,2))
+			r.append(round(model.f_stat['f-stat'],2))
+			r.append(round(model.f_stat['p-value'],5))
+			r.append(model.df)
+			r.append(model.nobs)
+			for i in inps:
+				idata=[]
+				idata.append(i)
+				coef=round(res.ix['beta'][i],2)
+				idata.append(coef)
+				pval=round(res.ix['p-value'][i],5)
+				idata.append(pval)
+				stderr=round(res.ix['std err'][i],2)
+				idata.append(stderr)
+				tstat=round(res.ix['t-stat'][i],2)
+				idata.append(tstat)
+				inputData.append(idata)
+			r.append(inputData)
+			for c in controls:
+				cdata=[]
+				cdata.append(c)
+				coef=round(res.ix['beta'][c],2)
+				cdata.append(coef)
+				pval=round(res.ix['p-value'][c],2)
+				cdata.append(pval)
+				stderr=round(res.ix['std err'][c],2)
+				cdata.append(stderr)
+				tstat=round(res.ix['t-stat'][c],2)
+				cdata.append(tstat)
+				controlData.append(cdata)
+			r.append(controlData)
+			print "r",r
+			print "Input data",inputData
+			print "Control data",controlData
+			regs.append(r)
+			count+=1
+		return render_template("regression.html",regs=regs)
 	else:
 		return redirect(url_for("logout"))
+
 
 @app.errorhandler(500)
 def internal_error(exception):

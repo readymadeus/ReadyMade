@@ -33,3 +33,1730 @@ Traceback (most recent call last):
   File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
     __getitem__ = lambda x, i: x._get_current_object()[i]
 KeyError: 'userid'
+2014-03-28 18:58:47,884 - __main__ - DEBUG - Loading...
+2014-03-28 18:58:47,884 - __main__ - DEBUG - ../readymade.us/static/files/uploads/coffeedat.csv
+2014-03-29 01:24:07,218 - __main__ - DEBUG - Loading...
+2014-03-29 01:24:07,218 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-29 12:29:11,169 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-03-29 12:29:30,826 - __main__ - DEBUG - Loading...
+2014-03-29 12:29:30,827 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-29 13:08:52,833 - __main__ - DEBUG - Loading...
+2014-03-29 13:08:52,833 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 13:03:24,885 - __main__ - DEBUG - Adding project to the database
+2014-03-31 13:03:24,889 - __main__ - DEBUG - <Project None,u'b',u'a',u'f',u'b',u'df',u'f',u'f',None,None>
+2014-03-31 13:03:24,904 - __main__ - DEBUG - Successfully added project to database
+2014-03-31 13:03:31,139 - __main__ - DEBUG - Loading...
+2014-03-31 13:03:31,140 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 13:10:56,429 - __main__ - DEBUG - Loading...
+2014-03-31 13:10:56,429 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 13:22:37,229 - __main__ - DEBUG - Loading...
+2014-03-31 13:22:37,230 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 13:36:24,035 - __main__ - DEBUG - Loading...
+2014-03-31 13:36:24,036 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 13:36:40,058 - __main__ - DEBUG - Loading...
+2014-03-31 13:36:40,059 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 14:00:16,033 - __main__ - DEBUG - Loading...
+2014-03-31 14:00:16,041 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 20:45:05,457 - __main__ - DEBUG - Loading...
+2014-03-31 20:45:05,457 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-03-31 21:09:30,721 - __main__ - DEBUG - Loading...
+2014-03-31 21:09:30,722 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-01 11:01:15,283 - __main__ - DEBUG - Loading...
+2014-04-01 11:01:15,291 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-15 14:26:01,919 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-04-15 16:32:46,458 - __main__ - DEBUG - Loading...
+2014-04-15 16:32:46,460 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-17 12:37:27,717 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-04-17 13:12:43,985 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 216, in upload
+    orgname=request.form["orgname"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
+Traceback (most recent call last):
+  File "app.py", line 216, in upload
+    orgname=request.form["orgname"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
+2014-04-17 16:32:49,041 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 210, in variables
+    if request.form["vartype"]=="input":
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
+Traceback (most recent call last):
+  File "app.py", line 210, in variables
+    if request.form["vartype"]=="input":
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
+2014-04-17 16:39:10,281 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 227, in upload
+    if request.form["update"]=="false":
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
+Traceback (most recent call last):
+  File "app.py", line 227, in upload
+    if request.form["update"]=="false":
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
+2014-04-18 15:26:44,376 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 211, in variables
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 211, in variables
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+2014-04-18 17:13:17,367 - __main__ - DEBUG - Loading...
+2014-04-18 17:13:17,369 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 22:08:18,926 - __main__ - DEBUG - Loading...
+2014-04-18 22:08:18,927 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 22:08:31,248 - __main__ - DEBUG - Loading...
+2014-04-18 22:08:31,248 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 22:20:26,873 - __main__ - DEBUG - Loading...
+2014-04-18 22:20:26,874 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 22:31:22,719 - __main__ - DEBUG - Loading...
+2014-04-18 22:31:22,719 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 23:47:18,743 - __main__ - DEBUG - Loading...
+2014-04-18 23:47:18,743 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 23:49:57,213 - __main__ - DEBUG - Loading...
+2014-04-18 23:49:57,213 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 23:52:45,523 - __main__ - DEBUG - Loading...
+2014-04-18 23:52:45,524 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-18 23:52:45,534 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 302, in showvars
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 302, in showvars
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+2014-04-18 23:53:12,380 - __main__ - DEBUG - Loading...
+2014-04-18 23:53:12,380 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 17:02:13,640 - __main__ - DEBUG - Loading...
+2014-04-19 17:02:13,648 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 17:08:53,394 - __main__ - DEBUG - Loading...
+2014-04-19 17:08:53,395 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 17:24:46,592 - __main__ - DEBUG - Loading...
+2014-04-19 17:24:46,592 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 17:25:19,115 - __main__ - DEBUG - Loading...
+2014-04-19 17:25:19,115 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 18:19:49,788 - __main__ - DEBUG - Loading...
+2014-04-19 18:19:49,789 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 18:32:43,889 - __main__ - DEBUG - Loading...
+2014-04-19 18:32:43,889 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 18:33:10,380 - __main__ - DEBUG - Loading...
+2014-04-19 18:33:10,380 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 18:33:54,941 - __main__ - DEBUG - Loading...
+2014-04-19 18:33:54,942 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 18:55:29,179 - __main__ - DEBUG - Loading...
+2014-04-19 18:55:29,179 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 19:46:56,931 - __main__ - DEBUG - Loading...
+2014-04-19 19:46:56,932 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 19:46:56,933 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 302, in showvars
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 302, in showvars
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+2014-04-19 19:47:32,215 - __main__ - DEBUG - Loading...
+2014-04-19 19:47:32,215 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 19:58:26,743 - __main__ - DEBUG - Loading...
+2014-04-19 19:58:26,743 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 20:02:11,617 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 428, in visualize
+    x=csvf[i].fillna(0)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1658, in __getitem__
+    return self._getitem_column(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1665, in _getitem_column
+    return self._get_item_cache(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 1005, in _get_item_cache
+    values = self._data.get(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 2874, in get
+    _, block = self._find_block(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3186, in _find_block
+    self._check_have(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3193, in _check_have
+    raise KeyError('no item named %s' % com.pprint_thing(item))
+KeyError: u'no item named '
+Traceback (most recent call last):
+  File "app.py", line 428, in visualize
+    x=csvf[i].fillna(0)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1658, in __getitem__
+    return self._getitem_column(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1665, in _getitem_column
+    return self._get_item_cache(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 1005, in _get_item_cache
+    values = self._data.get(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 2874, in get
+    _, block = self._find_block(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3186, in _find_block
+    self._check_have(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3193, in _check_have
+    raise KeyError('no item named %s' % com.pprint_thing(item))
+KeyError: u'no item named '
+2014-04-19 20:33:58,629 - __main__ - DEBUG - Loading...
+2014-04-19 20:33:58,630 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 20:34:10,156 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 429, in visualize
+    x=csvf[i].fillna(0)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1658, in __getitem__
+    return self._getitem_column(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1665, in _getitem_column
+    return self._get_item_cache(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 1005, in _get_item_cache
+    values = self._data.get(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 2874, in get
+    _, block = self._find_block(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3186, in _find_block
+    self._check_have(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3193, in _check_have
+    raise KeyError('no item named %s' % com.pprint_thing(item))
+KeyError: u"no item named <Input u''>"
+Traceback (most recent call last):
+  File "app.py", line 429, in visualize
+    x=csvf[i].fillna(0)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1658, in __getitem__
+    return self._getitem_column(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1665, in _getitem_column
+    return self._get_item_cache(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 1005, in _get_item_cache
+    values = self._data.get(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 2874, in get
+    _, block = self._find_block(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3186, in _find_block
+    self._check_have(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3193, in _check_have
+    raise KeyError('no item named %s' % com.pprint_thing(item))
+KeyError: u"no item named <Input u''>"
+2014-04-19 21:06:21,044 - __main__ - DEBUG - Loading...
+2014-04-19 21:06:21,045 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 21:06:43,909 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 429, in visualize
+    x=csvf[i].fillna(0)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1658, in __getitem__
+    return self._getitem_column(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1665, in _getitem_column
+    return self._get_item_cache(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 1005, in _get_item_cache
+    values = self._data.get(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 2874, in get
+    _, block = self._find_block(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3186, in _find_block
+    self._check_have(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3193, in _check_have
+    raise KeyError('no item named %s' % com.pprint_thing(item))
+KeyError: u"no item named <Input u''>"
+Traceback (most recent call last):
+  File "app.py", line 429, in visualize
+    x=csvf[i].fillna(0)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1658, in __getitem__
+    return self._getitem_column(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/frame.py", line 1665, in _getitem_column
+    return self._get_item_cache(key)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 1005, in _get_item_cache
+    values = self._data.get(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 2874, in get
+    _, block = self._find_block(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3186, in _find_block
+    self._check_have(item)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/internals.py", line 3193, in _check_have
+    raise KeyError('no item named %s' % com.pprint_thing(item))
+KeyError: u"no item named <Input u''>"
+2014-04-19 21:10:28,560 - __main__ - DEBUG - Loading...
+2014-04-19 21:10:28,560 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 21:11:37,404 - __main__ - DEBUG - Loading...
+2014-04-19 21:11:37,405 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 21:11:59,738 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 403, in visualize
+    inputs=Input.query.filter(Input.analysis==a.id).all()
+NameError: global name 'a' is not defined
+Traceback (most recent call last):
+  File "app.py", line 403, in visualize
+    inputs=Input.query.filter(Input.analysis==a.id).all()
+NameError: global name 'a' is not defined
+2014-04-19 21:13:20,886 - __main__ - DEBUG - Loading...
+2014-04-19 21:13:20,887 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 21:13:35,438 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 403, in visualize
+    inputs=Input.query.filter(Input.analysis==a.id).all()
+NameError: global name 'a' is not defined
+Traceback (most recent call last):
+  File "app.py", line 403, in visualize
+    inputs=Input.query.filter(Input.analysis==a.id).all()
+NameError: global name 'a' is not defined
+2014-04-19 21:14:48,626 - __main__ - DEBUG - Loading...
+2014-04-19 21:14:48,626 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-19 21:15:08,853 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 409, in visualize
+    filename=p.file_name
+NameError: global name 'p' is not defined
+Traceback (most recent call last):
+  File "app.py", line 409, in visualize
+    filename=p.file_name
+NameError: global name 'p' is not defined
+2014-04-19 21:21:51,761 - __main__ - DEBUG - Loading...
+2014-04-19 21:21:51,761 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 12:22:06,422 - __main__ - DEBUG - Loading...
+2014-04-20 12:22:06,422 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 13:06:17,095 - __main__ - DEBUG - Loading...
+2014-04-20 13:06:17,096 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 13:06:52,321 - __main__ - DEBUG - Loading...
+2014-04-20 13:06:52,321 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 14:28:39,043 - __main__ - DEBUG - Loading...
+2014-04-20 14:28:39,044 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 14:53:54,503 - __main__ - DEBUG - Loading...
+2014-04-20 14:53:54,504 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 14:56:42,696 - __main__ - DEBUG - Loading...
+2014-04-20 14:56:42,697 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 14:57:08,573 - __main__ - DEBUG - Loading...
+2014-04-20 14:57:08,573 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 14:58:25,504 - __main__ - DEBUG - Loading...
+2014-04-20 14:58:25,504 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 15:02:21,275 - __main__ - DEBUG - Loading...
+2014-04-20 15:02:21,276 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 15:02:44,035 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 451, in outputCorr
+    filename=p.file_name
+NameError: global name 'p' is not defined
+Traceback (most recent call last):
+  File "app.py", line 451, in outputCorr
+    filename=p.file_name
+NameError: global name 'p' is not defined
+2014-04-20 15:15:58,237 - __main__ - DEBUG - Loading...
+2014-04-20 15:15:58,237 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 16:51:40,723 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 470, in outputCorr
+    return render_template("scatter.html",params=params,vars=ovars,vartype="output")
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 29, in block "content"
+    {% if float(p[1])>0.7 %}
+UndefinedError: 'float' is undefined
+Traceback (most recent call last):
+  File "app.py", line 470, in outputCorr
+    return render_template("scatter.html",params=params,vars=ovars,vartype="output")
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 29, in block "content"
+    {% if float(p[1])>0.7 %}
+UndefinedError: 'float' is undefined
+2014-04-20 16:53:14,486 - __main__ - DEBUG - Loading...
+2014-04-20 16:53:14,487 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 16:56:41,736 - __main__ - DEBUG - Loading...
+2014-04-20 16:56:41,736 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 17:39:44,452 - __main__ - DEBUG - Loading...
+2014-04-20 17:39:44,452 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 17:40:49,274 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 455, in transform_data
+    csvf[c]=remOutliers(csvf[c])
+  File "app.py", line 482, in remOutliers
+    return data[abs(data - np.mean(data)) < t * np.std(data)]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 2711, in mean
+    return mean(axis=axis, dtype=dtype, out=out)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 3490, in stat_func
+    skipna=skipna, numeric_only=numeric_only)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/series.py", line 2034, in _reduce
+    return op(_values_from_object(self), skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 43, in _f
+    return f(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 88, in f
+    result = alt(values, axis=axis, skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 241, in nanmean
+    the_sum = _ensure_numeric(values.sum(axis))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 610, in _ensure_numeric
+    raise TypeError('Could not convert %s to numeric' % str(x))
+TypeError: Could not convert CoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffee to numeric
+Traceback (most recent call last):
+  File "app.py", line 455, in transform_data
+    csvf[c]=remOutliers(csvf[c])
+  File "app.py", line 482, in remOutliers
+    return data[abs(data - np.mean(data)) < t * np.std(data)]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 2711, in mean
+    return mean(axis=axis, dtype=dtype, out=out)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 3490, in stat_func
+    skipna=skipna, numeric_only=numeric_only)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/series.py", line 2034, in _reduce
+    return op(_values_from_object(self), skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 43, in _f
+    return f(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 88, in f
+    result = alt(values, axis=axis, skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 241, in nanmean
+    the_sum = _ensure_numeric(values.sum(axis))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 610, in _ensure_numeric
+    raise TypeError('Could not convert %s to numeric' % str(x))
+TypeError: Could not convert CoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffee to numeric
+2014-04-20 17:40:49,840 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 507, in outputCorr
+    return render_template("scatter.html",params=params,vars=ovars,vartype="output")
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 29, in block "content"
+    {% if format(p[1]|float)>0.7 %}
+UndefinedError: 'format' is undefined
+Traceback (most recent call last):
+  File "app.py", line 507, in outputCorr
+    return render_template("scatter.html",params=params,vars=ovars,vartype="output")
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 29, in block "content"
+    {% if format(p[1]|float)>0.7 %}
+UndefinedError: 'format' is undefined
+2014-04-20 19:17:56,093 - __main__ - DEBUG - Loading...
+2014-04-20 19:17:56,094 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 21:42:57,670 - __main__ - DEBUG - Loading...
+2014-04-20 21:42:57,678 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 21:48:05,846 - __main__ - DEBUG - Loading...
+2014-04-20 21:48:05,846 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 21:48:05,855 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 303, in showvars
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 303, in showvars
+    pid=session["pid"]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'pid'
+2014-04-20 21:48:27,890 - __main__ - DEBUG - Loading...
+2014-04-20 21:48:27,891 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 21:49:02,929 - __main__ - DEBUG - Loading...
+2014-04-20 21:49:02,929 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 21:50:26,485 - __main__ - DEBUG - Loading...
+2014-04-20 21:50:26,485 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 21:52:43,580 - __main__ - DEBUG - Loading...
+2014-04-20 21:52:43,580 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 22:04:00,591 - __main__ - DEBUG - Loading...
+2014-04-20 22:04:00,591 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 22:04:32,929 - __main__ - DEBUG - Loading...
+2014-04-20 22:04:32,930 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 22:04:32,965 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 307, in showvars
+    Project.query.filter_by(id=69).first().update({"file_name":filename,"file_location":filepath})
+AttributeError: 'Project' object has no attribute 'update'
+Traceback (most recent call last):
+  File "app.py", line 307, in showvars
+    Project.query.filter_by(id=69).first().update({"file_name":filename,"file_location":filepath})
+AttributeError: 'Project' object has no attribute 'update'
+2014-04-20 22:14:09,967 - __main__ - DEBUG - Loading...
+2014-04-20 22:14:09,968 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 22:14:35,706 - __main__ - DEBUG - Loading...
+2014-04-20 22:14:35,706 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-20 23:22:45,178 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 508, in outputCorr
+    return render_template("scatter.html",params=params,vars=ovars,vartype="output")
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 29, in template
+    {% if p[1]>=0.70 || p[1]<=-0.70%}
+TemplateSyntaxError: expected token 'name', got '|'
+Traceback (most recent call last):
+  File "app.py", line 508, in outputCorr
+    return render_template("scatter.html",params=params,vars=ovars,vartype="output")
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 29, in template
+    {% if p[1]>=0.70 || p[1]<=-0.70%}
+TemplateSyntaxError: expected token 'name', got '|'
+2014-04-21 00:07:33,776 - __main__ - DEBUG - Loading...
+2014-04-21 00:07:33,776 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 00:31:24,187 - __main__ - DEBUG - Loading...
+2014-04-21 00:31:24,188 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 00:35:02,339 - __main__ - DEBUG - Loading...
+2014-04-21 00:35:02,339 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 00:35:10,027 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 456, in transform_data
+    csvf[c]=remOutliers(csvf[c])
+  File "app.py", line 485, in remOutliers
+    return data[abs(data - np.mean(data)) < t * np.std(data)]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 2711, in mean
+    return mean(axis=axis, dtype=dtype, out=out)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 3490, in stat_func
+    skipna=skipna, numeric_only=numeric_only)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/series.py", line 2034, in _reduce
+    return op(_values_from_object(self), skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 43, in _f
+    return f(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 88, in f
+    result = alt(values, axis=axis, skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 241, in nanmean
+    the_sum = _ensure_numeric(values.sum(axis))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 610, in _ensure_numeric
+    raise TypeError('Could not convert %s to numeric' % str(x))
+TypeError: Could not convert CoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffee to numeric
+Traceback (most recent call last):
+  File "app.py", line 456, in transform_data
+    csvf[c]=remOutliers(csvf[c])
+  File "app.py", line 485, in remOutliers
+    return data[abs(data - np.mean(data)) < t * np.std(data)]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 2711, in mean
+    return mean(axis=axis, dtype=dtype, out=out)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 3490, in stat_func
+    skipna=skipna, numeric_only=numeric_only)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/series.py", line 2034, in _reduce
+    return op(_values_from_object(self), skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 43, in _f
+    return f(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 88, in f
+    result = alt(values, axis=axis, skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 241, in nanmean
+    the_sum = _ensure_numeric(values.sum(axis))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 610, in _ensure_numeric
+    raise TypeError('Could not convert %s to numeric' % str(x))
+TypeError: Could not convert CoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffee to numeric
+2014-04-21 00:35:34,586 - __main__ - DEBUG - Loading...
+2014-04-21 00:35:34,586 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 00:35:40,739 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 456, in transform_data
+    csvf[c]=remOutliers(csvf[c])
+  File "app.py", line 485, in remOutliers
+    return data[abs(data - np.mean(data)) < t * np.std(data)]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 2711, in mean
+    return mean(axis=axis, dtype=dtype, out=out)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 3490, in stat_func
+    skipna=skipna, numeric_only=numeric_only)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/series.py", line 2034, in _reduce
+    return op(_values_from_object(self), skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 43, in _f
+    return f(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 88, in f
+    result = alt(values, axis=axis, skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 241, in nanmean
+    the_sum = _ensure_numeric(values.sum(axis))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 610, in _ensure_numeric
+    raise TypeError('Could not convert %s to numeric' % str(x))
+TypeError: Could not convert CoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffee to numeric
+Traceback (most recent call last):
+  File "app.py", line 456, in transform_data
+    csvf[c]=remOutliers(csvf[c])
+  File "app.py", line 485, in remOutliers
+    return data[abs(data - np.mean(data)) < t * np.std(data)]
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 2711, in mean
+    return mean(axis=axis, dtype=dtype, out=out)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/generic.py", line 3490, in stat_func
+    skipna=skipna, numeric_only=numeric_only)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/series.py", line 2034, in _reduce
+    return op(_values_from_object(self), skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 43, in _f
+    return f(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 88, in f
+    result = alt(values, axis=axis, skipna=skipna, **kwds)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 241, in nanmean
+    the_sum = _ensure_numeric(values.sum(axis))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pandas/core/nanops.py", line 610, in _ensure_numeric
+    raise TypeError('Could not convert %s to numeric' % str(x))
+TypeError: Could not convert CoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffeeCoffee to numeric
+2014-04-21 00:36:04,914 - __main__ - DEBUG - Loading...
+2014-04-21 00:36:04,915 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 00:41:01,169 - __main__ - DEBUG - Loading...
+2014-04-21 00:41:01,169 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 02:09:59,773 - __main__ - DEBUG - Loading...
+2014-04-21 02:09:59,774 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 02:10:35,832 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 530, in showcorr
+    combos=itertools.combinations(corrvars+ivars,2)
+UnboundLocalError: local variable 'ivars' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 530, in showcorr
+    combos=itertools.combinations(corrvars+ivars,2)
+UnboundLocalError: local variable 'ivars' referenced before assignment
+2014-04-21 02:11:41,417 - __main__ - DEBUG - Loading...
+2014-04-21 02:11:41,417 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 02:12:01,193 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 23, in template
+    <form action="{{url_for('visualize',vartype={{vartype}})}}" method="POST">
+TemplateSyntaxError: expected token ':', got '}'
+Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 23, in template
+    <form action="{{url_for('visualize',vartype={{vartype}})}}" method="POST">
+TemplateSyntaxError: expected token ':', got '}'
+2014-04-21 02:14:30,112 - __main__ - DEBUG - Loading...
+2014-04-21 02:14:30,112 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 02:14:54,613 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {% vartype="input" %}
+TemplateSyntaxError: Encountered unknown tag 'vartype'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {% vartype="input" %}
+TemplateSyntaxError: Encountered unknown tag 'vartype'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2014-04-21 02:26:00,251 - __main__ - DEBUG - Loading...
+2014-04-21 02:26:00,251 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 02:26:00,259 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 305, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 305, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+2014-04-21 02:26:48,424 - __main__ - DEBUG - Loading...
+2014-04-21 02:26:48,424 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 02:27:06,529 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {% vartype="input" %}
+TemplateSyntaxError: Encountered unknown tag 'vartype'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {% vartype="input" %}
+TemplateSyntaxError: Encountered unknown tag 'vartype'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2014-04-21 02:27:42,426 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {% vartype="input" %}
+TemplateSyntaxError: Encountered unknown tag 'vartype'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {% vartype="input" %}
+TemplateSyntaxError: Encountered unknown tag 'vartype'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2014-04-21 02:28:39,809 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {{ vartype="input" }}
+TemplateSyntaxError: expected token 'end of print statement', got '='
+Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 34, in template
+    {{ vartype="input" }}
+TemplateSyntaxError: expected token 'end of print statement', got '='
+2014-04-21 02:30:20,051 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 23, in block "content"
+    <form action="{{url_for('visualize',vartype=vartype)}}" method="POST">
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
+    force_external=external)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
+    raise BuildError(endpoint, values, method)
+BuildError: ('visualize', {'vartype': u'input'}, None)
+Traceback (most recent call last):
+  File "app.py", line 543, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 23, in block "content"
+    <form action="{{url_for('visualize',vartype=vartype)}}" method="POST">
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
+    force_external=external)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
+    raise BuildError(endpoint, values, method)
+BuildError: ('visualize', {'vartype': u'input'}, None)
+2014-04-21 02:32:50,035 - __main__ - DEBUG - Loading...
+2014-04-21 02:32:50,035 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 02:33:16,029 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 544, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 23, in block "content"
+    <form action="{{url_for('visualize',vartype=vartype)}}" method="POST">
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
+    force_external=external)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
+    raise BuildError(endpoint, values, method)
+BuildError: ('visualize', {'vartype': 'input'}, None)
+Traceback (most recent call last):
+  File "app.py", line 544, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 23, in block "content"
+    <form action="{{url_for('visualize',vartype=vartype)}}" method="POST">
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
+    force_external=external)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
+    raise BuildError(endpoint, values, method)
+BuildError: ('visualize', {'vartype': 'input'}, None)
+2014-04-21 02:56:12,286 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 515, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+Traceback (most recent call last):
+  File "app.py", line 515, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+2014-04-21 02:56:49,720 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 515, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+Traceback (most recent call last):
+  File "app.py", line 515, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+2014-04-21 09:37:54,715 - __main__ - DEBUG - Loading...
+2014-04-21 09:37:54,724 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 09:43:01,498 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 516, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+Traceback (most recent call last):
+  File "app.py", line 516, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+2014-04-21 09:57:39,796 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 516, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+Traceback (most recent call last):
+  File "app.py", line 516, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+2014-04-21 09:57:52,588 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 520, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+Traceback (most recent call last):
+  File "app.py", line 520, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+2014-04-21 09:59:37,466 - __main__ - DEBUG - Loading...
+2014-04-21 09:59:37,467 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 10:04:15,926 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 518, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+Traceback (most recent call last):
+  File "app.py", line 518, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+2014-04-21 10:04:26,226 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+2014-04-21 10:04:51,357 - __main__ - DEBUG - Loading...
+2014-04-21 10:04:51,357 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 10:13:57,964 - __main__ - DEBUG - Loading...
+2014-04-21 10:13:57,964 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 10:14:25,519 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 542, in showcorr
+    pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/analysis.py", line 17, in scatter
+    figure.savefig(fig)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/figure.py", line 1421, in savefig
+    self.canvas.print_figure(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backend_bases.py", line 2220, in print_figure
+    **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backends/backend_agg.py", line 510, in print_png
+    filename_or_obj = open(filename_or_obj, 'wb')
+IOError: [Errno 2] No such file or directory: './static/images/plots/scatter/input0.png'
+Traceback (most recent call last):
+  File "app.py", line 542, in showcorr
+    pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/analysis.py", line 17, in scatter
+    figure.savefig(fig)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/figure.py", line 1421, in savefig
+    self.canvas.print_figure(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backend_bases.py", line 2220, in print_figure
+    **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backends/backend_agg.py", line 510, in print_png
+    filename_or_obj = open(filename_or_obj, 'wb')
+IOError: [Errno 2] No such file or directory: './static/images/plots/scatter/input0.png'
+2014-04-21 10:15:52,163 - __main__ - DEBUG - Loading...
+2014-04-21 10:15:52,164 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 10:16:20,753 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:16:20,762 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:16:20,765 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:17:54,670 - __main__ - DEBUG - Loading...
+2014-04-21 10:17:54,670 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 10:18:03,865 - __main__ - DEBUG - Loading...
+2014-04-21 10:18:03,865 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 10:18:18,142 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:18:18,148 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:18:18,152 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:18:18,155 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:18:18,159 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:18:18,162 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 822, in send_static_file
+    cache_timeout=cache_timeout)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 614, in send_from_directory
+    raise NotFound()
+NotFound: 404: Not Found
+2014-04-21 10:19:42,957 - __main__ - DEBUG - Loading...
+2014-04-21 10:19:42,957 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 11:27:28,459 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+2014-04-21 11:28:24,702 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+2014-04-21 11:34:53,001 - __main__ - DEBUG - Loading...
+2014-04-21 11:34:53,002 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 11:54:12,416 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+2014-04-21 11:55:38,482 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+Traceback (most recent call last):
+  File "app.py", line 522, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+2014-04-21 11:55:41,111 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 518, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+Traceback (most recent call last):
+  File "app.py", line 518, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+2014-04-21 13:13:48,728 - __main__ - DEBUG - Loading...
+2014-04-21 13:13:48,728 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 13:17:08,684 - __main__ - DEBUG - Loading...
+2014-04-21 13:17:08,684 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 13:17:36,803 - __main__ - DEBUG - Loading...
+2014-04-21 13:17:36,803 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-21 13:21:29,198 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 549, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 28, in block "content"
+    <form action="{{ url_for('showcorr') }}" method="POST" id="varform">
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
+    force_external=external)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
+    raise BuildError(endpoint, values, method)
+BuildError: ('showcorr', {}, None)
+Traceback (most recent call last):
+  File "app.py", line 549, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 227, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 28, in block "content"
+    <form action="{{ url_for('showcorr') }}" method="POST" id="varform">
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
+    force_external=external)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
+    raise BuildError(endpoint, values, method)
+BuildError: ('showcorr', {}, None)
+2014-04-22 21:58:25,234 - __main__ - DEBUG - Loading...
+2014-04-22 21:58:25,241 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:13:43,131 - __main__ - DEBUG - Loading...
+2014-04-22 23:13:43,132 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:14:22,378 - __main__ - DEBUG - Loading...
+2014-04-22 23:14:22,378 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:14:54,293 - __main__ - DEBUG - Loading...
+2014-04-22 23:14:54,293 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:20:45,130 - __main__ - DEBUG - Loading...
+2014-04-22 23:20:45,130 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:23:20,195 - __main__ - DEBUG - Loading...
+2014-04-22 23:23:20,196 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:36:29,649 - __main__ - DEBUG - Loading...
+2014-04-22 23:36:29,650 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:42:43,393 - __main__ - DEBUG - Loading...
+2014-04-22 23:42:43,394 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:43:34,436 - __main__ - DEBUG - Loading...
+2014-04-22 23:43:34,436 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-22 23:44:35,849 - __main__ - DEBUG - Loading...
+2014-04-22 23:44:35,849 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 12:24:41,538 - __main__ - DEBUG - Loading...
+2014-04-23 12:24:41,542 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 18:22:50,125 - __main__ - DEBUG - Loading...
+2014-04-23 18:22:50,126 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 18:28:35,690 - __main__ - DEBUG - Loading...
+2014-04-23 18:28:35,690 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 18:38:37,287 - __main__ - DEBUG - Loading...
+2014-04-23 18:38:37,287 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 18:39:35,962 - __main__ - DEBUG - Loading...
+2014-04-23 18:39:35,962 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 19:05:52,472 - __main__ - DEBUG - Loading...
+2014-04-23 19:05:52,472 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 19:13:32,662 - __main__ - DEBUG - Loading...
+2014-04-23 19:13:32,662 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 19:19:42,613 - __main__ - DEBUG - Loading...
+2014-04-23 19:19:42,613 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 19:21:51,734 - __main__ - DEBUG - Loading...
+2014-04-23 19:21:51,734 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 19:22:49,688 - __main__ - DEBUG - Loading...
+2014-04-23 19:22:49,689 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-23 19:25:08,008 - __main__ - DEBUG - Loading...
+2014-04-23 19:25:08,009 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:27:13,572 - __main__ - DEBUG - Loading...
+2014-04-24 00:27:13,573 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:29:40,431 - __main__ - DEBUG - Loading...
+2014-04-24 00:29:40,432 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:32:30,100 - __main__ - DEBUG - Loading...
+2014-04-24 00:32:30,101 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:32:59,324 - __main__ - DEBUG - Loading...
+2014-04-24 00:32:59,325 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:33:39,780 - __main__ - DEBUG - Loading...
+2014-04-24 00:33:39,780 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:34:27,531 - __main__ - DEBUG - Loading...
+2014-04-24 00:34:27,532 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:44:39,742 - __main__ - DEBUG - Loading...
+2014-04-24 00:44:39,742 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 00:45:40,575 - __main__ - DEBUG - Loading...
+2014-04-24 00:45:40,575 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 01:19:41,129 - __main__ - DEBUG - Loading...
+2014-04-24 01:19:41,130 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 01:21:34,064 - __main__ - DEBUG - Loading...
+2014-04-24 01:21:34,064 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 01:24:14,142 - __main__ - DEBUG - Loading...
+2014-04-24 01:24:14,142 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:14:45,792 - __main__ - DEBUG - Loading...
+2014-04-24 12:14:45,794 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:15:05,809 - __main__ - DEBUG - Loading...
+2014-04-24 12:15:05,809 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:17:36,670 - __main__ - DEBUG - Loading...
+2014-04-24 12:17:36,670 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:17:57,542 - __main__ - DEBUG - Loading...
+2014-04-24 12:17:57,542 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:32:13,551 - __main__ - DEBUG - Loading...
+2014-04-24 12:32:13,551 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:33:27,788 - __main__ - DEBUG - Loading...
+2014-04-24 12:33:27,789 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:33:46,046 - __main__ - DEBUG - Loading...
+2014-04-24 12:33:46,047 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:37:23,635 - __main__ - DEBUG - Loading...
+2014-04-24 12:37:23,635 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:38:54,176 - __main__ - DEBUG - Loading...
+2014-04-24 12:38:54,176 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:39:07,051 - __main__ - DEBUG - Loading...
+2014-04-24 12:39:07,051 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:43:22,186 - __main__ - DEBUG - Loading...
+2014-04-24 12:43:22,186 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:43:52,871 - __main__ - DEBUG - Loading...
+2014-04-24 12:43:52,871 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 12:47:41,991 - __main__ - DEBUG - Loading...
+2014-04-24 12:47:41,991 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 17:03:35,331 - __main__ - DEBUG - Loading...
+2014-04-24 17:03:35,331 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 19:49:33,618 - __main__ - DEBUG - Loading...
+2014-04-24 19:49:33,619 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 19:50:48,689 - __main__ - DEBUG - Loading...
+2014-04-24 19:50:48,689 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 19:53:13,501 - __main__ - DEBUG - Loading...
+2014-04-24 19:53:13,502 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 21:01:04,653 - __main__ - DEBUG - Loading...
+2014-04-24 21:01:04,653 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 21:11:56,213 - __main__ - DEBUG - Loading...
+2014-04-24 21:11:56,213 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-24 21:43:16,559 - __main__ - DEBUG - Loading...
+2014-04-24 21:43:16,560 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 12:48:11,035 - __main__ - DEBUG - Loading...
+2014-04-25 12:48:11,037 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 14:21:29,180 - __main__ - DEBUG - Loading...
+2014-04-25 14:21:29,181 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 17:00:18,421 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 229, in variables
+    outputs=request.form.getlist("outputs",orgname=orgname,pands=pands)
+TypeError: getlist() got an unexpected keyword argument 'orgname'
+Traceback (most recent call last):
+  File "app.py", line 229, in variables
+    outputs=request.form.getlist("outputs",orgname=orgname,pands=pands)
+TypeError: getlist() got an unexpected keyword argument 'orgname'
+2014-04-25 17:01:03,234 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 214, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 214, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-04-25 17:01:50,228 - __main__ - DEBUG - Loading...
+2014-04-25 17:01:50,228 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 17:27:40,179 - __main__ - DEBUG - Loading...
+2014-04-25 17:27:40,180 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 17:29:52,240 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 241, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 241, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-04-25 17:30:47,611 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 246, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 246, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+2014-04-25 17:32:08,042 - __main__ - DEBUG - Loading...
+2014-04-25 17:32:08,042 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 17:53:24,769 - __main__ - DEBUG - Loading...
+2014-04-25 17:53:24,770 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 17:53:24,778 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 311, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 311, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+2014-04-25 17:53:51,135 - __main__ - DEBUG - Loading...
+2014-04-25 17:53:51,135 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 18:18:28,980 - __main__ - DEBUG - Loading...
+2014-04-25 18:18:28,981 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 18:43:32,156 - __main__ - DEBUG - Loading...
+2014-04-25 18:43:32,157 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 18:43:32,165 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 311, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 311, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+2014-04-25 18:44:03,219 - __main__ - DEBUG - Loading...
+2014-04-25 18:44:03,220 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 19:25:22,919 - __main__ - DEBUG - Loading...
+2014-04-25 19:25:22,919 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 19:28:50,404 - __main__ - DEBUG - Loading...
+2014-04-25 19:28:50,405 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 19:36:39,451 - __main__ - DEBUG - Loading...
+2014-04-25 19:36:39,452 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 19:41:04,925 - __main__ - DEBUG - Loading...
+2014-04-25 19:41:04,926 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 19:42:52,382 - __main__ - DEBUG - Loading...
+2014-04-25 19:42:52,383 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 19:52:23,487 - __main__ - DEBUG - Loading...
+2014-04-25 19:52:23,487 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 20:08:42,044 - __main__ - DEBUG - Loading...
+2014-04-25 20:08:42,044 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 20:10:49,475 - __main__ - DEBUG - Loading...
+2014-04-25 20:10:49,475 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 22:13:56,843 - __main__ - DEBUG - Loading...
+2014-04-25 22:13:56,843 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 22:20:06,105 - __main__ - DEBUG - Loading...
+2014-04-25 22:20:06,106 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 22:58:51,259 - __main__ - ERROR - 'type'
+Traceback (most recent call last):
+  File "app.py", line 406, in readinputs
+    if session["type"]=="Input":
+KeyError: 'type'
+2014-04-25 22:59:45,459 - __main__ - DEBUG - Loading...
+2014-04-25 22:59:45,459 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 23:08:02,251 - __main__ - DEBUG - Loading...
+2014-04-25 23:08:02,252 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 23:11:50,580 - __main__ - DEBUG - Loading...
+2014-04-25 23:11:50,580 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 23:11:50,589 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 311, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 311, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+2014-04-25 23:12:21,329 - __main__ - DEBUG - Loading...
+2014-04-25 23:12:21,329 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 23:12:53,527 - __main__ - DEBUG - Loading...
+2014-04-25 23:12:53,527 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-25 23:46:26,511 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 548, in showcorr
+    pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/analysis.py", line 17, in scatter
+    figure.savefig(fig)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/figure.py", line 1421, in savefig
+    self.canvas.print_figure(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backend_bases.py", line 2220, in print_figure
+    **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backends/backend_agg.py", line 510, in print_png
+    filename_or_obj = open(filename_or_obj, 'wb')
+IOError: [Errno 2] No such file or directory: './static/images/plots/logout/scatter0.png'
+Traceback (most recent call last):
+  File "app.py", line 548, in showcorr
+    pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/analysis.py", line 17, in scatter
+    figure.savefig(fig)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/figure.py", line 1421, in savefig
+    self.canvas.print_figure(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backend_bases.py", line 2220, in print_figure
+    **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backends/backend_agg.py", line 510, in print_png
+    filename_or_obj = open(filename_or_obj, 'wb')
+IOError: [Errno 2] No such file or directory: './static/images/plots/logout/scatter0.png'
+2014-04-25 23:49:04,090 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 548, in showcorr
+    pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/analysis.py", line 17, in scatter
+    figure.savefig(fig)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/figure.py", line 1421, in savefig
+    self.canvas.print_figure(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backend_bases.py", line 2220, in print_figure
+    **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backends/backend_agg.py", line 510, in print_png
+    filename_or_obj = open(filename_or_obj, 'wb')
+IOError: [Errno 2] No such file or directory: './static/images/plots/logout/scatter0.png'
+Traceback (most recent call last):
+  File "app.py", line 548, in showcorr
+    pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/analysis.py", line 17, in scatter
+    figure.savefig(fig)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/figure.py", line 1421, in savefig
+    self.canvas.print_figure(*args, **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backend_bases.py", line 2220, in print_figure
+    **kwargs)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/matplotlib/backends/backend_agg.py", line 510, in print_png
+    filename_or_obj = open(filename_or_obj, 'wb')
+IOError: [Errno 2] No such file or directory: './static/images/plots/logout/scatter0.png'
+2014-04-26 14:50:38,994 - __main__ - DEBUG - Loading...
+2014-04-26 14:50:38,994 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 15:02:01,097 - __main__ - DEBUG - Loading...
+2014-04-27 15:02:01,098 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 15:05:42,650 - __main__ - DEBUG - Loading...
+2014-04-27 15:05:42,651 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 16:56:50,296 - __main__ - DEBUG - Loading...
+2014-04-27 16:56:50,296 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 17:07:49,330 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 545, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+Traceback (most recent call last):
+  File "app.py", line 545, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+2014-04-27 17:08:15,505 - __main__ - DEBUG - Loading...
+2014-04-27 17:08:15,505 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 17:08:57,317 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 580, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 70, in template
+    {% endfor %}
+TemplateSyntaxError: Encountered unknown tag 'endfor'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'endif'. The innermost block that needs to be closed is 'if'.
+Traceback (most recent call last):
+  File "app.py", line 580, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 70, in template
+    {% endfor %}
+TemplateSyntaxError: Encountered unknown tag 'endfor'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'endif'. The innermost block that needs to be closed is 'if'.
+2014-04-27 17:14:55,193 - __main__ - DEBUG - Loading...
+2014-04-27 17:14:55,193 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 17:16:18,784 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 580, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 244, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 68, in block "content"
+    {% if p[0]=="none" %}
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 378, in getitem
+    return obj[argument]
+UndefinedError: 'p' is undefined
+Traceback (most recent call last):
+  File "app.py", line 580, in showcorr
+    return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 244, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 68, in block "content"
+    {% if p[0]=="none" %}
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 378, in getitem
+    return obj[argument]
+UndefinedError: 'p' is undefined
+2014-04-27 17:28:44,004 - __main__ - DEBUG - Loading...
+2014-04-27 17:28:44,004 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 18:33:45,358 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 546, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+Traceback (most recent call last):
+  File "app.py", line 546, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+2014-04-27 18:34:16,272 - __main__ - DEBUG - Loading...
+2014-04-27 18:34:16,273 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-27 23:15:38,409 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 546, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+Traceback (most recent call last):
+  File "app.py", line 546, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+2014-04-28 00:49:49,942 - __main__ - DEBUG - Loading...
+2014-04-28 00:49:49,943 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 01:09:52,596 - __main__ - DEBUG - Loading...
+2014-04-28 01:09:52,597 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 01:10:43,454 - __main__ - DEBUG - Loading...
+2014-04-28 01:10:43,454 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 01:24:07,660 - __main__ - DEBUG - Loading...
+2014-04-28 01:24:07,661 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 01:39:49,029 - __main__ - DEBUG - Loading...
+2014-04-28 01:39:49,030 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 01:57:53,118 - __main__ - DEBUG - Loading...
+2014-04-28 01:57:53,119 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 01:59:46,488 - __main__ - ERROR - 'type'
+Traceback (most recent call last):
+  File "app.py", line 408, in readinputs
+    if session["type"]=="Input":
+KeyError: 'type'
+2014-04-28 02:00:10,560 - __main__ - DEBUG - Loading...
+2014-04-28 02:00:10,561 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 03:02:09,207 - __main__ - DEBUG - Loading...
+2014-04-28 03:02:09,207 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 03:02:53,938 - __main__ - DEBUG - Loading...
+2014-04-28 03:02:53,939 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 03:03:21,052 - __main__ - DEBUG - Loading...
+2014-04-28 03:03:21,052 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 03:04:36,081 - __main__ - DEBUG - Loading...
+2014-04-28 03:04:36,081 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 03:06:09,528 - __main__ - DEBUG - Loading...
+2014-04-28 03:06:09,528 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 03:20:36,173 - __main__ - DEBUG - Loading...
+2014-04-28 03:20:36,173 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-28 13:11:00,681 - __main__ - DEBUG - Loading...
+2014-04-28 13:11:00,704 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 14:07:19,703 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-04-29 14:46:34,146 - __main__ - DEBUG - Loading...
+2014-04-29 14:46:34,147 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 15:26:41,048 - __main__ - DEBUG - Loading...
+2014-04-29 15:26:41,049 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 19:30:21,978 - __main__ - DEBUG - Loading...
+2014-04-29 19:30:21,979 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 19:32:03,104 - __main__ - ERROR - 'type'
+Traceback (most recent call last):
+  File "app.py", line 408, in readinputs
+    if session["type"]=="Input":
+KeyError: 'type'
+2014-04-29 19:32:23,584 - __main__ - DEBUG - Loading...
+2014-04-29 19:32:23,585 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 20:23:12,470 - __main__ - DEBUG - Loading...
+2014-04-29 20:23:12,471 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 20:25:08,227 - __main__ - DEBUG - Loading...
+2014-04-29 20:25:08,228 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 20:27:34,959 - __main__ - DEBUG - Loading...
+2014-04-29 20:27:34,959 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 21:03:11,082 - __main__ - DEBUG - Loading...
+2014-04-29 21:03:11,083 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 21:48:27,598 - __main__ - DEBUG - Loading...
+2014-04-29 21:48:27,599 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 21:52:16,962 - __main__ - DEBUG - Loading...
+2014-04-29 21:52:16,962 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 21:54:29,138 - __main__ - DEBUG - Loading...
+2014-04-29 21:54:29,139 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-29 21:57:15,470 - __main__ - DEBUG - Loading...
+2014-04-29 21:57:15,471 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-30 02:17:02,023 - __main__ - DEBUG - Loading...
+2014-04-30 02:17:02,024 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-30 02:19:10,404 - __main__ - DEBUG - Loading...
+2014-04-30 02:19:10,404 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-30 02:45:37,217 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 540, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+Traceback (most recent call last):
+  File "app.py", line 540, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+2014-04-30 02:46:12,608 - __main__ - DEBUG - Loading...
+2014-04-30 02:46:12,609 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-30 02:56:37,184 - __main__ - DEBUG - Loading...
+2014-04-30 02:56:37,185 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-30 13:42:09,311 - __main__ - DEBUG - Loading...
+2014-04-30 13:42:09,319 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-30 14:27:23,061 - __main__ - DEBUG - Loading...
+2014-04-30 14:27:23,061 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv

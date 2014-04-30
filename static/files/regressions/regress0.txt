@@ -1,0 +1,29 @@
+
+-------------------------Summary of Regression Analysis-------------------------
+
+Formula: Y ~ <Amount of RC working capital loan (US$) disbursed>
+             + <Country daily minimum wage> + <Total acreage under organic cultivation>
+             + <Total acreage under cultivation (1 hectare = 2.4711 acres) - adjusted>
+             + <intercept>
+
+Number of Observations:         74
+Number of Degrees of Freedom:   5
+
+R-squared:         0.6147
+Adj R-squared:     0.5924
+
+Rmse:          625561.9182
+
+F-stat (4, 69):    27.5218, p-value:     0.0000
+
+Degrees of Freedom: model 4, resid 69
+
+-----------------------Summary of Estimated Coefficients------------------------
+      Variable       Coef    Std Err     t-stat    p-value    CI 2.5%   CI 97.5%
+--------------------------------------------------------------------------------
+Amount of RC working capital loan (US$) disbursed     1.7636     0.3482       5.06     0.0000     1.0811     2.4461
+Country daily minimum wage 29841.5575 14546.2779       2.05     0.0440  1330.8528 58352.2623
+Total acreage under organic cultivation    89.0233    46.9715       1.90     0.0622    -3.0408   181.0874
+Total acreage under cultivation (1 hectare = 2.4711 acres) - adjusted   117.1753    26.1957       4.47     0.0000    65.8317   168.5188
+     intercept -279607.8695 168536.2059      -1.66     0.1016 -609938.8330 50723.0940
+---------------------------------End of Summary---------------------------------

@@ -1,12 +1,47 @@
 {% extends "layout2.html" %}
 {% block title %} Upload File {% endblock %}
 {% block content %} 
+<script>
+  $(document).ready(function(){
+    $("#answer").removeClass("box-highlighted").addClass("box");
+    $("#upload").addClass("box-highlighted").removeClass("box");
+    $("button#add").click(function(){  
+      var $s=$("#varlist").clone(true);
+      $s.appendTo($(this).parent());
+    });
+  });
+
+  function htmlDecode(value){
+    return $('<div/>').html(value).text();
+  }
+</script>
+
 <div class="steps">
-  <span class="text">Please select the input, output and control variables from the list.</span><br>
+  <span class="mediumtext">Select the variables from your dataset that represent {{vartype}} variables.</span><br>
+  <form action="/store" method="POST" id="varform">
+    <button type="submit" class="buttons">Submit</button>
+  <span class="mediumtext">    
+    <ol>
+    {% for uvar in uservars %}
+     <div id="dropdown">
+     <li>{{uvar}}</li>  
+     <span id="varlist">
+     <select name="{{uvar}}" id="{{uvar}}" form="varform">
+     <option name="variables" value="nodata">Data Not Collected</option>
+     {% for var in vars %}
+     <option name="variables" value="{{var}}">{{var}}</option>
+     {% endfor %}
+     </select>
+      </span>
+     <button type="button" class="smallbuttons" id="add">Add</button><br/>
+     </div>
+    {% endfor %}
+    </ol>
+  </span>
+   </form>
 </div>
-<div class="vline"></div>
 <div class="text right">
-  <span class="smalltext"><strong>{{vartype}} Variables &nbsp;(Tick all that apply. )</strong></span>
+  <!--<span class="smalltext"><strong>{{vartype}} Variables &nbsp;(Tick all that apply. )</strong></span>-->
   {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class="flashes">
@@ -16,17 +51,11 @@
     </ul>
   {% endif %}
 {% endwith %}
-  <form action="/store" method="POST">
-  {% if vartype=="Control" %}
+ <!-- <form action="/store" method="POST">
   {% for var in vars %}
   <input type="checkbox" name="variables" value="{{var}}"><label class="smalltext">{{var}}</label><br>
   {%endfor%}
-  {% else %}
-  {% for var in vars %}
-  <input type="radio" name="variables" value="{{var}}"><label class="smalltext">{{var}}</label><br>
-  {%endfor%}
-  {% endif %}
   <button class="buttons">Submit</button>
+</form>-->
 </div>
-</form>
 {% endblock %}

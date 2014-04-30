@@ -10,7 +10,69 @@
       }
 </style>
 {% block content %} 
-{%for line in summary%}
-<p class="mediumtext" id="result" style="text-align:center;">{{line}}</p>
+<script>
+  $(document).ready(function(){
+    $("#answer").removeClass("box-highlighted").addClass("box");
+    $("#analyze").addClass("box-highlighted").removeClass("box");
+  })
+</script>
+<p class="login-title" style="text-align:center;"}>Regression Analysis</p>
+{% for r in regs %}
+<div class="summary">
+<p class="mediumtext">Formula </p>
+<hr/>
+<p class="mediumtext">{{r[0]}}</p>
+<hr/>
+<p class="mediumtext">R-squared (adjusted): {{r[1]}}</p>
+<p class="mediumtext">F-stat: {{r[2]}}</p>
+<p class="mediumtext">p-value: {{r[3]}}</p>
+<p class="mediumtext">Degrees of Freedom: {{r[4]}}</p>
+<p class="mediumtext">No. of observations: {{r[5]}}</p>
+</div>
+<div class="table">
+<span class="mediumtext">
+<table>
+<tr>
+<th></th>
+<th>Beta</th>
+<th>p-value</th>
+<th>Std Error</th>
+<th>t-stat</th>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>INPUTS</td>
+</tr>
+{% for i in r[6]%}
+<tr>
+  <td>{{i[0]}}</td>
+  <td>{{i[1]}}</td>
+  <td>{{i[2]}}</td>
+  <td>{{i[3]}}</td>
+  <td>{{i[4]}}</td>
+</tr>
+{% endfor %}
+
+<tr>
+</tr>
+
+<tr>
+<td>CONTROLS</td>
+</tr>
+{% for c in r[7]%}
+<tr>
+  <td>{{c[0]}}</td>
+  <td>{{c[1]}}</td>
+  <td>{{c[2]}}</td>
+  <td>{{c[3]}}</td>
+  <td>{{c[4]}}</td>
+</tr>
+{% endfor %}
+
+</table>
+</span>
+</div>
 {% endfor %}
 {% endblock %}

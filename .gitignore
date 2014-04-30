@@ -1,4 +1,6 @@
 database.py
+config.py
+app.log
 venv
 *.pyc
 

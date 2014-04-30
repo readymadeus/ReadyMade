@@ -58,6 +58,12 @@
         font-size: 48px;
       }
 
+      .box-font {
+        font-family:'Roboto Condensed';
+        color: black;
+        font-size: 38px;
+      }
+
       .content{
         width: 140%;
         height: 50%;
@@ -159,7 +165,18 @@
 
       .box{
         width:15%;
+        height:75%;
         background-color: rgb(105,105,105);
+        border-radius: 10px;
+        border: 1px solid;
+        float:left;
+        text-align: center;
+      }
+
+      .box-highlighted{
+        width:15%;
+        height:75%;
+        background-color: #C0C0C0;
         border-radius: 10px;
         border: 1px solid;
         float:left;
@@ -200,6 +217,11 @@
         height: 600px;
         float: left;
       }
+
+      table,td{
+        border:1px solid black;
+      }
+
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css">
     <div class="header">
@@ -209,11 +231,11 @@
       </div>
     </div>
     <div class="subheader">
-        <div class="box subtitle-font">Answer</div>
-        <div class="box subtitle-font">Upload</div>
-        <div class="box subtitle-font">Analyze</div>
+        <div class="box-highlighted box-font" id="answer">Answer</div>
+        <div class="box box-font" id="upload">Upload</div>
+        <div class="box box-font" id="analyze">Analyze</div>
         <div style="width:40%;"></div>
-        <form action="logout" method="GET"
+        <form action="{{url_for('logout')}}" method="GET"
         <div class="logout">
           <button class="buttons">Logout</button>
         </div>

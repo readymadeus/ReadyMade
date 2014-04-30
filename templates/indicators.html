@@ -1,7 +1,13 @@
 {% extends "layout2.html" %}
 {% block title %} Upload File {% endblock %}
 {% block content %} 
-<div class="steps"><p class="text">Please upload the file with the first line containing the variable names. The next step would be to identify key indicator variables in your dataset. You may also upload just the first line if not the entire dataset.</p></div>
+<script>
+	$(document).ready(function(){
+		$("#answer").removeClass("box-highlighted").addClass("box");
+		$("#upload").addClass("box-highlighted").removeClass("box");
+	})
+</script>
+<div class="steps"><p class="text">Please upload the file with the dataset. The next step would be to identify key indicator variables in your dataset.</p></div>
 <div class="vline"></div>
 <div class="text right">
 <form action="showvars" method="POST" enctype="multipart/form-data">

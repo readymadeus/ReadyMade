@@ -3,23 +3,7 @@
 {% block title %} Questionnaire {% endblock %}
 {% block content %}
     <script type="text/javascript">
-        var ques= new Array();
-        var labels= new Array();
-        var orgname=""
-        var client=""
-        var count=-1;
-
-        ques[0]="What is the name of your organization?"
-        ques[1]="What is the url of your organization?"
-        labels[0]="orgname"
-        labels[1]="url"
-        labels[2]="product"
-        labels[3]="client"
-        labels[4]="sec_client"
-        labels[5]="mission"
-        labels[6]="industry"
-
-        function keyHandler(e){
+         function keyHandler(e){
           var ENTERKEY=13;
           if(e.keyCode==ENTERKEY){
             count=count+1;  
@@ -31,13 +15,13 @@
             ques[5]="What is "+orgname+"'s mission statement in one sentence?"
             ques[6]="What is "+orgname+"'s sector?"
             if(count==ques.length){
-            	$(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
+              $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
             }else if (count<ques.length){
-            	next_ques(count);
+              next_ques(count);
             }else{
-            	
-            	return
-            }	
+              
+              return
+            } 
             
           }
         }
@@ -45,15 +29,20 @@
         function next_ques(i){
           $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" onkeypress=keyHandler(event)></p>");
         }
-
-    
+                 
     </script>
-      <p class="login-text"><u>Please hit enter to answer other questions</u></p>
-      <!--<form action="{{url_for('upload')}}" method="POST">-->
+      <p class="text">Enter Output Variables</p>
       <form action="{{url_for('variables')}}" method="POST">
-      <div class="questions login-text">
-        <p>What is the name of your project? <input id="name" name="name" onkeypress="keyHandler(event)"></p>
+      <div class="questions mediumtext">
+        <p>How does {{orgname}} measure performance or output of {{pands}}?</p>
+      <p>You may provide up to five possible output variables. We will provide regression analysis for each of your output variables.</p><br/>
+       1. <input id="name" name="outputs"> <br/>
+       2. <input id="name" name="outputs"> <br/>
+       3. <input id="name" name="outputs"> <br/>
+       4. <input id="name" name="outputs"> <br/>
+       5. <input id="name" name="outputs"> <br/>
       </div>
-      <input type="hidden" name="update" value="none">
+      <button type="submit" class="buttons">Next</button>
+      <input type="hidden" name="vartype" value="output">
       </form>
 {% endblock %}

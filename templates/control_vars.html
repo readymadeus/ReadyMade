@@ -1,0 +1,53 @@
+    
+{% extends "layout2.html" %}
+{% block title %} Questionnaire {% endblock %}
+{% block content %}
+    <script type="text/javascript">
+         function keyHandler(e){
+          var ENTERKEY=13;
+          if(e.keyCode==ENTERKEY){
+            count=count+1;  
+            orgname=$('#orgname').val();
+            ques[2]="Describe "+orgname+"'s product or service you would like to evaluate."
+            ques[3]="Who is "+orgname+"'s direct customer/client?"
+            client=$('#client').val();
+            ques[4]="Does "+client+" serve others?"
+            ques[5]="What is "+orgname+"'s mission statement in one sentence?"
+            ques[6]="What is "+orgname+"'s sector?"
+            if(count==ques.length){
+              $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
+            }else if (count<ques.length){
+              next_ques(count);
+            }else{
+              
+              return
+            } 
+            
+          }
+        }
+        
+        function next_ques(i){
+          $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" onkeypress=keyHandler(event)></p>");
+        }
+                 
+    </script>
+      <p class="text">Enter Control Variables</p>
+      <form action="{{url_for('upload')}}" method="POST">
+      <div class="questions mediumtext">
+        <p>What are the variables that {{orgname}} measures because they provide important information about the process or the context in which {{orgname}} operates to provide {{pands}}. List all the variables for which you have collected data.</p>
+      <p>How does {{orgname}} measure {{pands}}? You may provide up to ten control variables.</p><br/>
+       1. <input id="name" name="controls"> <br/>
+       2. <input id="name" name="controls"> <br/>
+       3. <input id="name" name="controls"> <br/>
+       4. <input id="name" name="controls"> <br/>
+       5. <input id="name" name="controls"> <br/>
+       6. <input id="name" name="controls"> <br/>
+       7. <input id="name" name="controls"> <br/>
+       8. <input id="name" name="controls"> <br/>
+       9. <input id="name" name="controls"> <br/>
+       10. <input id="name" name="controls"> <br/>
+      </div>
+      <button type="submit" class="buttons">Next</button>
+      <input type="hidden" name="vartype" value="control">
+      </form>
+{% endblock %}

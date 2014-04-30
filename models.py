@@ -73,11 +73,13 @@ class Input(Base):
 	__tablename__ = 'Inputs'
 	id=Column(Integer,primary_key=True)
 	varname=Column(String(500))
+	uservarname=Column(String(500))
 	analysis=Column(Integer,ForeignKey('Analysis.id'))
 
-	def __init__(self,varname,analysis):
+	def __init__(self,varname,uservarname,analysis):
 		self.varname=varname
 		self.analysis=analysis
+		self.uservarname=uservarname
 
 	def __repr__(self):
 		return '<Input %r>' %self.varname
@@ -86,11 +88,13 @@ class Output(Base):
 	__tablename__ = 'Outputs'
 	id=Column(Integer,primary_key=True)
 	varname=Column(String(500))
+	uservarname=Column(String(500))
 	analysis=Column(Integer,ForeignKey('Analysis.id'))
 
-	def __init__(self,varname,analysis):
+	def __init__(self,varname,uservarname,analysis):
 		self.varname=varname
 		self.analysis=analysis
+		self.uservarname=uservarname
 
 	def __repr__(self):
 		return '<Output %r>' %self.varname
@@ -99,11 +103,13 @@ class Control(Base):
 	__tablename__ = 'Controls'
 	id=Column(Integer,primary_key=True)
 	varname=Column(String(500))
+	uservarname=Column(String(500))
 	analysis=Column(Integer,ForeignKey('Analysis.id'))
 
-	def __init__(self,varname,analysis):
+	def __init__(self,varname,uservarname,analysis):
 		self.varname=varname
 		self.analysis=analysis
+		self.uservarname=uservarname
 
 	def __repr__(self):
 		return '<Controls %r>' %self.varname

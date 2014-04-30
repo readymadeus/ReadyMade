@@ -1,0 +1,20 @@
+{% extends "layout2.html" %}
+{% block title %} Outliers Removed {% endblock %}
+{% block content %} 
+<script>
+	$(document).ready(function(){
+		$("#answer").removeClass("box-highlighted").addClass("box");
+		$("#analyze").addClass("box-highlighted").removeClass("box");
+	})
+</script>
+<p class="text">We removed some outliers from the dataset for you. Summary of the cleaned up data is as shown below.
+<form action="correlations" method="POST">
+<button class="buttons">Next</button>
+</form>
+</p>
+{% for d in data %}
+<p class="mediumtext">Variable name: {{d[0]}}</p>
+<p class="mediumtext">Outliers removed: {{d[1]}} of {{d[2]}}. ({{d[3]}}%)</p>
+<br/>
+{% endfor %}
+{% endblock %}
