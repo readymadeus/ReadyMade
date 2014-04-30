@@ -23,7 +23,6 @@ import pandas as pd
 import StringIO as sio
 import config
 import itertools
-import statsmodels.formula.api as sm
 
 app=Flask(__name__)
 data=dict()
