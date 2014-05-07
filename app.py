@@ -137,8 +137,6 @@ def login():
 def logout():
 	session.pop("vars",None)
 	session.pop("type",None)
-	pid=session["pid"]
-	data.pop(pid,None)
 	app.secret_key = os.urandom(32)
 	logout_user()   
 	flash("Logged out.")
@@ -260,9 +258,12 @@ def variables():
 								db_session.add(p)
 								db_session.commit()
 								app.logger.debug("Successfully added project to database")
+								session["pid"]=p.id
 							except Exception as e:
 								app.logger.exception(e)
 								flash("Project Name already exists. Please enter a different one")
+							print "Redirecting to input variables"
+							print "Orgname, pands",orgname,pands
 							return render_template("input_vars.html",orgname=orgname,pands=pands)
 					else:
 						pid=session["pid"]
@@ -291,8 +292,7 @@ def upload():
 					io=Control("",c,aid)
 					db_session.add(io)
 					db_session.commit()
-			if session["update"]=="false":
-				return render_template("indicators.html")
+			return render_template("indicators.html")
 		except:
 			app.logger.exception(traceback.format_exc())
 	return redirect(url_for('questionnaire'))
