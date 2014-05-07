@@ -137,6 +137,8 @@ def login():
 def logout():
 	session.pop("vars",None)
 	session.pop("type",None)
+	pid=session["pid"]
+	data.pop(pid,None)
 	app.secret_key = os.urandom(32)
 	logout_user()   
 	flash("Logged out.")
@@ -213,6 +215,7 @@ def variables():
 		try:
 			if 'vartype' in request.form:
 				pid=session["pid"]
+				from models import Project
 				p=Project.query.filter_by(id=pid).first()
 				orgname=p.orgname
 				pands=p.prods
@@ -247,7 +250,7 @@ def variables():
 						users=request.form["sec_client"]
 						mission=request.form["mission"]
 						sector=request.form["industry"]
-						from models import Project, User
+						from models import Project
 						userid=session["userid"]
 						if(userid is not None): 
 							p=Project(userid,orgname,name,sector,pands,client,users,mission)
@@ -263,6 +266,7 @@ def variables():
 							return render_template("input_vars.html",orgname=orgname,pands=pands)
 					else:
 						pid=session["pid"]
+						from models import Project
 						p=Project.query.filter_by(id=pid).first()
 						orgname=p.orgname
 						pands=p.prods
