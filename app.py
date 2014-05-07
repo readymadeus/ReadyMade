@@ -24,6 +24,7 @@ import StringIO as sio
 import config
 import itertools
 
+
 app=Flask(__name__)
 data=dict()
 session=dict()
@@ -238,15 +239,38 @@ def variables():
 			else:
 				if 'update' in request.form:
 					session["update"]=request.form["update"]
-				pid=session["pid"]
-				p=Project.query.filter_by(id=pid).first()
-				orgname=p.orgname
-				pands=p.prods
-				analysis=Analysis(pid)
-				db_session.add(analysis)
-				db_session.commit()
-				session["aid"]=analysis.id
-				return render_template("input_vars.html",orgname=orgname,pands=pands)
+					if session["update"]=='none':
+						orgname=request.form["orgname"]
+						name=request.form["name"]
+						pands=request.form["product"]
+						client=request.form["client"]
+						users=request.form["sec_client"]
+						mission=request.form["mission"]
+						sector=request.form["industry"]
+						from models import Project, User
+						userid=session["userid"]
+						if(userid is not None): 
+							p=Project(userid,orgname,name,sector,pands,client,users,mission)
+							try:
+								app.logger.debug("Adding project to the database")
+								app.logger.debug(p)
+								db_session.add(p)
+								db_session.commit()
+								app.logger.debug("Successfully added project to database")
+							except Exception as e:
+								app.logger.exception(e)
+								flash("Project Name already exists. Please enter a different one")
+							return render_template("input_vars.html",orgname=orgname,pands=pands)
+					else:
+						pid=session["pid"]
+						p=Project.query.filter_by(id=pid).first()
+						orgname=p.orgname
+						pands=p.prods
+						analysis=Analysis(pid)
+						db_session.add(analysis)
+						db_session.commit()
+						session["aid"]=analysis.id
+						return render_template("input_vars.html",orgname=orgname,pands=pands)
 		except:
 			app.logger.exception(traceback.format_exc())
 		
@@ -256,7 +280,6 @@ def upload():
 	if request.method == "POST" and request.form is not None:
 		try:
 			pid=session["pid"]
-			#a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
 			aid=session["aid"]
 			controls=request.form.getlist("controls")			
 			for c in controls:
@@ -264,29 +287,7 @@ def upload():
 					io=Control("",c,aid)
 					db_session.add(io)
 					db_session.commit()
-			#TODO: Updating project information needs to go while entering input variables
 			if session["update"]=="false":
-				return render_template("indicators.html")
-			orgname=request.form["orgname"]
-			name=request.form["name"]
-			pands=request.form["product"]
-			client=request.form["client"]
-			users=request.form["sec_client"]
-			mission=request.form["mission"]
-			sector=request.form["industry"]
-			from models import Project, User
-			userid=session["userid"]
-			if(userid is not None): 
-				p=Project(userid,orgname,name,sector,pands,client,users,mission)
-				try:
-					app.logger.debug("Adding project to the database")
-					app.logger.debug(p)
-					db_session.add(p)
-					db_session.commit()
-					app.logger.debug("Successfully added project to database")
-				except Exception as e:
-					app.logger.exception(e)
-					flash("Project Name already exists. Please enter a different one")
 				return render_template("indicators.html")
 		except:
 			app.logger.exception(traceback.format_exc())
