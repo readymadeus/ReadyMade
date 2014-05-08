@@ -313,7 +313,6 @@ def showvars():
 					filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
 					app.logger.debug(filepath)
 					file.save(filepath)
-					session["pid"]=67
 					pid=session["pid"]
 					Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
 					db_session.commit()
@@ -401,12 +400,8 @@ def readinputs():
 			flash("Please select at least one variable")
 			return redirect(url_for("selectIndicators"))
 		else:
-			#userid=session["userid"]
-			session["userid"]=16
-			userid=16
-			#pid=session["pid"]
-			session["pid"]=67
-			pid=67
+			userid=session["userid"]
+			pid=session["pid"]
 			aid=session["aid"]
 			try:  
 				if session["type"]=="Input":
@@ -447,9 +442,8 @@ def readinputs():
 
 @app.route("/transform_data")
 def transform_data():
-	#pid=session["pid"]
+	pid=session["pid"]
 	aid=session["aid"]
-	pid=67
 	p=Project.query.filter(Project.id==pid).first()
 	inputs=Input.query.filter(Input.analysis==aid).all()
 	controls=Control.query.filter(Control.analysis==aid).all()
