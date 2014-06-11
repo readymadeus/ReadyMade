@@ -21,7 +21,8 @@ def create_pdf(data):
 	plots=data[9]
 	regdata=data[10]
 	#File Name
-	pdfname="../static/files/uploads/RM_Report_"+pname+"_"+today+".pdf"
+	pdfname=config.ROOT_PATH+"/static/files/uploads/RM_Report_"+pname+"_"+today+".pdf"
+	pdfilename="/static/files/uploads/RM_Report_"+pname+"_"+today+".pdf"
 	report = []
 	#File Name
 	doc=BaseDocTemplate(pdfname,pagesize=letter)
@@ -105,7 +106,7 @@ def create_pdf(data):
 		report.append(Paragraph(conclusion,styles['Normal']))
 	print 'writing'
 	doc.build(report)
-	return pdfname
+	return pdfilename
 
 
 if __name__=='__main__':

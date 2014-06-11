@@ -773,7 +773,7 @@ def report():
 	if config.ROOT_PATH=='.':
 		pdfile='.'+genpdf.create_pdf(pdfdata)
 	else:
-		pdfile=genpdf.create_pdf(pdfdata)
+		pdfile='..'+genpdf.create_pdf(pdfdata)
 	pdfdata.append(pdfile)
 	session['pdfile']=pdfile
 	print "PDF file in session",session['pdfile']
