@@ -637,7 +637,8 @@ def showcorr(vartype=None):
 			if corr>=0.70:
 				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
 				filepath='../static/images/plots/'+vartype+'/'+pltfile
-				session["plots"].append(filepath[1:])
+				#Different path for accessing images through python files versus html files
+				session["plots"].append(app.config['PLOTPATH']+'/'+vartype+'/'+pltfile)
 				count+=1
 				params.append((filepath,corr,combo[0],combo[1]))
 				cors.append(combo[0])
@@ -764,9 +765,13 @@ def report():
 	pdfdata.append(controls)
 	pdfdata.append(plots)
 	pdfdata.append(regs)
-	pdfile='.'+genpdf.create_pdf(pdfdata)
+	if config.ROOT_PATH=='.':
+		pdfile='.'+genpdf.create_pdf(pdfdata)
+	else:
+		pdfile=genpdf.create_pdf(pdfdata)
 	pdfdata.append(pdfile)
 	session['pdfile']=pdfile
+	print "PDF file in session",session['pdfile']
 	return render_template("report.html",data=pdfdata)
 
 @app.route("/saving",methods=["POST"])

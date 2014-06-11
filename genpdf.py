@@ -57,7 +57,6 @@ def create_pdf(data):
 
 	#Correlation
 	report.append(Paragraph("Correlations between variables",styles['Heading2']))
-	plots= ['./readymade.us/static/images/plots/output/scatter0.png', './readymade.us/static/images/plots/input/scatter0.png']
 	for plot in plots:
 		plot_img=Image(plot,width=200,height=200)
 		report.append(plot_img)
