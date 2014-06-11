@@ -21,7 +21,7 @@ def create_pdf(data):
 	plots=data[9]
 	regdata=data[10]
 	#File Name
-	pdfname=config.ROOT_PATH+"/static/files/uploads/RM_Report_"+pname+"_"+today
+	pdfname="./static/files/uploads/RM_Report_"+pname+"_"+today
 	report = []
 	#File Name
 	doc=BaseDocTemplate(pdfname,pagesize=letter)

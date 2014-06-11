@@ -581,7 +581,6 @@ def correlations():
 
 
 def handleOutliers(data):
-	#I have the variable name. I want to replace all the indices with outliers with the mean
 	outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]
 	indices=outliers.index
 	return indices
@@ -637,12 +636,8 @@ def showcorr(vartype=None):
 			corr=round(corr,2)
 			if corr>=0.70:
 				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
-				filepath=PLOTPATH+'/'+vartype+'/'+pltfile
-				if config.ROOT_PATH=='.':
-					session["plots"].append(filepath[1:])
-				else:
-					session["plots"].append(filepath)
-				print "scatter",filepath
+				filepath='..static/images/plots/'+vartype+'/'+pltfile
+				session["plots"].append(filepath[1:])
 				count+=1
 				params.append((filepath,corr,combo[0],combo[1]))
 				cors.append(combo[0])
