@@ -1,4 +1,4 @@
-import convert,analysis, csv, models, traceback, os, config, itertools, html2text,genpdf
+import convert,analysis, csv, models, traceback, os, config, itertools,genpdf
 from flask import Flask, request, render_template, redirect, url_for, flash, Blueprint,make_response
 from flask.ext.login import (LoginManager, current_user, login_required,
 							login_user, logout_user, UserMixin,
@@ -15,8 +15,6 @@ from werkzeug import secure_filename
 import numpy as np
 from models import User, Project, Input, Control, Output, Analysis
 import pandas as pd
-import StringIO as sio
-
 
 app=Flask(__name__)
 data=dict()
@@ -690,10 +688,6 @@ def regress():
 			for control in controls:
 				reg[control]=csvf[control]
 			model=pd.ols(y=y,x=reg)
-			output=sio.StringIO()
-			output.write(model.summary)
-			contents=output.getvalue()
-			session["reg_str"]=contents
 			formula="Measuring the impact of \""+', '.join(inps)+"\" on \""+o+"\" while controlling for variables such as \""+', '.join(controls)+"\""
 			res=model.summary_as_matrix
 			r.append(formula)
