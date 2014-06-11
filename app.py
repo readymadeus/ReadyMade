@@ -638,7 +638,7 @@ def showcorr(vartype=None):
 				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
 				filepath='../static/images/plots/'+vartype+'/'+pltfile
 				#Different path for accessing images through python files versus html files
-				session["plots"].append(app.config['PLOTPATH']+'/'+vartype+'/'+pltfile)
+				session["plots"].append(filepath[2:])
 				count+=1
 				params.append((filepath,corr,combo[0],combo[1]))
 				cors.append(combo[0])
@@ -739,6 +739,11 @@ def regress():
 def report():
 	#Generate the PDF file
 	plots=session["plots"]
+	pdfplots=[]
+	htmlplots=[]
+	for plot in plots:
+		pdfplots.append(config.ROOT_PATH+plot)
+		htmlplots.append(".."+plot)
 	print "Reporting plots",plots
 	from datetime import date
 	today=date.today()
@@ -763,7 +768,7 @@ def report():
 	pdfdata.append(inputs)
 	pdfdata.append(outputs)
 	pdfdata.append(controls)
-	pdfdata.append(plots)
+	pdfdata.append(pdfplots)
 	pdfdata.append(regs)
 	if config.ROOT_PATH=='.':
 		pdfile='.'+genpdf.create_pdf(pdfdata)
@@ -772,6 +777,8 @@ def report():
 	pdfdata.append(pdfile)
 	session['pdfile']=pdfile
 	print "PDF file in session",session['pdfile']
+	#Changing this part for the HTML page to access the images
+	pdfdata[9]=htmlplots
 	return render_template("report.html",data=pdfdata)
 
 @app.route("/saving",methods=["POST"])
