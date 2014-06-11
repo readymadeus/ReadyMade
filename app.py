@@ -209,9 +209,10 @@ def analyses():
 	print "Analysis, ",a
 	if a is not None:
 		for each in a:
-			report_loc=each.report_loc
-			report_name=each.name+" on "+str(each.create_date)
-			analyses.append((report_name,report_loc))
+			if each.name is not None and each.report_loc is not None:
+				report_loc=each.report_loc
+				report_name=each.name+" on "+str(each.create_date)
+				analyses.append((report_name,report_loc))
 	return render_template("analysis.html",analyses=analyses)
 
 @app.route('/saveproject',methods=["POST","GET"])
