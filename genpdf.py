@@ -5,10 +5,10 @@ from datetime import date
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Image,BaseDocTemplate, Frame,Paragraph, Table, TableStyle, PageTemplate
 from reportlab.lib import colors
+import config
 
 def create_pdf(data):
-	report_header='./static/images/report-header.jpg'
-	other_header='./static/images/report-header2.jpg'
+	report_header=config.ROOT_PATH+'/static/images/report-header.jpg'
 	today=data[0]
 	pname=data[1]
 	orgname=data[2]
@@ -21,7 +21,7 @@ def create_pdf(data):
 	plots=data[9]
 	regdata=data[10]
 	#File Name
-	pdfname="./static/files/uploads/RM_Report_"+pname+"_"+today
+	pdfname=config.ROOT_PATH+"/static/files/uploads/RM_Report_"+pname+"_"+today
 	report = []
 	#File Name
 	doc=BaseDocTemplate(pdfname,pagesize=letter)
