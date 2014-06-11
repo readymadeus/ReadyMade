@@ -19,7 +19,7 @@
 <p class="login-title" style="text-align:center;"}>Regression Analysis</p>
 {% for r in regs %}
 <div class="summary">
-<p class="mediumtext">Formula </p>
+<p class="mediumtext">What are we measuring? </p>
 <hr/>
 <p class="mediumtext">{{r[0]}}</p>
 <hr/>
@@ -34,7 +34,7 @@
 <table>
 <tr>
 <th></th>
-<th>Beta</th>
+<th>Coefficient</th>
 <th>p-value</th>
 <th>Std Error</th>
 <th>t-stat</th>
@@ -75,4 +75,9 @@
 </span>
 </div>
 {% endfor %}
+<br/><br/>
+<form action="report" method="GET">
+<button class="buttons">View Report</button>
+
+</form>
 {% endblock %}

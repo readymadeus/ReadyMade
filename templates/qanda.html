@@ -7,7 +7,8 @@
         var labels= new Array();
         var orgname=""
         var client=""
-        var count=-1;
+        var count=-1
+        var projname=""
 
         ques[0]="What is the name of your organization?"
         ques[1]="What is the url of your organization?"
@@ -24,8 +25,9 @@
           if(e.keyCode==ENTERKEY){
             count=count+1;  
             orgname=$('#orgname').val();
-            ques[2]="Describe "+orgname+"'s product or service you would like to evaluate."
-            ques[3]="Who is "+orgname+"'s direct customer/client?"
+            projname=$('#name').val();
+            ques[2]="Describe "+projname+"'s product or service you would like to evaluate."
+            ques[3]="Who is "+projname+"'s direct customer/client?"
             client=$('#client').val();
             ques[4]="Does "+client+" serve others?"
             ques[5]="What is "+orgname+"'s mission statement in one sentence?"
@@ -48,12 +50,20 @@
 
     
     </script>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
       <p class="login-text"><u>Please hit enter to answer other questions</u></p>
-      <!--<form action="{{url_for('upload')}}" method="POST">-->
-      <form action="{{url_for('variables')}}" method="POST">
+      <form action="{{url_for('saveproject')}}" method="POST">
       <div class="questions login-text">
         <p>What is the name of your project? <input id="name" name="name" onkeypress="keyHandler(event)"></p>
       </div>
-      <input type="hidden" name="update" value="none">
+      <input type="hidden" name="proj_status" value="new">
       </form>
 {% endblock %}

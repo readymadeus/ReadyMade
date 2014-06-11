@@ -7,14 +7,18 @@
 		$("#analyze").addClass("box-highlighted").removeClass("box");
 	})
 </script>
-<p class="text">We removed some outliers from the dataset for you. Summary of the cleaned up data is as shown below.
+<p class="text">We can fix some outliers from the dataset for you. We will use the modified Thompson tau technique wherein we will treat points that are more than two times the standard deviation as an outlier.  Summary of the cleaned up data is as shown below.
 <form action="correlations" method="POST">
 <button class="buttons">Next</button>
-</form>
+
 </p>
 {% for d in data %}
 <p class="mediumtext">Variable name: {{d[0]}}</p>
-<p class="mediumtext">Outliers removed: {{d[1]}} of {{d[2]}}. ({{d[3]}}%)</p>
+<p class="mediumtext">Do you want to fix: {{d[1]}} of {{d[2]}} outliers? We will replace your outliers</p>
+<span class="smalltext"><input type="radio" name="{{d[0]}}" value="yes">Yes
+<input type="radio" name="{{d[0]}}" value="no">No
+</span>
 <br/>
 {% endfor %}
+</form>
 {% endblock %}

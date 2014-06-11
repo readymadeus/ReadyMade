@@ -57,6 +57,8 @@ class Analysis(Base):
 	__tablename__ = 'Analysis'
 	id=Column(Integer,primary_key=True)
 	projid=Column(Integer,ForeignKey('Project.id'))
+	report_loc=Column(String(200))
+	name=Column(String(200))
 	create_date=Column(DateTime,default=datetime.now)
 	inputs=relationship('Input')
 	outputs=relationship('Output')
@@ -67,7 +69,7 @@ class Analysis(Base):
 		self.projid=projid
 
 	def __repr__(self):
-		return '<Analysis %r>' %self.id
+		return '<Analysis %r,%r,%r,%r>' %(self.id,self.name,self.create_date,self.report_loc)
 
 class Input(Base):
 	__tablename__ = 'Inputs'

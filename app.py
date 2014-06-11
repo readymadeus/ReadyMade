@@ -1,34 +1,26 @@
-import os
-import models
+import convert,analysis, csv, models, traceback, os, config, itertools, html2text,genpdf
 from flask import Flask, request, render_template, redirect, url_for, flash, Blueprint,make_response
 from flask.ext.login import (LoginManager, current_user, login_required,
 							login_user, logout_user, UserMixin,
 							confirm_login, fresh_login_required)
+#from flaskext.mail import Mail, Message
 try:
 	from flask.ext.login import AnonymousUser
 except:
 	from flask.ext.login import AnonymousUserMixin as AnonymousUser
 from flask.ext.sqlalchemy import SQLAlchemy
-import models
-from database import db_session, init_db, insertUsers,queryUser
+from database import db_session, init_db, insertUsers, queryUser
 from models import User
-import traceback
 from werkzeug import secure_filename
-import csv 
-import convert,analysis
 import numpy as np
 from models import User, Project, Input, Control, Output, Analysis
-import traceback
 import pandas as pd
 import StringIO as sio
-import config
-import itertools
 
 
 app=Flask(__name__)
 data=dict()
 session=dict()
-
 UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
 LOG_FILE=config.ROOT_PATH+'/app.log'
 PLOTPATH=config.ROOT_PATH+"/static/images/plots"
@@ -39,6 +31,7 @@ app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 app.config['PLOTPATH']=PLOTPATH
 app.config['REGRESS_PATH']=REGRESS_PATH
 username=""
+session["plots"]=[]
 
 import sys
 
@@ -182,7 +175,9 @@ def project():
 @app.route('/interview',methods=["POST","GET"])
 def questionnaire():
 		if "pid" in request.form and request.form["pid"]!="":
+			print request.form
 			pid=request.form["pid"]
+			print "project id",pid
 			session["pid"]=pid
 			p=Project.query.filter(Project.id==pid).first()
 			params=[]
@@ -193,6 +188,7 @@ def questionnaire():
 			params.append(p.s_user)
 			params.append(p.mission)
 			params.append(p.sector)
+			print "Parameters to html",params
 			return render_template("project.html",params=params)
 		else:
 			try:
@@ -207,19 +203,76 @@ def questionnaire():
 def answer():
 	return render_template("select_inds.html")
 
+@app.route('/analyses',methods=["POST","GET"])
+def analyses():
+	pid=session["pid"]
+	analyses=[]
+	a=Analysis.query.filter_by(projid=pid).all()
+	print "Analysis, ",a
+	if a is not None:
+		for each in a:
+			report_loc=each.report_loc
+			report_name=each.name+" on "+str(each.create_date)
+			analyses.append((report_name,report_loc))
+	return render_template("analysis.html",analyses=analyses)
+
+@app.route('/saveproject',methods=["POST","GET"])
+def saveproject():
+	if request.method=="POST" and request.form is not None:
+		try:
+			if request.form["proj_status"]=="old":
+				pid=session["pid"]
+				print "Project id stored in session",session["pid"]
+				'''from models import Project
+				p=Project.query.filter_by(id=pid).first()'''
+				if 'update' in request.form:
+					udpates=request.form["update"]
+					#TODO update flow
+				return redirect(url_for('analyses'))
+			else:
+				orgname=request.form["orgname"]
+				name=request.form["name"]
+				pands=request.form["product"]
+				client=request.form["client"]
+				users=request.form["sec_client"]
+				mission=request.form["mission"]
+				sector=request.form["industry"]
+				from models import Project
+				userid=session["userid"]
+				if userid is not None: 
+					p=Project(userid,orgname,name,sector,pands,client,users,mission)
+					try:
+						app.logger.debug("Adding project to the database")
+						app.logger.debug(p)
+						db_session.add(p)
+						db_session.commit()
+						app.logger.debug("Successfully added project to database")
+						session["pid"]=p.id
+					except Exception as e:
+						app.logger.exception(e)
+						flash("Project Name already exists. Please enter a different one")
+					print "Redirecting to analysis"
+					print "Orgname, pands",orgname,pands
+					return redirect(url_for('analyses'))
+				else:
+					flash("User ID missing. Please login again")
+					return redirect(url_for('logout'))
+		except:
+			app.logger.exception(traceback.format_exc())
+
 @app.route('/variables',methods=["POST","GET"])
 def variables():
 	if request.method=="POST" and request.form is not None:
 		try:
 			if 'vartype' in request.form:
 				pid=session["pid"]
+				print "Project id stored in session",session["pid"]
 				from models import Project
 				p=Project.query.filter_by(id=pid).first()
 				orgname=p.orgname
 				pands=p.prods
-				aid=session["aid"]
-				a=Analysis.query.filter(Analysis.projid==pid).order_by(Analysis.id.desc()).first()
 				if request.form["vartype"]=="input":
+					aid=session["aid"]
 					inputs=request.form.getlist("inputs")
 					for inp in inputs:
 						if len(inp)>0:
@@ -228,6 +281,7 @@ def variables():
 							db_session.commit() 
 					return render_template("output_vars.html",orgname=orgname,pands=pands)
 				elif request.form["vartype"]=="output":
+					aid=session["aid"]
 					outputs=request.form.getlist("outputs")
 					for out in outputs:
 						if len(out)>0:
@@ -236,49 +290,30 @@ def variables():
 							db_session.commit() 
 					return render_template("control_vars.html",orgname=orgname,pands=pands)
 				else:
+					print "i did come here"
+					a=Analysis(pid)
+					db_session.add(a)
+					db_session.commit()
+					aid=a.id 
+					session["aid"]=aid
 					return render_template("input_vars.html",orgname=orgname,pands=pands)	
 			else:
-				if 'update' in request.form:
-					session["update"]=request.form["update"]
-					if session["update"]=='none':
-						orgname=request.form["orgname"]
-						name=request.form["name"]
-						pands=request.form["product"]
-						client=request.form["client"]
-						users=request.form["sec_client"]
-						mission=request.form["mission"]
-						sector=request.form["industry"]
-						from models import Project
-						userid=session["userid"]
-						if(userid is not None): 
-							p=Project(userid,orgname,name,sector,pands,client,users,mission)
-							try:
-								app.logger.debug("Adding project to the database")
-								app.logger.debug(p)
-								db_session.add(p)
-								db_session.commit()
-								app.logger.debug("Successfully added project to database")
-								session["pid"]=p.id
-							except Exception as e:
-								app.logger.exception(e)
-								flash("Project Name already exists. Please enter a different one")
-							print "Redirecting to input variables"
-							print "Orgname, pands",orgname,pands
-							return render_template("input_vars.html",orgname=orgname,pands=pands)
-					else:
-						pid=session["pid"]
-						from models import Project
-						p=Project.query.filter_by(id=pid).first()
-						orgname=p.orgname
-						pands=p.prods
-						analysis=Analysis(pid)
-						db_session.add(analysis)
-						db_session.commit()
-						session["aid"]=analysis.id
-						return render_template("input_vars.html",orgname=orgname,pands=pands)
+				print "came here "
+				from models import Project
+				pid=session['pid']
+				p=Project.query.filter_by(id=pid).first()
+				orgname=p.orgname
+				pands=p.prods
+				a=Analysis(pid)
+				db_session.add(a)
+				db_session.commit()
+				aid=a.id
+				session["aid"]=aid
+				print "The analysis id is ",aid
+				return render_template("input_vars.html",orgname=orgname,pands=pands)
 		except:
 			app.logger.exception(traceback.format_exc())
-		
+
 
 @app.route('/upload',methods=["POST","GET"])
 def upload():
@@ -292,7 +327,13 @@ def upload():
 					io=Control("",c,aid)
 					db_session.add(io)
 					db_session.commit()
-			return render_template("indicators.html")
+			p=Project.query.filter_by(id=pid).first()
+			filename=p.file_name
+			if filename!=None:
+				print filename
+			else:
+				filename=""
+			return render_template("indicators.html",varfile=filename)
 		except:
 			app.logger.exception(traceback.format_exc())
 	return redirect(url_for('questionnaire'))
@@ -316,7 +357,11 @@ def showvars():
 					pid=session["pid"]
 					Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
 					db_session.commit()
+					if "vars" in session.keys():
+						session["vars"]=None
 					return redirect(url_for("selectIndicators"))
+			else:
+				return redirect(url_for("selectIndicators"))
 		except:
 			app.logger.exception(traceback.format_exc())
 			return render_template("indicators.html",varfile=filename)
@@ -338,7 +383,7 @@ def selectIndicators():
 			session["vars"]=vars
 			session["type"]="Input"
 	uservars=getUserVars(session["type"])
-	print "User variables for type  ",session["type"],"  are  ",uservars
+	print "User variables for type  ",session["type"],"  are  ", 
 	return render_template("select_inds.html",vartype=session["type"],vars=vars,uservars=uservars)
 
 def getUserVars(vartype):
@@ -465,7 +510,7 @@ def transform_data():
 			#Removing outliers
 			outinfo=remOutliers(csvf[i])
 			indices=outinfo[0]
-			csvf=csvf.drop(indices)
+			#csvf=csvf.drop(indices)
 			var_out_info.append((i,outinfo[1],outinfo[2],outinfo[3]))
 			print "Length of the data frame after removing input outliers",len(csvf.index)
 		except TypeError as e:
@@ -479,9 +524,8 @@ def transform_data():
 			#Removing outliers
 			outinfo=remOutliers(csvf[o])
 			indices=outinfo[0]
-			csvf=csvf.drop(indices)
+			#csvf=csvf.drop(indices)
 			var_out_info.append((o,outinfo[1],outinfo[2],outinfo[3]))
-			print "Length of the data frame after removing output outliers ",len(csvf.index)
 		except TypeError as e:
 			app.logger.exception(traceback.format_exc())
 			flash('Please select only numeric fields')
@@ -493,7 +537,7 @@ def transform_data():
 
 def remOutliers(data):
     outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]
-    print outliers
+    print "Outliers ",outliers
     indices=outliers.index
     removed=len(outliers)
     total=len(data)
@@ -503,24 +547,45 @@ def remOutliers(data):
 
 @app.route("/correlations",methods=["GET","POST"])
 def correlations():
-	ovars=session['output']
-	ivars=session['input']
-	cvars=session['control']
-	if len(ovars)>1:
-		return redirect(url_for("showcorr",vartype="output"))
-	elif len(ivars)>1:
-		session["rout"]=ovars
-		return redirect(url_for("showcorr",vartype="input"))
-	elif len(cvars)>1:
-		session["rout"]=ovars
-		session["rinp"]=ivars
-		return redirect(url_for("showcorr",vartype="control"))
+	print "Outlier responses",request.form
+	if request.form is not None:
+		pid=session["pid"]
+		csvf=data[pid]
+		for k,v in request.form.items():
+			if v=='yes':
+				print "remove outlier"
+				indices=handleOutliers(csvf[k])
+				mean=np.mean(csvf[k])
+				print "mean"
+				for index in indices: 
+					csvf.replace(to_replace=csvf[k][index],value=mean)
+					print "Replaced"
+		ovars=session['output']
+		ivars=session['input']
+		cvars=session['control']
+		if len(ovars)>1:
+			return redirect(url_for("showcorr",vartype="output"))
+		elif len(ivars)>1:
+			session["rout"]=ovars
+			return redirect(url_for("showcorr",vartype="input"))
+		elif len(cvars)>1:
+			session["rout"]=ovars
+			session["rinp"]=ivars
+			return redirect(url_for("showcorr",vartype="control"))
+		else:
+			session["rout"]=ovars
+			session["rinp"]=ivars
+			session["rcont"]=cvars
+			return redirect(url_for("showcorr",vartype="regress"))
 	else:
-		session["rout"]=ovars
-		session["rinp"]=ivars
-		session["rcont"]=cvars
-		return redirect(url_for("showcorr",vartype="regress"))
+		return redirect(url_for("correlations"))
 
+
+def handleOutliers(data):
+	#I have the variable name. I want to replace all the indices with outliers with the mean
+	outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]
+	indices=outliers.index
+	return indices
 
 @app.route("/visualize/<vartype>",methods=["POST","GET"])
 def showcorr(vartype=None):
@@ -530,26 +595,31 @@ def showcorr(vartype=None):
 			vartype=request.form["vartype"]
 		print "vartype",vartype
 		if vartype=="regress":
+			print request.form.getlist('variables')
 			if "rcont" not in session:
-				session["rcont"]=request.form.getlist('variables')
+				session["rcont"]=list(set(request.form.getlist('variables')))
+				print "Control variables selected", request.form.getlist('variables')
 			return redirect(url_for("regress"))
 		elif vartype=="output":
 			print "Still vartype is", vartype
 			corrvars=session['output']
 		elif vartype=="input":
 			if "rout" not in session:
-				session["rout"]=request.form.getlist('variables')
+				session["rout"]=list(set(request.form.getlist('variables')))
 			print session["rout"]
 			corrvars=session["input"]
 		else:
 			if "rinp" not in session:
-				session["rinp"]=request.form.getlist('variables')
+				session["rinp"]=list(set(request.form.getlist('variables')))
 			corrvars=session["control"]
 			ivars=session["input"]
 		pid=session["pid"]
 		csvf=data[pid]
 		params=[]	
+		nocor=[]
+		cors=[]
 		count=0
+		plots=[]
 		pltpath=app.config['PLOTPATH']+'/'+vartype+'/scatter'
 		#Plotting the scatterplots
 		i=0
@@ -558,36 +628,50 @@ def showcorr(vartype=None):
 		else:
 			combos=itertools.combinations(corrvars,2)
 		for combo in combos:
+			#Redundancy removal for input variables in control correlations
+			if vartype=="control" and combo[0] in ivars and combo[1] in ivars:
+				continue
 			x=csvf[combo[0]].fillna(0)
+			#x=csvf[combo[0]].replace('',0)
 			y=csvf[combo[1]].fillna(0)
 			corr=np.corrcoef(x,y)[0][1]
 			corr=round(corr,2)
 			if corr>=0.70:
-				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath)
+				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
 				filepath='../static/images/plots/'+vartype+'/'+pltfile
+				session["plots"].append(filepath)
 				print "scatter",filepath
 				count+=1
-				params.append((filepath,corr))
+				params.append((filepath,corr,combo[0],combo[1]))
+				cors.append(combo[0])
+				cors.append(combo[1])
+			else:
+				#create list of uncorrelated variables and pass it to vars
+				if combo[0] not in ivars:
+					nocor.append(combo[0])
+				if combo[1] not in ivars:
+					nocor.append(combo[1])
+			cors=list(set(cors))
+			nocor=list(set(nocor))
+			nocor=[item for item in nocor if item not in cors]
 		if count==0:
 			print "count is 0 and vartype is ",vartype
 			msg="none"
 		else:
 			msg="corr"
-		return render_template("scatter.html",params=params,vars=corrvars,vartype=vartype,msg=msg)
+		print "non correlated",nocor
+		print "correlated",cors	
+		print "Plots", session["plots"]
+		return render_template("scatter.html",params=params,vars=nocor,vartype=vartype,msg=msg)
 	except Exception as e:
 		app.logger.exception(traceback.format_exc())
 		flash('Sorry, an internal error occurred.')
-		#return redirect(url_for("logout"))
 
 
 @app.route("/regress",methods=["POST","GET"])
 def regress():
 	if True:
 		pid=session["pid"]
-		'''p=Project.query.filter(Project.id==pid).first()
-		filename=p.file_name
-		file_loc=p.file_location
-		csvf=convert.transform(file_loc)'''
 		regs=[]
 		csvf=data[pid]
 		reg=pd.DataFrame()
@@ -595,9 +679,7 @@ def regress():
 		inps=session['rinp']
 		controls=session['rcont']
 		count=0
-		print outs
-		print inps
-		print controls
+		print "Outputs in /regress",outs
 		for o in outs:
 			r=[]
 			inputData=[]
@@ -607,9 +689,12 @@ def regress():
 				reg[i]=csvf[i]
 			for control in controls:
 				reg[control]=csvf[control]
-			print reg
 			model=pd.ols(y=y,x=reg)
-			formula=o+"~"+'+'.join(inps)+"+"+'+'.join(controls)
+			output=sio.StringIO()
+			output.write(model.summary)
+			contents=output.getvalue()
+			session["reg_str"]=contents
+			formula="Measuring the impact of \""+', '.join(inps)+"\" on \""+o+"\" while controlling for variables such as \""+', '.join(controls)+"\""
 			res=model.summary_as_matrix
 			r.append(formula)
 			r.append(round(model.r2_adj,2))
@@ -620,9 +705,9 @@ def regress():
 			for i in inps:
 				idata=[]
 				idata.append(i)
-				coef=round(res.ix['beta'][i],2)
+				coef=round(res.ix['beta'][i],4)
 				idata.append(coef)
-				pval=round(res.ix['p-value'][i],5)
+				pval=round(res.ix['p-value'][i],4)
 				idata.append(pval)
 				stderr=round(res.ix['std err'][i],2)
 				idata.append(stderr)
@@ -633,9 +718,9 @@ def regress():
 			for c in controls:
 				cdata=[]
 				cdata.append(c)
-				coef=round(res.ix['beta'][c],2)
+				coef=round(res.ix['beta'][c],4)
 				cdata.append(coef)
-				pval=round(res.ix['p-value'][c],2)
+				pval=round(res.ix['p-value'][c],4)
 				cdata.append(pval)
 				stderr=round(res.ix['std err'][c],2)
 				cdata.append(stderr)
@@ -643,15 +728,69 @@ def regress():
 				cdata.append(tstat)
 				controlData.append(cdata)
 			r.append(controlData)
+			#Statistics: id, analysis,stat,input,measure
 			print "r",r
 			print "Input data",inputData
 			print "Control data",controlData
 			regs.append(r)
 			count+=1
+			data["regs"]=regs
+			print "Regression data",regs
+		print "Length of the data frame ",len(csvf.index)
 		return render_template("regression.html",regs=regs)
 	else:
 		return redirect(url_for("logout"))
 
+@app.route("/report",methods=["GET","POST"])
+def report():
+	#Generate the PDF file
+	plots=session["plots"]
+	print "Reporting plots",plots
+	from datetime import date
+	today=date.today()
+	pid=session["pid"]
+	p=Project.query.filter_by(id=pid).first()
+	pname=p.name
+	orgname=p.orgname
+	mission=p.mission
+	product=p.prods
+	puser=p.p_user
+	inputs=','.join(session['rinp'])
+	outputs=','.join(session['rout'])
+	controls=','.join(session['rcont'])
+	regs=data["regs"]
+	pdfdata=[]
+	pdfdata.append(str(today))
+	pdfdata.append(pname)
+	pdfdata.append(orgname)
+	pdfdata.append(mission)
+	pdfdata.append(product)
+	pdfdata.append(puser)
+	pdfdata.append(inputs)
+	pdfdata.append(outputs)
+	pdfdata.append(controls)
+	pdfdata.append(plots)
+	pdfdata.append(regs)
+	pdfile='.'+genpdf.create_pdf(pdfdata)
+	pdfdata.append(pdfile)
+	session['pdfile']=pdfile
+	return render_template("report.html",data=pdfdata)
+
+@app.route("/saving",methods=["POST"])
+def saveanalysis():
+	if request.form is not None:
+		if "analysis" in request.form:
+			aname=request.form["analysis"]
+			aid=session["aid"]
+			pdfile=session['pdfile']
+			Analysis.query.filter_by(id=aid).update({"name":aname,"report_loc":pdfile})
+			db_session.commit()
+			return render_template("Thanks.html")
+	
+@app.route("/complete",methods=["GET","POST"])
+def thanks():
+	reportfile=UPLOAD_FOLDER+'/report.txt'
+	return render_template("Thanks.html",filepath=reportfile)
 
 @app.errorhandler(500)
 def internal_error(exception):
@@ -660,6 +799,7 @@ def internal_error(exception):
 
 @app.errorhandler(404)
 def internal_error(exception):
+	print exception
 	app.logger.exception(exception)
 	return render_template('500.html'),404
 

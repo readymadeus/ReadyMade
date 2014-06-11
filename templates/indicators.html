@@ -11,9 +11,13 @@
 <div class="vline"></div>
 <div class="text right">
 <form action="showvars" method="POST" enctype="multipart/form-data">
-Upload data. Current File: {{ varfile }}
+{% if varfile!="" %}
+You have already uploaded a file named: <span style="color:blue;"> {{ varfile }} </span>
 <br><br>
+{%endif%}
+Upload New File 
 <input type="file" class="smalltext" name="varlist" >
+<br><br>
 <button class="buttons">Submit</button>
 </form>
 </div>

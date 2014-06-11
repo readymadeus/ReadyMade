@@ -32,41 +32,36 @@
 <p class="login-title">Displaying correlations between {{vartype}} variables</p>
 {% endif %}
 <form action="{{ url_for('showcorr',vartype=vartype) }}" method="POST" id="varform">
+{% if msg=="corr" %}
+<p class="login-text">Select the variables you would like to use for the regression analysis. For best results, please pick only one of the two variables whose coefficients are marked in red. These variables are highly correlated and represent the same information. Using highly correlated variables will add statistical bias to your analysis.</p>
 <div class="top">
 {% for p in params %}
 <div class="plot">
 <img src="{{p[0]}}" height="400" width="400"></img>
 {% if vartype=="output" %}
-  {% if p[1]>=0.70 or p[1]<=-0.70 %}
-  <p class="smalltext" style="color:red;"><strong>Correlation coefficient: {{p[1]}}</strong></p>
-  {% else %}
-  <p class="smalltext"><strong>Correlation coefficient: {{p[1]}}</strong></p>
-  {% endif %}
+  <input type="checkbox" name="variables" value="{{p[2]}}"><label class="smalltext">{{p[2]}}</label>
+  <input type="checkbox" name="variables" value="{{p[3]}}"><label class="smalltext">{{p[3]}}</label>
   <input type="hidden" name="vartype" value="input">
 
 {% elif vartype=="input" %}
-  {% if p[1]>=0.70 or p[1]<=-0.70 %}
-  <p class="smalltext" style="color:red;"><strong>Correlation coefficient: {{p[1]}}</strong></p>
-  {% else %}
-  <p class="smalltext"><strong>Correlation coefficient: {{p[1]}}</strong></p>
-  {% endif %}
+  <input type="checkbox" name="variables" value="{{p[2]}}"><label class="smalltext">{{p[2]}}</label>
+  <input type="checkbox" name="variables" value="{{p[3]}}"><label class="smalltext">{{p[3]}}</label>
   <input type="hidden" name="vartype" value="control">
 
 {% else %}
- {% if p[1]>=0.70 or p[1]<=-0.70 %}
-  <p class="smalltext" style="color:red;"><strong>Correlation coefficient: {{p[1]}}</strong></p>
-  {% else %}
-  <p class="smalltext"><strong>Correlation coefficient: {{p[1]}}</strong></p>
-  {% endif %}
+  <input type="checkbox" name="variables" value="{{p[2]}}"><label class="smalltext">{{p[2]}}</label>
+  <input type="checkbox" name="variables" value="{{p[3]}}"><label class="smalltext">{{p[3]}}</label>
   <input type="hidden" name="vartype" value="regress">
 
 {% endif %}
 </div>
 {% endfor %}
-</div>	
+</div>
+{% endif %}
+<br><br>	
+
 <div class="bottom">
 {% if msg=="none" %}
-<p class="login-text">None of your variables are correlated. You may select all the variables for the regression analysis.</p>
 {% if vartype=="output" %}
   <input type="hidden" name="vartype" value="input">
 {% elif vartype=="input" %}
@@ -74,12 +69,14 @@
 {% else %}
   <input type="hidden" name="vartype" value="regress">
 {% endif %}
-{% else %}
-<p class="login-text">Select the variables you would like to use for the regression analysis. For best results, please pick only one of the two variables whose coefficients are marked in red. These variables are highly correlated and represent the same information. Using highly correlated variables will add statistical bias to your analysis.</p>
 {% endif %}
+{% if vars|length>0 %}
+<p class="login-text">These variables were not correlated with any of the others. You may select all of them.
+</p>
 {% for val in vars %}
 <input type="checkbox" name="variables" value="{{val}}"><label class="smalltext">{{val}}</label>
 {% endfor %}
+{% endif %}
 <button class="buttons" onclick="changetype({{vartype}})">Next</button>
 </div>
 </form>

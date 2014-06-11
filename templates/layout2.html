@@ -5,7 +5,8 @@
     {% block head %}
     <title>{% block title %}ReadyMade {% endblock %} </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="application/pdf" content-disposition="inline">
+    <script src="../static/js/jquery-1.11.1.js"></script>
     <style type="text/css">
       body{
         position: absolute;
@@ -24,7 +25,7 @@
       }
       .header {
         width: 140%;
-        height: 40%;
+        height: 15%;
         background-color: rgb(55,55,55);
       }
       .title-position {
@@ -33,14 +34,14 @@
         text-align: left;
         height: 109.9124472574px;
         left: 820.1943467504988px;
-        top: 29.166666666498493px;
+       
       }
       
       .title-font {
         color: rgb(255, 255, 255);
         font-weight: bold;
         font-family:'Playfair Display';
-        font-size: 96px;
+        font-size: 72px;
       }
       .subtitle-position {
         position: absolute;
@@ -65,6 +66,9 @@
       }
 
       .content{
+        margin-top: 50px;
+        margin-left: 50px;
+        margin-right: 50px;
         width: 140%;
         height: 50%;
         background-color: #FFF;
@@ -75,6 +79,7 @@
         width:40%;
         position: relative;
         top: 100%;
+        
       }
       
       .steps{
@@ -135,26 +140,26 @@
       }
 
       .buttons{
-        width: inherit;
-        height: 40px;
-        font-family: "Roboto Slab";
-        font-size: 18px;
+        width:inherit;
+        height: inherit;
+        font-family: "Roboto Condensed";
+        font-size: 16px;
         overflow: visible;
       }
 
       .smallbuttons{
         width: inherit;
         height: 20px;
-        font-family: "Roboto Slab";
+        font-family: "Roboto Condensed";
         font-size: 12px;
         overflow: visible;
       }
 
       .bigbuttons{
-        width: 100px;
+        width: inherit;
         height: 40px;
-        font-family: "Roboto Slab";
-        font-size: 18px;
+        font-family: "Roboto Condensed";
+        font-size: 24px;
         overflow: visible;
       }
 
@@ -167,8 +172,7 @@
         width:15%;
         height:75%;
         background-color: rgb(105,105,105);
-        border-radius: 10px;
-        border: 1px solid;
+        border-radius: 20px;
         float:left;
         text-align: center;
       }
@@ -177,8 +181,7 @@
         width:15%;
         height:75%;
         background-color: #C0C0C0;
-        border-radius: 10px;
-        border: 1px solid;
+        border-radius: 20px;
         float:left;
         text-align: center;
       }
@@ -210,12 +213,14 @@
         font-family:'Roboto Slab';
         font-size: 12px;
       }
-
+      .plotarea{
+        width:2000px;
+        height:500px;
+      }
       .plot{
         margin-left: 25px;
-        width: 600px;
-        height: 600px;
         float: left;
+
       }
 
       table,td{
@@ -223,11 +228,9 @@
       }
 
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css"> 
     <div class="header">
       <div class="title-position"><span class="title-font">ReadyMade</span>
-      </div>
-      <div class="subtitle-position"><span class="subtitle-font">Automatic Project Impact Assessment Tool</span>
       </div>
     </div>
     <div class="subheader">
@@ -237,7 +240,7 @@
         <div style="width:40%;"></div>
         <form action="{{url_for('logout')}}" method="GET"
         <div class="logout">
-          <button class="buttons">Logout</button>
+          <button class="bigbuttons">Logout</button>
         </div>
         </form>
     </div>

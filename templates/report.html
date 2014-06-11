@@ -1,0 +1,131 @@
+{% extends "layout2.html" %}
+{% block title %} ReadyMade Report {% endblock %}
+{% block content %} 
+
+
+<script>
+  $(document).ready(function(){
+    $("#answer").removeClass("box-highlighted").addClass("box");
+    $("#analyze").addClass("box-highlighted").removeClass("box");
+  })
+</script>
+
+<div class="title">
+<span class="login-title"><p style="text-align:center;">ReadyMade Analysis Report</p></span>
+<br><br>
+<p><span class="smalltext">Analysis on: {{data[0]}} </span> <br><br>
+
+<span class="login-text">Introduction: </span><br>
+<span class="mediumtext">The organization {{data[2]}} used ReadyMade in order to conduct an impact analysis for their project {{data[1]}}. The mission of {{data[2]}} is {{data[3]}} {{data[2]}} serves its mission by providing {{data[4]}} to their primary user group - '{{data[5]}}'. </span> <br><br>
+<span class="login-text"> Key Impact Question  </span><br> 
+<span class="mediumtext">" What is the relationship between {{data[4]}} and the project's ability to achieve their intended outcomes? " </span>
+<br><br>
+<span class="login-text">Data & Methods </span> <br>
+<span class="mediumtext">Identifying Key Variables: <br>
+In keeping with the ReadyMade tenet to keep the analysis simple, we look for one key outcome variable that is highly correlated with the other available outcome variables that provide measures of the {{data[1]}}’s annual performance. The key outcome variable should represent the {{data[1]}}’s improved performance that can be linked to {{data[2]}}'s goals. You can see some of the highly correlated variables in the plots below: </span><br>
+<div class="plotarea">
+{% for plot in data[9] %}
+<div class="plot">
+<img src="{{plot}}" height="400" width="400"></img>
+</div>
+{% endfor %}
+</div>
+<br>
+<span class="mediumtext">Therefore, we narrowed our investigation to one key performance variable, {{data[7]}}, which provides similar results as using any of the other available outcomes variables (confirmed by our statistical analysis). Similarly, We also decided to use only {{data[6]}} for input variables and {{data[8]}} to control for environmental characteristics.</span>
+<br><br>
+<span class="login-text">Regression Question</span><br>
+<span class="mediumtext"> To evaluate the impact of their product - {{data[4]}}, {{data[2]}} wanted to track how {{data[6]}} is related to {{data[7]}} keeping in mind other factors such as {{data[8]}}. </span>
+<br><br>
+<p class="login-text">Regression Analysis</p>
+{% for r in data[10] %}
+<div class="summary">
+<p class="mediumtext">What are we measuring? </p>
+<hr/>
+<p class="mediumtext">{{r[0]}}</p>
+<hr/>
+<p class="mediumtext">R-squared (adjusted): {{r[1]}}</p>
+<p class="mediumtext">F-stat: {{r[2]}}</p>
+<p class="mediumtext">p-value: {{r[3]}}</p>
+<p class="mediumtext">Degrees of Freedom: {{r[4]}}</p>
+<p class="mediumtext">No. of observations: {{r[5]}}</p>
+</div>
+<div class="table">
+<span class="mediumtext">
+<table>
+<tr>
+<th></th>
+<th>Coefficient</th>
+<th>p-value</th>
+<th>Std Error</th>
+<th>t-stat</th>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>INPUTS</td>
+</tr>
+{% for i in r[6]%}
+<tr>
+  <td>{{i[0]}}</td>
+  <td>{{i[1]}}</td>
+  <td>{{i[2]}}</td>
+  <td>{{i[3]}}</td>
+  <td>{{i[4]}}</td>
+</tr>
+{% endfor %}
+
+<tr>
+</tr>
+
+<tr>
+<td>CONTROLS</td>
+</tr>
+{% for c in r[7]%}
+<tr>
+  <td>{{c[0]}}</td>
+  <td>{{c[1]}}</td>
+  <td>{{c[2]}}</td>
+  <td>{{c[3]}}</td>
+  <td>{{c[4]}}</td>
+</tr>
+{% endfor %}
+
+</table>
+</span>
+</div>
+<br><br>
+<span class="login-text">Conclusions</span><br>
+{% for i in r[6]%}
+{% if r[3]<=0.01 %}
+	{% if i[1]>0 %}
+	{% set polarity="positive" %}
+	{% set change="increase" %}
+	{% else %}
+	{% set polarity="negattive" %}
+	{% set change="decrease" %}
+	{% endif %}
+<span class="mediumtext">The regression indicates that {{data[2]}} {{data[4]}} have a {{polarity}} relationship with {{data[1]}}'s inputs: Every 1 unit of {{data[2]}} {{data[4]}}’s to {{data[1]}} is associated with a {{change}} of {{r[1]}} units in {{data[1]}}'s inputs.</span>
+{% else %}
+<span class="mediumtext">The regression indicates that {{data[2]}} {{data[4]}} does not have a significant relationship with {{data[1]}}'s inputs i.e. any unit of change of {{data[2]}} {{data[4]}} to {{data[1]}} is not associated with any change of units in {{data[1]}}'s outputs.</span>
+{% endif %}
+{% endfor %}
+<br>
+{% endfor %}
+<br/><br/>
+</p>
+<br/><br/>
+<p style="text-align:center;">
+<a href="{{data[11]}}"><button class="bigbuttons">Download PDF </button></a>
+<a href="{{data[11]}}" download="newfile"><button class="bigbuttons">Download Charts and Results </button></a>
+</p>
+<br><br>
+<form name="analysis" action="{{url_for('saveanalysis')}}" method="POST">
+<span class="mediumtext">Please enter name for your analysis if you wish to save it.</span>
+<input name="analysis">
+<button class="buttons" id="savebutton">Save Analysis</button>
+</form>
+<p class="text" style="text-align:center">Thank you for using ReadyMade.</p>
+
+
+{% endblock %}

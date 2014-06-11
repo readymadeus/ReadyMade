@@ -1,0 +1,14 @@
+    
+{% extends "layout2.html" %}
+{% block title %} Questionnaire {% endblock %}
+{% block content %}
+      <form action="{{url_for('variables')}}" method="POST">
+      <span class="mediumtext">Start New Analysis. You will be asked to save your analysis in the end. </span><button class="buttons" type="submit">Go</button><br/><br/>
+      {% if analyses|length !=0 %}
+	      {% for analysis in analyses %}
+	       <span class="mediumtext">{{analysis[0]}}</span><a href="{{analysis[1]}}" target="_blank"><button class="buttons" type="button">View Report</button></a>
+	      <br/>
+	      {% endfor %}
+      {% endif %}
+      </form>
+{% endblock %}

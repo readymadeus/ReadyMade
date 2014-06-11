@@ -1,213 +1,75 @@
 <!DOCTYPE html>
 <html>
   
-  <head data-gwd-animation-mode="quickMode">
+  <head>
     <title>ReadyMade</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="generator" content="Google Web Designer 1.0.0.924">
     <style type="text/css">
-      html, body {
-        width: 100%;
-        height: 100%;
-        margin: 0px;
+      body{
+        background-color: rgb(192,192,192);
       }
-      body {
-        background-color: transparent;
-        -webkit-transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        -webkit-transform-style: preserve-3d;
+      .content{
+        margin-top: 50px;
+        padding-top: 50px;
       }
-      .gwd-canvas-00cm {
-        position: absolute;
-        -webkit-transform-style: preserve-3d;
-        right: 0px;
-        opacity: 0.8;
-        color: rgb(0, 0, 0);
-        font-size: 112px;
-        width: 1464px;
-        height: 734px;
-        -webkit-transform-origin: 753.1200848671px 327.3087870619px 0px;
-        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        left: -1.5965860367001135px;
-        top: -3.7466305121006833px;
-      }
-      .gwd-div-bfum {
-        position: absolute;
-        width: 155px;
-        font-family:'Times New Roman';
-        text-align: left;
-        border-image-source: none;
-        border-color: rgb(255, 255, 255);
-        color: rgb(0, 0, 0);
-        height: 109.9124472574px;
-        left: 820.1943467504988px;
-        top: 29.166666666498493px;
-      }
-      .gwd-strong-fyyu {
-        color: rgb(255, 255, 255);
-        font-size: 48px;
-        font-family:'Roboto Condensed';
-      }
-      .gwd-strong-vog7 {
-        color: rgb(255, 255, 255);
-        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        -webkit-transform-style: preserve-3d;
-        font-weight: bold;
+      .title{
+        top:500px;
         font-family:'Playfair Display';
         font-size: 96px;
-      }
-      .gwd-div-cmge {
-        position: absolute;
-        text-align: left;
-        font-family: Play;
-        font-size: 48px;
-        color: rgb(0, 0, 0);
-        width: 960.6026392962px;
-        height: 64.9303797468px;
-        -webkit-transform-origin: 608.6353022673px 25.8433734939px 0px;
-        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        left: 372.0455891724px;
-        top: 159.14978902950023px;
-      }
-      .gwd-span-n0nc {
-        font-family:'Playfair Display';
-        color: rgb(0, 0, 0);
+        text-align: right;
+        color:white;
         font-weight: bold;
-        font-size: 48px;
       }
-      .gwd-gen-lpodgwdanimation {
-        width: 336.21875px;
-      }
-      .gwd-a-yh1s {
-        text-decoration: underline;
-        -webkit-column-rule-color: rgb(0, 0, 238);
-        -webkit-text-decorations-in-effect: underline;
-        -webkit-text-emphasis-color: rgb(0, 0, 238);
-        -webkit-text-fill-color: rgb(0, 0, 238);
-        -webkit-text-stroke-color: rgb(0, 0, 238);
-        width: auto;
-      }
-      .editable.editable {
-        min-height: 18px;
-        min-width: 10px;
-        -webkit-line-break: normal;
-        -webkit-user-modify: read-write;
-        background-image: none;
-        width: 508.2663734115px;
-        -webkit-transform-origin: 286.3568888054px 69.1666666667px 0px;
-        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-      }
-      .gwd-div-1gd7 {
-        position: absolute;
-        font-family:'Times New Roman';
-        text-align: left;
-        font-size: 24px;
-        left: 21.9468649636px;
-        top: 297.0810297641px;
-        width: 1311.5386119257px;
-        height: 357.7753164557px;
-        -webkit-transform-origin: 481.9076366794px 69.7511737089px 0px;
-        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-      }
-      .gwd-span-6796 {
-        font-size: 24px;
-        font-family:'Roboto Slab';
-        color: rgb(153, 153, 153);
-      }
-      .gwd-div-jb7t {
+
+      .subtitle{
+        font-family:'Playfair Display';
+        font-size: 56px;
         text-align: right;
       }
-      .gwd-span-yq94 {
-        color: rgb(153, 153, 153);
-        font-family:'Roboto Slab';
+
+      .login-text{
+        font-family:'Playfair Display';
         font-size: 24px;
+        text-align: right;
       }
-      .gwd-span-2d1h {
-        font-size: 32px;
+
+      .buttons{
+        width: inherit;
+        height: 40px;
+        font-family: 'Playfair Display';
+        font-size: 24px;
+        overflow: visible;
       }
-      .gwd-span-qkgo {
-        font-size: 48px;
-        color: rgb(153, 153, 153);
-        font-family:'Roboto Slab';
+
+      .desc{
+        margin-left: 50px;
+        text-align: center;
       }
-      .gwd-span-j60x {
-        font-size: 42px;
-        font-family:'Roboto Slab';
-        color: rgb(0, 0, 0);
-      }
-      .gwd-canvas-33o7 {
-        position: absolute;
-        -webkit-transform-style: preserve-3d;
-        left: 34px;
-        top: 250px;
-        width: 1356px;
-        height: 25px;
-        -webkit-transform-origin: 678px 12.5px 0px;
-        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-      }
-      .gwd-button-tjt5 {
-        position: absolute;
-        width: 289px;
-        height: 75px;
-        left: 1573px;
-        top: 872px;
-        background-image: none;
-        background-color: rgb(153, 153, 153);
-      }
-      .gwd-span-fi8i {
-        font-family:'Roboto Condensed';
-        font-size: 32px;
-      }
-      .gwd-form-x9ae {
-        background-image: none;
-        background-color: rgb(0, 0, 0);
-        width: 1102px;
-        height: 0px;
-        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -529, -286, 0, 1);
-        -webkit-transform-style: preserve-3d;
-      }
-      .gwd-span-ar91 {
-        font-size: 36px;
-        font-family:'Roboto Condensed';
+
+      .right{
+        margin-top: 20px;
+        margin-left: 630px;
       }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css">
-    <script type="text/x-serialization" data-gwd-canvas="serialization">
-      {"useCanvas":1,"useWebGl":0,"data":["{\"version\":0.1,\"id\":\"v7wpmw9b\",\"fov\":45,\"zNear\":0.1,\"zFar\":100,\"viewDist\":5,\"webGL\":false,\"lightAmount\":0.3,\"children\":[{\"type\":1,\"xoff\":0,\"yoff\":0,\"strokeWidth\":1,\"strokeColor\":[0,0,0,1],\"fillColor\":[0.6,0.6,0.6,1],\"tlRadius\":0,\"trRadius\":0,\"blRadius\":0,\"brRadius\":0,\"width\":1464,\"height\":734,\"strokeStyle\":\"Solid\",\"strokeMat\":null,\"fillMat\":null}]}","{\"version\":0.1,\"id\":\"nr62e8ti\",\"fov\":45,\"zNear\":0.1,\"zFar\":100,\"viewDist\":5,\"webGL\":false,\"lightAmount\":0.3,\"children\":[{\"type\":3,\"xAdj\":0,\"yAdj\":0,\"slope\":\"horizontal\",\"xoff\":0,\"yoff\":0,\"strokeWidth\":1,\"strokeColor\":[0,0,0,1],\"width\":1356,\"height\":25,\"strokeStyle\":\"Solid\",\"strokeMat\":null}]}"]}
-    </script>
-    <script data-gwd-canvas="runtime" type="text/javascript">
-      // Copyright 2013 Google Inc. All Rights Reserved.
-      (function(){var t=function(c,a){this.c=void 0!==c?c:0;this.d=void 0!==a?a:0};t.prototype.ceil=function(){this.c=Math.ceil(this.c);this.d=Math.ceil(this.d);return this};t.prototype.floor=function(){this.c=Math.floor(this.c);this.d=Math.floor(this.d);return this};window.addEventListener("load",function(){window.removeEventListener("load",x,!1);x()},!1);
-      var x=function(){for(var c,a,h=[],d=document.querySelectorAll('[type="text/x-serialization"][data-gwd-canvas="serialization"]'),m=d.length,g=0;g<m;g++)h.push(JSON.parse(d[g].textContent));d=h.length;for(m=0;m<d;m++)for(var g=h[m].data,n=document.body,f=g.length,r=0;r<f;r++){var b=JSON.parse(g[r]);if(b.children&&1===b.children.length&&(c=b.id)&&(c=n.querySelector("canvas[data-RDGE-id='"+c+"']"))){a=c;var e=b.children[0],b=a.getContext("2d");c=a.width;a=a.height;switch(e.type){case 1:var k=e.strokeWidth;
-      b.beginPath();var p=Math.ceil(k)-0.5;e.fillColor&&(b.fillStyle=y(b,e.fillColor,c,a,k,p),b.lineWidth=k,B(e,p,b,c,a),b.fill(),b.closePath());b.beginPath();p=Math.ceil(0.5*k)-0.5;e.strokeColor&&(b.strokeStyle=y(b,e.strokeColor,c,a,k,0),b.lineWidth=k,B(e,p,b,c,a),b.stroke(),b.closePath());break;case 2:var k=e.strokeWidth,p=e.innerRadius,s=e.strokeColor,e=e.fillColor,l=0.5*(c-k),q=0.5*(a-k),u=0.5*(p*c-k),D=0.5*(p*a-k),v=0.5*c,w=0.5*a,z=null!=e,A=null!=s&&0<k;z&&(b.fillStyle=y(b,e,c,a,k,k));A&&(b.strokeStyle=
-      y(b,s,c,a,k,k),b.lineWidth=k);0===p?(C(b,v,w,l,q,!0,!0),z&&b.fill(),A&&b.stroke()):(z&&(C(b,v,w,l,q,!0,!0),C(b,v,w,u,D,!1,!1),b.fill()),A&&(C(b,v,w,l,q,!0,!0),b.stroke(),C(b,v,w,u,D,!1,!0),b.stroke()));break;case 3:l=e.strokeColor;k=e.slope;p=e.xAdj;s=e.yAdj;b.beginPath();b.lineWidth=e.strokeWidth;if(l){b.strokeStyle=y(b,l,c,a,0,0);l=[];e=[];switch(k){case "vertical":l=[0.5*c,0];e=[0.5*c,a];break;case "horizontal":l=[0,0.5*a];e=[c,0.5*a];break;default:0<k?(l=[p,s],e=[c-p,a-s]):(l=[p,a-s],e=[c-p,s])}c=
-      new t(l[0],l[1]);a=new t(e[0],e[1]);b.moveTo(c.c,c.d);b.lineTo(a.c,a.d);b.stroke()}break;case 5:b.save();k=null!=e.fillColor;p=null!=e.strokeColor&&0<e.strokeWidth;b.lineCap="round";b.lineJoin="round";s=e.anchors.length;q=l=null;if(1<s){b.beginPath();l=e.anchors[0];b.moveTo(l[1][0],l[1][1]);for(u=1;u<s;u++)q=e.anchors[u],b.bezierCurveTo(l[2][0],l[2][1],q[0][0],q[0][1],q[1][0],q[1][1]),l=q;e.isClosed&&(q=e.anchors[0],b.bezierCurveTo(l[2][0],l[2][1],q[0][0],q[0][1],q[1][0],q[1][1]));k&&(b.fillStyle=
-      y(b,e.fillColor,c,a,e.strokeWidth,0),b.fill());p&&(b.lineWidth=e.strokeWidth,b.strokeStyle=y(b,e.strokeColor,c,a,e.strokeWidth,0),b.stroke())}b.restore()}}}},y=function(c,a,h,d,m,g){if(a.gradientMode){var n=0.5*h,f=0.5*d;c="radial"==a.gradientMode?c.createRadialGradient(n,f,0,n,f,Math.max(h-2*m,d-2*m)/2):c.createLinearGradient(g,f,h-g,f);a=a.color;h=a.length;for(d=0;d<h;d++)m=a[d].value,c.addColorStop(a[d].position/100,"rgba("+m.r+","+m.g+","+m.b+","+m.a+")");return c}return"rgba("+Math.floor(255*
-      a[0])+","+Math.floor(255*a[1])+","+Math.floor(255*a[2])+","+a[3]+")"},B=function(c,a,h,d,m){var g=0.5*d,n=0.5*m,f=[a,a],r=c.tlRadius,b=c.trRadius,e=c.blRadius;c=c.brRadius;g=g<n?g:n;r>g&&(r=g);e>g&&(e=g);c>g&&(c=g);b>g&&(b=g);g=d-a;n=m-a;0>=r&&0>=e&&0>=c&&0>=b?h.rect(f[0],f[1],d-2*a,m-2*a):(d=r-a,0>d&&(d=0),f[1]+=d,0.001>Math.abs(d)&&(f[1]=a),h.moveTo(f[0],f[1]),f=[a,n],d=e-a,0>d&&(d=0),f[1]-=d,h.lineTo(f[0],f[1]),0.001<d&&h.arcTo(a,n,a+d,n,e-a),f=[g,n],d=c-a,0>d&&(d=0),f[0]-=d,h.lineTo(f[0],f[1]),
-      0.001<d&&h.arcTo(g,n,g,n-d,c-a),f=[g,a],d=b-a,0>d&&(d=0),f[1]+=d,h.lineTo(f[0],f[1]),0.001<d&&h.arcTo(g,a,g-d,a,b-a),f=[a,a],d=r-a,0>d&&(d=0),f[0]+=d,h.lineTo(f[0],f[1]),0.001<d?h.arcTo(a,a,a,a+d,r-a):h.lineTo(a,2*a))},C=function(c,a,h,d,m,g,n){c.save();n&&c.beginPath();c.translate(a,h);c.scale(d,m);c.arc(0,0,1,0,2*Math.PI,g);c.restore()};})();
-    </script>
+   
   </head>
   
   <body>
-    <canvas data-rdge-id="v7wpmw9b" width="1464" height="734" class="gwd-canvas-00cm"></canvas>
-    <div class="gwd-div-bfum"><span class="gwd-strong-vog7">ReadyMade</span>
-
+    <div class="content">
+    <div class="title"><span class="title-text">ReadyMade</span></div>
+    <div class="subtitle"><span class="sub-text">Automatic Project Impact Assessment Tool</span>
     </div>
-    <div class="gwd-div-cmge"><span class="gwd-span-n0nc">Automatic Project Impact Assessment Tool</span>
-
+    <hr>
+    <div class="desc">
+    <span class="login-text">ReadyMade is an open source web application for automating the impact analysis process. Users have to answer a couple of questions, identify key variables from their existing data set and upload the filtered data set. The tool would then analyze the data and guide the user in conducting a simple yet useful assessment, including a written summary and a graphical representation of the findings.</span>
     </div>
-    <div class="gwd-div-1gd7">
-      <p class="p1"></p>
-      <div class="gwd-div-jb7t"><span class="gwd-span-ar91">ReadyMade is an open source web application for automating the impact analysis process. Users have to answer a couple of questions, identify key variables from their existing data set and upload the filtered data set. The tool would then analyze the data and guide the user in conducting a simple yet useful assessment, including a written summary and a graphical representation of the findings.</span>
-
-      </div>
-      <p></p>
-    </div>
-    <canvas data-rdge-id="nr62e8ti" width="1356" height="25" class="gwd-canvas-33o7"></canvas>
-    <form action="{{ url_for('login') }}" method="get" class="gwd-form-x9ae">
-      <button class="gwd-button-tjt5" id="login"> <span class="gwd-span-fi8i">Login / Sign up</span>
-
-      </button>
+    <br><br>
+    <form action="{{ url_for('login') }}" method="get">
+      <span class="right"><button class="buttons" id="login"> Login / Sign up
+      </button></span>
     </form>
+    </div>
   </body>
 
 </html>

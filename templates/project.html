@@ -41,22 +41,30 @@
           for(count=0;count<labels.length;count++){
             next_ques(count);
           }
+          
+          /*var inputs=$("input")
+          $("input").map(values,function(v,i){
+              $(this).val(v);
+              return;
+          });*/
+
           $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
         }
         
         function next_ques(i){
-          $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" value="+String(values[i])+"></p>");
+          $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" value="+values[i]+"></p>");      
         }
 
     
     </script>
       <p class="login-text"><u>Please hit enter to answer other questions</u></p>
-      <form action="{{url_for('variables')}}" method="POST">
+      <form action="{{url_for('saveproject')}}" method="POST">
       <div class="questions login-text">
         <p>What is the name of your project? <input id="name" name="name" value="{{params[1]}}"></p>
 
       </div>
       <input type="hidden" name="update" value="false">
+      <input type="hidden" name="proj_status" value="old">
       </form>
 
 {% endblock %}
