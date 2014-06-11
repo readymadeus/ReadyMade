@@ -637,8 +637,11 @@ def showcorr(vartype=None):
 			corr=round(corr,2)
 			if corr>=0.70:
 				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
-				filepath='../static/images/plots/'+vartype+'/'+pltfile
-				session["plots"].append(filepath)
+				filepath=PLOTPATH+'/'+vartype+'/'+pltfile
+				if config.ROOT_PATH=='.':
+					session["plots"].append(filepath[1:])
+				else:
+					session["plots"].append(filepath)
 				print "scatter",filepath
 				count+=1
 				params.append((filepath,corr,combo[0],combo[1]))

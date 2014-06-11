@@ -58,7 +58,7 @@ def create_pdf(data):
 	#Correlation
 	report.append(Paragraph("Correlations between variables",styles['Heading2']))
 	for plot in plots:
-		plot_img=Image(plot[1:],width=200,height=200)
+		plot_img=Image(plot,width=200,height=200)
 		report.append(plot_img)
 	plot_text="Therefore, we narrowed our investigation to one key performance variable, "+outputs+", which provides similar results as using any of the other available outcomes variables (confirmed by our statistical analysis). Similarly, We also decided to use only "+inputs+" for input variables and "+controls+" to control for environmental characteristics."
 	report.append(Paragraph(plot_text,styles['Normal']))
