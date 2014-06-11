@@ -21,7 +21,7 @@ def create_pdf(data):
 	plots=data[9]
 	regdata=data[10]
 	#File Name
-	pdfname="./static/files/uploads/RM_Report_"+pname+"_"+today
+	pdfname=config.ROOT_PATH+"/static/files/uploads/RM_Report_"+pname+"_"+today
 	report = []
 	#File Name
 	doc=BaseDocTemplate(pdfname,pagesize=letter)
@@ -58,8 +58,15 @@ def create_pdf(data):
 	#Correlation
 	report.append(Paragraph("Correlations between variables",styles['Heading2']))
 	for plot in plots:
-		plot_img=Image(plot,width=200,height=200)
-		report.append(plot_img)
+		try:
+			plot_img=Image(plot,width=200,height=200)
+			report.append(plot_img)
+		except IOError:
+			plot_img=Image("."+plot,width=200,height=200)
+			report.append(plot_img)
+		except:
+			plot_img=Image("./readymade.us"+plot[1:],width=200,height=200)
+			report.append(plot_img)
 	plot_text="Therefore, we narrowed our investigation to one key performance variable, "+outputs+", which provides similar results as using any of the other available outcomes variables (confirmed by our statistical analysis). Similarly, We also decided to use only "+inputs+" for input variables and "+controls+" to control for environmental characteristics."
 	report.append(Paragraph(plot_text,styles['Normal']))
 
