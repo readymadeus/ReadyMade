@@ -14,7 +14,7 @@
       }
 
        .top{
-        height:50%;
+        width:100%;
         
       }
 
@@ -37,7 +37,7 @@
 <div class="top">
 {% for p in params %}
 <div class="plot">
-<img src="{{p[0]}}" height="400" width="400"></img>
+<img src="{{p[0]}}" height="400" width="400"></img><br/>
 {% if vartype=="output" %}
   <input type="checkbox" name="variables" value="{{p[2]}}"><label class="smalltext">{{p[2]}}</label>
   <input type="checkbox" name="variables" value="{{p[3]}}"><label class="smalltext">{{p[3]}}</label>

@@ -59,7 +59,10 @@
           </ul>
         {% endif %}
       {% endwith %}
-      <p class="login-text"><u>Please hit enter to answer other questions</u></p>
+      <span class="login-text">Questionnaire</span>
+      <hr/>
+      <p class="login-text">We have a small questionnaire for you. Your responses are important for an in-depth analysis and reporting. <br/>
+      <span class="mediumtext">After each response, hit enter to view other questions</span></p>
       <form action="{{url_for('saveproject')}}" method="POST">
       <div class="questions login-text">
         <p>What is the name of your project? <input id="name" name="name" onkeypress="keyHandler(event)"></p>

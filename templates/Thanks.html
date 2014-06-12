@@ -1,5 +1,14 @@
 {% extends "layout2.html" %}
 {% block title %} Thank you {% endblock %}
 {% block content %} 
+
+<script>
+  $(document).ready(function(){
+    $("#answer").removeClass("box-highlighted").addClass("box");
+    $("#analyze").removeClass("box-highlighted").removeClass("box");
+  })
+</script>
+
+
 <p class="text" style="text-align:center">Analysis Saved. Thank you for using ReadyMade.</p>
 {% endblock %}

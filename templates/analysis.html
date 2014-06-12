@@ -1,10 +1,16 @@
     
 {% extends "layout2.html" %}
-{% block title %} Questionnaire {% endblock %}
+{% block title %} Analysis {% endblock %}
 {% block content %}
+	  <span class="text">Time For Some Analysis</span><br/>
+	  <hr/>
       <form action="{{url_for('variables')}}" method="POST">
-      <span class="mediumtext">Start New Analysis. You will be asked to save your analysis in the end. </span><button class="buttons" type="submit">Go</button><br/><br/>
+      <div style="width:80%;"><span class="mediumtext">You may start your ReadyMade analysis now. In the following steps, we will guide you to enter your key variables and the variables that have an indirect impact on your outcomes. You will then upload your dataset in order to further see the relationship between your variables. If you want to save your analysis, you may do so in the end. Hit 'Go' to begin. </span></div>
+      <button class="buttons" type="submit">Go</button>
+      <br/><br/>
       {% if analyses|length !=0 %}
+      	  <span class="text">Previous Analyses</span><br/>
+      	  <hr/>
 	      {% for analysis in analyses %}
 	       <span class="mediumtext">{{analysis[0]}}</span><a href="{{analysis[1]}}" target="_blank"><button class="buttons" type="button">View Report</button></a>
 	      <br/>

@@ -17,17 +17,13 @@
         
       }
       .header {
-        width: 140%;
-        height: 50%;
+        width: 200%;
+        height: 30%;
         background-color: rgb(55,55,55);
       }
       .title-position {
-        position: absolute;
-        width: 155px;
-        text-align: left;
-        height: 109.9124472574px;
-        left: 820.1943467504988px;
-        top: 29.166666666498493px;
+        width: 50%;
+        margin:0 auto;
       }
       
       .title-font {
@@ -37,14 +33,10 @@
         font-size: 96px;
       }
       .subtitle-position {
-        position: absolute;
-        text-align: right;
         font-family: Play;
         font-size: 48px;
-        width: 960.6026392962px;
-        height: 64.9303797468px;
-        left: 372.0455891724px;
-        top: 159.14978902950023px;
+        width: 70%;
+        margin:0 auto;
       }
       .subtitle-font {
         font-family:'Playfair Display';
@@ -56,11 +48,6 @@
         width: 140%;
         height: 50%;
         background-color: #FFF;
-      }
-
-      .footer{
-        position: absolute;
-        top: 100%;
       }
       
       .steps{
@@ -125,11 +112,7 @@
   
   <body>
     <div id="content" class="content">{% block content %}{% endblock %}</div>
-    <div id="footer" class="footer">
-      {% block footer %}
-      &copy; Copyright 2014 by Team ReadyMade</a>.
-      {% endblock %}
-    </div>    
+  
   </body>
 
 </html>

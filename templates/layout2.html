@@ -24,16 +24,13 @@
         
       }
       .header {
-        width: 140%;
+        width: 200%;
         height: 15%;
         background-color: rgb(55,55,55);
       }
       .title-position {
-        position: absolute;
-        width: 155px;
-        text-align: left;
-        height: 109.9124472574px;
-        left: 820.1943467504988px;
+        width: 50%;
+        margin-left: auto;
        
       }
       
@@ -44,14 +41,10 @@
         font-size: 72px;
       }
       .subtitle-position {
-        position: absolute;
-        text-align: right;
         font-family: Play;
         font-size: 48px;
-        width: 960.6026392962px;
-        height: 64.9303797468px;
-        left: 372.0455891724px;
-        top: 159.14978902950023px;
+        width: 70%;
+        margin-right: auto;
       }
       .subtitle-font {
         font-family:'Playfair Display';
@@ -74,14 +67,6 @@
         background-color: #FFF;
       }
 
-      .footer{
-        height: 10%;
-        width:40%;
-        position: relative;
-        top: 100%;
-        
-      }
-      
       .steps{
         width:40%;
         float: left;
@@ -213,12 +198,9 @@
         font-family:'Roboto Slab';
         font-size: 12px;
       }
-      .plotarea{
-        width:2000px;
-        height:500px;
-      }
+      
       .plot{
-        margin-left: 25px;
+        width:50%;
         float: left;
 
       }
@@ -228,8 +210,9 @@
       }
 
     </style>
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css"> 
-    <div class="header">
+    <div id="header" class="header">
       <div class="title-position"><span class="title-font">ReadyMade</span>
       </div>
     </div>
@@ -250,10 +233,6 @@
   
   <body>
     <div id="content" class="content">{% block content %}{% endblock %}</div>
-    <div id="footer" class="footer smalltext">
-      {% block footer %}
-      &copy; Copyright 2014 by Team ReadyMade</a>.
-      {% endblock %}
     </div>    
   </body>
 

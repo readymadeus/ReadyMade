@@ -122,7 +122,7 @@ def login():
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
-	session.clear()
+	#session.clear()
 	app.secret_key = os.urandom(32)
 	logout_user()   
 	flash("Logged out.")
@@ -565,6 +565,7 @@ def handleOutliers(data):
 @app.route("/visualize/<vartype>",methods=["POST","GET"])
 def showcorr(vartype=None):
 	try:
+		print "Session Dictionary",session
 		vartype=str(vartype)
 		if request.form is not None and "vartype" in request.form:
 			vartype=request.form["vartype"]

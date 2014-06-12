@@ -5,7 +5,7 @@ from datetime import date
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Image,BaseDocTemplate, Frame,Paragraph, Table, TableStyle, PageTemplate
 from reportlab.lib import colors
-import config
+import config,random
 
 def create_pdf(data):
 	report_header=config.ROOT_PATH+'/static/images/report-header.jpg'
