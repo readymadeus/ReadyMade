@@ -21,7 +21,8 @@ def create_pdf(data):
 	plots=data[9]
 	regdata=data[10]
 	#File Name
-	pdfname=config.ROOT_PATH+"/static/files/uploads/RM_Report_"+pname+"_"+today+".pdf"
+	randomid=random.randint(0,65536)
+	pdfname=config.ROOT_PATH+"/static/files/uploads/RM_Report_"+pname+"_"+today+str(randomid)+".pdf"
 	pdfilename="/static/files/uploads/RM_Report_"+pname+"_"+today+".pdf"
 	report = []
 	#File Name
