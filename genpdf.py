@@ -23,7 +23,7 @@ def create_pdf(data):
 	#File Name
 	randomid=random.randint(0,65536)
 	pdfname=config.ROOT_PATH+"/static/files/uploads/RM_Report_"+pname+"_"+today+str(randomid)+".pdf"
-	pdfilename="/static/files/uploads/RM_Report_"+pname+"_"+today+str(randomid)".pdf"
+	pdfilename="/static/files/uploads/RM_Report_"+pname+"_"+today+str(randomid)+".pdf"
 	report = []
 	#File Name
 	doc=BaseDocTemplate(pdfname,pagesize=letter)
