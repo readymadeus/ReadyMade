@@ -3,7 +3,6 @@ from flask import Flask, request, render_template, redirect, url_for, flash, Blu
 from flask.ext.login import (LoginManager, current_user, login_required,
 							login_user, logout_user, UserMixin,
 							confirm_login, fresh_login_required)
-#from flaskext.mail import Mail, Message
 try:
 	from flask.ext.login import AnonymousUser
 except:
@@ -15,6 +14,7 @@ from werkzeug import secure_filename
 import numpy as np
 from models import User, Project, Input, Control, Output, Analysis
 import pandas as pd
+import sys
 
 app=Flask(__name__)
 data=dict()
@@ -30,9 +30,6 @@ app.config['PLOTPATH']=PLOTPATH
 app.config['REGRESS_PATH']=REGRESS_PATH
 username=""
 session["plots"]=[]
-
-import sys
-
 
 if not app.debug:
 	import logging
@@ -85,7 +82,6 @@ login_manager = LoginManager()
 
 login_manager.anonymous_user = Anonymous
 login_manager.login_view = "login"
-#login_manager.login_message = u"Please log in to access this page."
 login_manager.refresh_view = "reauth"
 login_manager.setup_app(app)
 
@@ -126,8 +122,7 @@ def login():
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
-	session.pop("vars",None)
-	session.pop("type",None)
+	session.clear()
 	app.secret_key = os.urandom(32)
 	logout_user()   
 	flash("Logged out.")
@@ -250,8 +245,6 @@ def saveproject():
 					except Exception as e:
 						app.logger.exception(e)
 						flash("Project Name already exists. Please enter a different one")
-					print "Redirecting to analysis"
-					print "Orgname, pands",orgname,pands
 					return redirect(url_for('analyses'))
 				else:
 					flash("User ID missing. Please login again")
@@ -289,7 +282,6 @@ def variables():
 							db_session.commit() 
 					return render_template("control_vars.html",orgname=orgname,pands=pands)
 				else:
-					print "i did come here"
 					a=Analysis(pid)
 					db_session.add(a)
 					db_session.commit()
@@ -297,7 +289,6 @@ def variables():
 					session["aid"]=aid
 					return render_template("input_vars.html",orgname=orgname,pands=pands)	
 			else:
-				print "came here "
 				from models import Project
 				pid=session['pid']
 				p=Project.query.filter_by(id=pid).first()
@@ -308,7 +299,6 @@ def variables():
 				db_session.commit()
 				aid=a.id
 				session["aid"]=aid
-				print "The analysis id is ",aid
 				return render_template("input_vars.html",orgname=orgname,pands=pands)
 		except:
 			app.logger.exception(traceback.format_exc())
@@ -391,7 +381,6 @@ def getUserVars(vartype):
 	uservars=[]
 	if vartype=="Input":
 		inps=Input.query.filter_by(analysis=aid).all()
-		print inps
 		uservars=[inp.uservarname for inp in inps]
 		return uservars
 	elif vartype=="Output":
@@ -439,7 +428,6 @@ def readinputs():
 		vardict={}
 		for uvar in uservars:
 			vardict[uvar]=request.form.getlist(uvar)
-		print "Variable dictionary",vardict
 		if(len(vardict.values())==0):
 			flash("Please select at least one variable")
 			return redirect(url_for("selectIndicators"))
@@ -453,7 +441,6 @@ def readinputs():
 					for uvar,varnames in vardict.items():
 						for varname in varnames:
 							if varname!='nodata':
-								print "User var and actual variable",uvar, varname
 								io=Input(varname,uvar,aid)
 								db_session.add(io)
 					db_session.commit()
@@ -463,7 +450,6 @@ def readinputs():
 					for uvar,varnames in vardict.items():
 						for varname in varnames:
 							if varname!='nodata':
-								print "User var and actual variable",uvar, varname
 								io=Control(varname,uvar,aid)
 								db_session.add(io)
 					db_session.commit()
@@ -473,7 +459,6 @@ def readinputs():
 					for uvar,varnames in vardict.items():
 						for varname in varnames:
 							if varname!='nodata':
-								print "User var and actual variable",uvar, varname
 								io=Output(varname,uvar,aid)
 								db_session.add(io)
 					db_session.commit()
@@ -500,10 +485,8 @@ def transform_data():
 	csvf=convert.transform(file_loc)
 	indices=[]
 	var_out_info=[]
-	print "ivars",ivars
 	for i in ivars:
 		#Replace missing data
-		print "ivalue",i
 		try:
 			csvf[i]=csvf[i].fillna(0)
 			#Removing outliers
@@ -511,7 +494,6 @@ def transform_data():
 			indices=outinfo[0]
 			#csvf=csvf.drop(indices)
 			var_out_info.append((i,outinfo[1],outinfo[2],outinfo[3]))
-			print "Length of the data frame after removing input outliers",len(csvf.index)
 		except TypeError as e:
 			app.logger.exception(traceback.format_exc())
 			flash('Please select only numeric fields')
@@ -536,7 +518,6 @@ def transform_data():
 
 def remOutliers(data):
     outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]
-    print "Outliers ",outliers
     indices=outliers.index
     removed=len(outliers)
     total=len(data)
@@ -546,19 +527,15 @@ def remOutliers(data):
 
 @app.route("/correlations",methods=["GET","POST"])
 def correlations():
-	print "Outlier responses",request.form
 	if request.form is not None:
 		pid=session["pid"]
 		csvf=data[pid]
 		for k,v in request.form.items():
 			if v=='yes':
-				print "remove outlier"
 				indices=handleOutliers(csvf[k])
 				mean=np.mean(csvf[k])
-				print "mean"
 				for index in indices: 
 					csvf.replace(to_replace=csvf[k][index],value=mean)
-					print "Replaced"
 		ovars=session['output']
 		ivars=session['input']
 		cvars=session['control']
@@ -591,20 +568,15 @@ def showcorr(vartype=None):
 		vartype=str(vartype)
 		if request.form is not None and "vartype" in request.form:
 			vartype=request.form["vartype"]
-		print "vartype",vartype
 		if vartype=="regress":
-			print request.form.getlist('variables')
 			if "rcont" not in session:
 				session["rcont"]=list(set(request.form.getlist('variables')))
-				print "Control variables selected", request.form.getlist('variables')
 			return redirect(url_for("regress"))
 		elif vartype=="output":
-			print "Still vartype is", vartype
 			corrvars=session['output']
 		elif vartype=="input":
 			if "rout" not in session:
 				session["rout"]=list(set(request.form.getlist('variables')))
-			print session["rout"]
 			corrvars=session["input"]
 		else:
 			if "rinp" not in session:
@@ -653,13 +625,9 @@ def showcorr(vartype=None):
 			nocor=list(set(nocor))
 			nocor=[item for item in nocor if item not in cors]
 		if count==0:
-			print "count is 0 and vartype is ",vartype
 			msg="none"
 		else:
 			msg="corr"
-		print "non correlated",nocor
-		print "correlated",cors	
-		print "Plots", session["plots"]
 		return render_template("scatter.html",params=params,vars=nocor,vartype=vartype,msg=msg)
 	except Exception as e:
 		app.logger.exception(traceback.format_exc())
@@ -677,7 +645,6 @@ def regress():
 		inps=session['rinp']
 		controls=session['rcont']
 		count=0
-		print "Outputs in /regress",outs
 		for o in outs:
 			r=[]
 			inputData=[]
@@ -722,15 +689,9 @@ def regress():
 				cdata.append(tstat)
 				controlData.append(cdata)
 			r.append(controlData)
-			#Statistics: id, analysis,stat,input,measure
-			print "r",r
-			print "Input data",inputData
-			print "Control data",controlData
 			regs.append(r)
 			count+=1
 			data["regs"]=regs
-			print "Regression data",regs
-		print "Length of the data frame ",len(csvf.index)
 		return render_template("regression.html",regs=regs)
 	else:
 		return redirect(url_for("logout"))
@@ -744,7 +705,6 @@ def report():
 	for plot in plots:
 		pdfplots.append(config.ROOT_PATH+plot)
 		htmlplots.append(".."+plot)
-	print "Reporting plots",plots
 	from datetime import date
 	today=date.today()
 	pid=session["pid"]
@@ -776,7 +736,6 @@ def report():
 		pdfile='..'+genpdf.create_pdf(pdfdata)
 	pdfdata.append(pdfile)
 	session['pdfile']=pdfile
-	print "PDF file in session",session['pdfile']
 	#Changing this part for the HTML page to access the images
 	pdfdata[9]=htmlplots
 	return render_template("report.html",data=pdfdata)

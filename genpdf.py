@@ -69,7 +69,6 @@ def create_pdf(data):
 	for regs in regdata:
 		contents=[]
 		formula=regs[0]
-		print formula
 		r2=regs[1]
 		fstat=regs[2]
 		pvalue=regs[3]
@@ -104,7 +103,7 @@ def create_pdf(data):
 			conclusion="The regression indicates that "+ str(orgname)+" "+str(product)+" do not have a significant relationship with "+pname+"\'s inputs i.e any change in the units of "+orgname+" "+product+"\'s to "+pname+" is not associated with any change of units in "+orgname+"\'s inputs."
 		report.append(Paragraph("Conclusion",styles['Heading3']))
 		report.append(Paragraph(conclusion,styles['Normal']))
-	print 'writing'
+	print 'writing into pdf file'
 	doc.build(report)
 	return pdfilename
 
