@@ -2,6 +2,38 @@
 {% extends "layout.html" %}
 {% block title %} Login {% endblock %}
 {% block content %}
+      <script type="text/javascript">
+        function checkFields(e){
+          var errors=false;
+          var username=$("#username");
+          var email=$("#email");
+          var password=$("#password");
+          if($.trim(username.value)==''){
+              username.css('background-color',"aquamarine");
+              errors=true;
+            }
+
+
+          if($.trim(email.value)==''){
+              email.css('background-color',"aquamarine");
+              errors=true;
+            }
+
+
+          if($.trim(password.value)==''){
+              password.css('background-color',"aquamarine");
+              errors=true;
+            }
+   
+          
+          if(errors==false){
+            document.qform.submit();
+          }else{
+            e.preventDefault();
+            $("#logins").prepend("<p class=\"flashes\">Please fill highlighted fields</p>");
+          }
+        } 
+      </script>
       <div id="steps" class="steps">
           <img src="../static/images/text-file-icon_1.png" class="icons">
           <span class="login-title">Upload your data</span>
@@ -25,15 +57,15 @@
           </ul>
         {% endif %}
       {% endwith %}
-    <form action="signup" method="POST" class="gwd-form-sxs6">
-     <div class="login-text">Enter your username<input type="textbox" name="username">
+    <form name="qform" action="signup" method="POST">
+     <div id="logins" class="login-text">Enter your username<input type="text" id="username" name="username">
      <br><br>
-     Enter your password<input type="password" name="password">
+     Enter your password<input type="password" name="password" id="password">
      <br><br>
-     Enter your email ID<input type="textbox" name="email">
+     Enter your email ID<input type="text" id="email" name="email">
      <br><br>
      </div>
-    <button class="buttons">Sign Up</button>
+    <button class="buttons" onclick=javascript:checkFields(event)>Sign Up</button>
     </form>
     
     </div> 
