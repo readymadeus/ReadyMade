@@ -1,24 +1,52 @@
 {% extends "layout2.html" %}
 {% block title %} Upload File {% endblock %}
 {% block content %} 
-<script>
-	$(document).ready(function(){
-		$("#answer").removeClass("box-highlighted").addClass("box");
-		$("#upload").addClass("box-highlighted").removeClass("box");
-	})
-</script>
+  <script>
+  	$(document).ready(function(){
+  		$("#answer").removeClass("box-highlighted").addClass("box");
+  		$("#upload").addClass("box-highlighted").removeClass("box");
+  	})
+  </script>
+  <script type="text/javascript">
+      function checkFields(e){
+            var errors=false;
+            var datafile=$('[name="varfile"]')[0];
+            var datafile2=$('[name="varlist"]');
+            if(datafile.value=='' && datafile2==''){
+                errors=true;
+            }
+            if(errors==false){
+              document.inputform.submit();
+            }else{
+              e.preventDefault();
+              $("#right").prepend("<p class=\"flashes\">Please upload a data file</p>");
+            }
+          }  
+             
+  </script>
 <div class="steps"><p class="text">Please upload the file with the dataset. The next step would be to identify key indicator variables in your dataset.</p></div>
 <div class="vline"></div>
 <div class="text right">
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
 <form action="showvars" method="POST" enctype="multipart/form-data">
+<p class="text">
 {% if varfile!="" %}
 You have already uploaded a file named: <span style="color:blue;"> {{ varfile }} </span>
+<input type="hidden" name="varfile" value="{{varfile}}">
 <br><br>
 {%endif%}
 Upload New File 
-<input type="file" class="smalltext" name="varlist" >
+<input type="file" class="smalltext" name="varlist" ></p>
 <br><br>
-<button class="buttons">Submit</button>
+<button class="buttons" onclick=javascript:checkFields(event)>Submit</button>
 </form>
 </div>
 

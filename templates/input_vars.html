@@ -3,47 +3,36 @@
 {% block title %} Questionnaire {% endblock %}
 {% block content %}
     <script type="text/javascript">
-         function keyHandler(e){
-          var ENTERKEY=13;
-          if(e.keyCode==ENTERKEY){
-            count=count+1;  
-            orgname=$('#orgname').val();
-            ques[2]="Describe "+orgname+"'s product or service you would like to evaluate."
-            ques[3]="Who is "+orgname+"'s direct customer/client?"
-            client=$('#client').val();
-            ques[4]="Does "+client+" serve others?"
-            ques[5]="What is "+orgname+"'s mission statement in one sentence?"
-            ques[6]="What is "+orgname+"'s sector?"
-            if(count==ques.length){
-              $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
-            }else if (count<ques.length){
-              next_ques(count);
-            }else{
-              
-              return
-            } 
-            
+    function checkFields(e){
+          var blankFields=5;
+          var allInputs=$(":text");
+          for(var i=0;i<allInputs.length;i++){
+            if($.trim(allInputs[i].value)!=''){
+              blankFields-=1;
+            }
           }
-        }
-        
-        function next_ques(i){
-          $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" onkeypress=keyHandler(event)></p>");
-        }
-                 
+          if(blankFields<5){
+            document.inputform.submit();
+          }else{
+            e.preventDefault();
+            $("#content").prepend("<p class=\"flashes\">Please enter at least one variable name</p>");
+          }
+        }  
+           
     </script>
       <p class="text">Enter Input Variables</p>
-      <form action="{{url_for('variables')}}" method="POST">
+      <form name="inputform" action="{{url_for('variables')}}" method="POST">
       <div class="questions mediumtext">
-        <p>How does {{orgname}} measure {{pands}} provided to your users or customers?
-You may provide up to five possible input variables.</p>
-<p>Some input variables may be controls, so put any input variables you are not certain about under controls (below).</p><br/>
-1. <input id="name" name="inputs"> <br/>
-2. <input id="name" name="inputs"> <br/>
-3. <input id="name" name="inputs"> <br/>
-4. <input id="name" name="inputs"> <br/>
-5. <input id="name" name="inputs"> <br/>
+      <p>How does {{orgname}} measure {{pands}} provided to your users or customers?
+      You may provide up to five possible input variables.</p>
+      <p>Some input variables may be controls, so put any input variables you are not certain about under controls (below).</p><br/>
+      1. <input id="name" name="inputs"> <br/>
+      2. <input id="name" name="inputs"> <br/>
+      3. <input id="name" name="inputs"> <br/>
+      4. <input id="name" name="inputs"> <br/>
+      5. <input id="name" name="inputs"> <br/>
       </div>
-      <button type="submit" class="buttons">Next</button>
+      <button type="submit" class="buttons" onclick=javascript:checkFields(event)>Next</button>
       <input type="hidden" name="vartype" value="input">
       </form>
 {% endblock %}

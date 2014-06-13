@@ -122,7 +122,7 @@ def login():
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
-	#session.clear()
+	session.clear()
 	app.secret_key = os.urandom(32)
 	logout_user()   
 	flash("Logged out.")
@@ -328,7 +328,7 @@ def upload():
 	return redirect(url_for('questionnaire'))
 
 def allowed_file(filename):
-	return '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
+	return filename!='' and '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/showvars',methods=["POST","GET"])
 def showvars():
@@ -336,7 +336,8 @@ def showvars():
 	if request.method == "POST":
 		try:
 			file=request.files['varlist']
-			if file and allowed_file(file.filename):
+			print "File REceived",file
+			if file and allowed_file(file.filename): 
 					app.logger.debug("Loading...")
 					filename=secure_filename(file.filename)
 					folder=app.config['UPLOAD_FOLDER']
@@ -350,7 +351,21 @@ def showvars():
 						session["vars"]=None
 					return redirect(url_for("selectIndicators"))
 			else:
-				return redirect(url_for("selectIndicators"))
+				if "varfile" in request.form and allowed_file(request.form["varfile"]):
+					app.logger.debug("Loading...")
+					filename=request.form["varfile"]
+					folder=app.config['UPLOAD_FOLDER']
+					filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+					app.logger.debug(filepath)
+					pid=session["pid"]
+					Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
+					db_session.commit()
+					if "vars" in session.keys():
+						session["vars"]=None
+					return redirect(url_for("selectIndicators"))
+				else:
+					flash("Please upload the data file")
+					return render_template("indicators.html")
 		except:
 			app.logger.exception(traceback.format_exc())
 			return render_template("indicators.html",varfile=filename)
@@ -510,6 +525,7 @@ def transform_data():
 		except TypeError as e:
 			app.logger.exception(traceback.format_exc())
 			flash('Please select only numeric fields')
+	#session['var_out_info']=var_out_info
 	session['output']=ovars
 	session['input']=ivars
 	session['control']=cvars
@@ -528,6 +544,12 @@ def remOutliers(data):
 @app.route("/correlations",methods=["GET","POST"])
 def correlations():
 	if request.form is not None:
+		'''ovars=session['output']
+		ivars=session['input']
+		lenvars=len(ovars)+len(ivars)
+		if len(request.form.items())!=lenvars:
+			flash("Please choose an option for all the variables.")
+			return render_template("outliers.html",data=session["var_out_info"])'''
 		pid=session["pid"]
 		csvf=data[pid]
 		for k,v in request.form.items():
@@ -617,6 +639,7 @@ def showcorr(vartype=None):
 				cors.append(combo[0])
 				cors.append(combo[1])
 			else:
+				session["plots"].append("")
 				#create list of uncorrelated variables and pass it to vars
 				if combo[0] not in ivars:
 					nocor.append(combo[0])

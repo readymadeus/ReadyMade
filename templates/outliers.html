@@ -1,23 +1,48 @@
 {% extends "layout2.html" %}
 {% block title %} Outliers Removed {% endblock %}
 {% block content %} 
-<script>
-	$(document).ready(function(){
-		$("#answer").removeClass("box-highlighted").addClass("box");
-		$("#analyze").addClass("box-highlighted").removeClass("box");
-	})
-</script>
-<p class="text">We can fix some outliers from the dataset for you. We will use the modified Thompson tau technique wherein we will treat points that are more than two times the standard deviation as an outlier.  Summary of the cleaned up data is as shown below.
-<form action="correlations" method="POST">
-<button class="buttons">Next</button>
+	<script>
+		$(document).ready(function(){
+			$("#answer").removeClass("box-highlighted").addClass("box");
+			$("#analyze").addClass("box-highlighted").removeClass("box");
+		})
+	</script>
+    <script type="text/javascript">
+    function checkFields(e){
+    	  var vars=0;
+          var checked=0;
+          vars=$('[name="variable"]').length
+          checked=$(":checked").length
+          if(checked==0 || checked!=vars){
+          	e.preventDefault();
+          	$("#content").prepend("<p class=\"flashes\">Please select an option for each of the variables</p>");
+          }else{
+          	document.outform.submit();
+          }
+     }
+           
+    </script>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+<p class="text" style="width:30%;">We can fix some outliers from the dataset for you. We will use the modified Thompson tau technique wherein we will treat points that are more than two times the standard deviation as an outlier.  Summary of the cleaned up data is as shown below.
+<form name="outform" action="correlations" method="POST">
+<button class="buttons" onclick=javascript:checkFields(event)>Next</button>
 
 </p>
 {% for d in data %}
-<p class="mediumtext">Variable name: {{d[0]}}</p>
+<p class="mediumtext" name="variable">Variable name: {{d[0]}} <br/>
 <p class="mediumtext">Do you want to fix: {{d[1]}} of {{d[2]}} outliers? We will replace your outliers</p>
 <span class="smalltext"><input type="radio" name="{{d[0]}}" value="yes">Yes
 <input type="radio" name="{{d[0]}}" value="no">No
-</span>
+</span> </p>
 <br/>
 {% endfor %}
 </form>

@@ -2,6 +2,7 @@
 {% extends "layout2.html" %}
 {% block title %} Questionnaire {% endblock %}
 {% block content %}
+
     <script type="text/javascript">
 
         var ques= new Array();
@@ -10,6 +11,7 @@
         var client="{{params[3]}}"
         var count=-1;
         var values=new Array();
+        var errors=false;
         ques[0]="What is the name of your organization?"
         ques[1]="What is the url of your organization?"
         ques[2]="Describe "+orgname+"\'s product or service you would like to evaluate."
@@ -42,18 +44,36 @@
             next_ques(count);
           }
           
-          /*var inputs=$("input")
-          $("input").map(values,function(v,i){
-              $(this).val(v);
-              return;
-          });*/
+         var allInputs=$(":text")
+         for(var i=0;i<values.length;i++){
+          allInputs[i+1].value=values[i];
+         }
 
-          $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
+          $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\" onclick=javascript:checkFields(event)>Submit</button>");
         }
         
         function next_ques(i){
-          $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" value="+values[i]+"></p>");      
+          $(".questions").append("<p>"+ques[i]+"<input type=\"text\" id="+labels[i]+" name="+labels[i]+" value="+values[i]+"></p>");      
         }
+
+        function checkFields(e){
+          errors=false;
+          var allInputs=$(":text");
+          for(var i=0;i<allInputs.length;i++){
+            console.log(allInputs[i].value);
+            if($.trim(allInputs[i].value)==''){
+              console.log(allInputs[i].value);
+              allInputs[i].style.backgroundColor="aquamarine";
+              errors=true;
+            }
+          }
+          if(errors==false){
+            document.qform.submit();
+          }else{
+            e.preventDefault();
+            $("#content").prepend("<p class=\"flashes\">Please fill highlighted fields</p>");
+          }
+        }  
 
     
     </script>
@@ -61,9 +81,9 @@
       <hr/>
       <p class="login-text">You may edit your previously entered responses shown below.<br/>
       </p>
-      <form action="{{url_for('saveproject')}}" method="POST">
+      <form name="prjform" action="{{url_for('saveproject')}}" method="POST">
       <div class="questions login-text">
-        <p>What is the name of your project? <input id="name" name="name" value="{{params[1]}}"></p>
+        <p>What is the name of your project? <input type="text" id="name" name="name" value="{{params[1]}}"></p>
 
       </div>
       <input type="hidden" name="update" value="false">

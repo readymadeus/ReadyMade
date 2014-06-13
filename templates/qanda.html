@@ -33,7 +33,7 @@
             ques[5]="What is "+orgname+"'s mission statement in one sentence?"
             ques[6]="What is "+orgname+"'s sector?"
             if(count==ques.length){
-            	$(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\">Submit</button>");
+            	$(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button id=\"submit\" class=\"buttons\" onclick=javascript:checkFields(event)>Submit</button>");
             }else if (count<ques.length){
             	next_ques(count);
             }else{
@@ -48,7 +48,26 @@
           $(".questions").append("<p>"+ques[i]+"<input id="+labels[i]+" name="+labels[i]+" onkeypress=keyHandler(event)></p>");
         }
 
-    
+        function checkFields(e){
+          errors=false;
+          var allInputs=$(":text");
+          for(var i=0;i<allInputs.length;i++){
+            console.log(allInputs[i].value);
+            if($.trim(allInputs[i].value)==''){
+              console.log(allInputs[i].value);
+              allInputs[i].style.backgroundColor="aquamarine";
+              errors=true;
+            }
+          }
+          if(errors==false){
+            alert("leaving");
+            document.qform.submit();
+          }else{
+            e.preventDefault();
+            $("#content").prepend("<p class=\"flashes\">Please fill highlighted fields</p>");
+          }
+        }  
+
     </script>
       {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -63,7 +82,7 @@
       <hr/>
       <p class="login-text">We have a small questionnaire for you. Your responses are important for an in-depth analysis and reporting. <br/>
       <span class="mediumtext">After each response, hit enter to view other questions</span></p>
-      <form action="{{url_for('saveproject')}}" method="POST">
+      <form name="qform" action="{{url_for('saveproject')}}" method="POST">
       <div class="questions login-text">
         <p>What is the name of your project? <input id="name" name="name" onkeypress="keyHandler(event)"></p>
       </div>
