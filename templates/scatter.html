@@ -33,7 +33,7 @@
 {% endif %}
 <form action="{{ url_for('showcorr',vartype=vartype) }}" method="POST" id="varform">
 {% if msg=="corr" %}
-<p class="login-text">Select the variables you would like to use for the regression analysis. For best results, please pick only one of the two variables whose coefficients are marked in red. These variables are highly correlated and represent the same information. Using highly correlated variables will add statistical bias to your analysis.</p>
+<p class="login-text" style="width:30%;">Select the variables you would like to use for the regression analysis. For best results, please pick only one of the two variables whose coefficients are marked in red. These variables are highly correlated and represent the same information. Using highly correlated variables will add statistical bias to your analysis.</p>
 <div class="top">
 {% for p in params %}
 <div class="plot">

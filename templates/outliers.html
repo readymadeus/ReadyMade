@@ -32,7 +32,8 @@
         {% endif %}
       {% endwith %}
 
-<p class="text" style="width:30%;">We can fix some outliers from the dataset for you. We will use the modified Thompson tau technique wherein we will treat points that are more than two times the standard deviation as an outlier.  Summary of the cleaned up data is as shown below.
+<p class="text" style="width:30%;">We can fix some outliers from the dataset for you, in case these outliers represent points that are not well measured (“noisy”). We use the modified Thompson tau technique to identify outliers as points that are more than two times the standard deviation. 
+Below we show you the outliers so you can decide if these data points represent good data (so keep them) or is these points represent noisy data (discard them).
 <form name="outform" action="correlations" method="POST">
 <button class="buttons" onclick=javascript:checkFields(event)>Next</button>
 

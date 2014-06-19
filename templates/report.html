@@ -7,7 +7,26 @@
   $(document).ready(function(){
     $("#answer").removeClass("box-highlighted").addClass("box");
     $("#analyze").addClass("box-highlighted").removeClass("box");
-  })
+    $("#container").removeClass("container").addClass("container2");
+  });
+
+</script>
+
+<script type="text/javascript">
+    function checkFields(e){
+          errors=false;
+          if($("input").val()==''){
+              $("input").css("backgroundColor","aquamarine");
+              errors=true;
+            }
+          if(errors==false){
+            document.qform.submit();
+          }else{
+            e.preventDefault();
+            $("#content").prepend("<p class=\"flashes\">Please fill highlighted fields</p>");
+          }
+  }
+
 </script>
 
 <div class="title">
@@ -16,26 +35,26 @@
 <p><span class="smalltext">Analysis on: {{data[0]}} </span> <br><br>
 
 <span class="login-text">Introduction: </span><br>
-<span class="mediumtext">The organization {{data[2]}} used ReadyMade in order to conduct an impact analysis for their project {{data[1]}}. The mission of {{data[2]}} is {{data[3]}} {{data[2]}} serves its mission by providing {{data[4]}} to their primary user group - '{{data[5]}}'. </span> <br><br>
+<p class="mediumtext">The organization {{data[2]}} used ReadyMade in order to conduct an impact analysis for their project {{data[1]}}. The mission of {{data[2]}} is {{data[3]}} {{data[2]}} serves its mission by providing {{data[4]}} to their primary user group - '{{data[5]}}'. </p> <br><br>
 <span class="login-text"> Key Impact Question  </span><br> 
-<span class="mediumtext">" What is the relationship between {{data[4]}} and the project's ability to achieve their intended outcomes? " </span>
+<p class="mediumtext">" What is the relationship between {{data[4]}} and the project's ability to achieve their intended outcomes? " </p>
 <br><br>
 <span class="login-text">Data & Methods </span> <br>
-<span class="mediumtext">Identifying Key Variables: <br>
-In keeping with the ReadyMade tenet to keep the analysis simple, we look for one key outcome variable that is highly correlated with the other available outcome variables that provide measures of the {{data[1]}}’s annual performance. The key outcome variable should represent the {{data[1]}}’s improved performance that can be linked to {{data[2]}}'s goals. You can see some of the highly correlated variables in the plots below: </span><br>
+<p class="mediumtext">Identifying Key Variables: <br>
+In keeping with the ReadyMade tenet to keep the analysis simple, we look for one key outcome variable that is highly correlated with the other available outcome variables that provide measures of the {{data[1]}}’s annual performance. The key outcome variable should represent the {{data[1]}}’s improved performance that can be linked to {{data[2]}}'s goals. You can see some of the highly correlated variables in the plots below: </p><br>
 <div class="top">
 {% for plot in data[9] %}
-<div class="plot">
+<div class="plot2">
 <img src="{{plot}}" height="400" width="400"></img>
 </div>
 {% endfor %}
 </div>
 <br>
 <div style="float:left;">
-<span class="mediumtext">Therefore, we narrowed our investigation to one key performance variable, {{data[7]}}, which provides similar results as using any of the other available outcomes variables (confirmed by our statistical analysis). Similarly, We also decided to use only {{data[6]}} for input variables and {{data[8]}} to control for environmental characteristics.</span>
+<p class="mediumtext">Therefore, we narrowed our investigation to one key performance variable, {{data[7]}}, which provides similar results as using any of the other available outcomes variables (confirmed by our statistical analysis). Similarly, We also decided to use only {{data[6]}} for input variables and {{data[8]}} to control for environmental characteristics.</p>
 <br><br>
 <span class="login-text">Regression Question</span><br>
-<span class="mediumtext"> To evaluate the impact of their product - {{data[4]}}, {{data[2]}} wanted to track how {{data[6]}} is related to {{data[7]}} keeping in mind other factors such as {{data[8]}}. </span>
+<p class="mediumtext"> To evaluate the impact of their product - {{data[4]}}, {{data[2]}} wanted to track how {{data[6]}} is related to {{data[7]}} keeping in mind other factors such as {{data[8]}}. </p>
 <br><br>
 <p class="login-text">Regression Analysis</p>
 {% for r in data[10] %}
@@ -106,25 +125,24 @@ In keeping with the ReadyMade tenet to keep the analysis simple, we look for one
 	{% set polarity="negattive" %}
 	{% set change="decrease" %}
 	{% endif %}
-<span class="mediumtext">The regression indicates that {{data[2]}} {{data[4]}} have a {{polarity}} relationship with {{data[1]}}'s inputs: Every 1 unit of {{data[2]}} {{data[4]}}’s to {{data[1]}} is associated with a {{change}} of {{r[1]}} units in {{data[1]}}'s inputs.</span>
+<p class="mediumtext">The regression indicates that {{data[2]}} {{data[4]}} have a {{polarity}} relationship with {{data[1]}}'s inputs: Every 1 unit of {{data[2]}} {{data[4]}}’s to {{data[1]}} is associated with a {{change}} of {{r[1]}} units in {{data[1]}}'s inputs.</p>
 {% else %}
-<span class="mediumtext">The regression indicates that {{data[2]}} {{data[4]}} does not have a significant relationship with {{data[1]}}'s inputs i.e. any unit of change of {{data[2]}} {{data[4]}} to {{data[1]}} is not associated with any change of units in {{data[1]}}'s outputs.</span></div>
+<p class="mediumtext">The regression indicates that {{data[2]}} {{data[4]}} does not have a significant relationship with {{data[1]}}'s inputs i.e. any unit of change of {{data[2]}} {{data[4]}} to {{data[1]}} is not associated with any change of units in {{data[1]}}'s outputs.</p></div>
 {% endif %}
 {% endfor %}
 <br>
 {% endfor %}
 <br/><br/>
 </p>
-<br/><br/>
-<p style="text-align:center;">
+<p>
 <a href="{{data[11]}}" target="_blank"><button class="bigbuttons">Download PDF </button></a>
 <a href="{{data[11]}}" download="newfile" target="_blank"><button class="bigbuttons">Download Charts and Results </button></a>
 </p>
 <br><br>
 <form name="analysis" action="{{url_for('saveanalysis')}}" method="POST">
 <span class="mediumtext">Please enter name for your analysis if you wish to save it.</span>
-<input name="analysis">
-<button class="buttons" id="savebutton">Save Analysis</button>
+<input type="text" name="analysis">
+<button class="buttons" id="savebutton" onclick=javascript:checkFields(event)>Save Analysis</button>
 </form>
 <p class="text" style="text-align:center">Thank you for using ReadyMade.</p>
 

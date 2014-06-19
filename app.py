@@ -29,7 +29,7 @@ app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 app.config['PLOTPATH']=PLOTPATH
 app.config['REGRESS_PATH']=REGRESS_PATH
 username=""
-session["plots"]=[]
+
 
 if not app.debug:
 	import logging
@@ -332,6 +332,7 @@ def allowed_file(filename):
 
 @app.route('/showvars',methods=["POST","GET"])
 def showvars():
+	session["plots"]=[]
 	filename=""
 	if request.method == "POST":
 		try:
