@@ -263,21 +263,21 @@ def variables():
 				p=Project.query.filter_by(id=pid).first()
 				orgname=p.orgname
 				pands=p.prods
-				if request.form["vartype"]=="input":
-					aid=session["aid"]
-					inputs=request.form.getlist("inputs")
-					for inp in inputs:
-						if len(inp)>0:
-							io=Input("",inp,aid)
-						 	db_session.add(io)
-							db_session.commit() 
-					return render_template("output_vars.html",orgname=orgname,pands=pands)
-				elif request.form["vartype"]=="output":
+				if request.form["vartype"]=="output":
 					aid=session["aid"]
 					outputs=request.form.getlist("outputs")
 					for out in outputs:
 						if len(out)>0:
 							io=Output("",out,aid)
+						 	db_session.add(io)
+							db_session.commit() 
+					return render_template("input_vars.html",orgname=orgname,pands=pands)
+				elif request.form["vartype"]=="input":
+					aid=session["aid"]
+					inputs=request.form.getlist("inputs")
+					for inp in inputs:
+						if len(inp)>0:
+							io=Input("",inp,aid)
 						 	db_session.add(io)
 							db_session.commit() 
 					return render_template("control_vars.html",orgname=orgname,pands=pands)
@@ -287,7 +287,7 @@ def variables():
 					db_session.commit()
 					aid=a.id 
 					session["aid"]=aid
-					return render_template("input_vars.html",orgname=orgname,pands=pands)	
+					return render_template("output_vars.html",orgname=orgname,pands=pands)	
 			else:
 				from models import Project
 				pid=session['pid']
@@ -299,7 +299,7 @@ def variables():
 				db_session.commit()
 				aid=a.id
 				session["aid"]=aid
-				return render_template("input_vars.html",orgname=orgname,pands=pands)
+				return render_template("output_vars.html",orgname=orgname,pands=pands)
 		except:
 			app.logger.exception(traceback.format_exc())
 
@@ -336,7 +336,6 @@ def showvars():
 	if request.method == "POST":
 		try:
 			file=request.files['varlist']
-			print "File REceived",file
 			if file and allowed_file(file.filename): 
 					app.logger.debug("Loading...")
 					filename=secure_filename(file.filename)
@@ -364,7 +363,7 @@ def showvars():
 						session["vars"]=None
 					return redirect(url_for("selectIndicators"))
 				else:
-					flash("Please upload the data file")
+					flash("Please upload the data file in the correct format")
 					return render_template("indicators.html")
 		except:
 			app.logger.exception(traceback.format_exc())
@@ -385,7 +384,7 @@ def selectIndicators():
 			vars=datareader.next()
 			print "Variable header ",vars
 			session["vars"]=vars
-			session["type"]="Input"
+			session["type"]="Output"
 	uservars=getUserVars(session["type"])
 	print "User variables for type  ",session["type"],"  are  ", 
 	return render_template("select_inds.html",vartype=session["type"],vars=vars,uservars=uservars)
@@ -394,13 +393,13 @@ def getUserVars(vartype):
 	aid=session["aid"]
 	print "Analysis id is",aid
 	uservars=[]
-	if vartype=="Input":
-		inps=Input.query.filter_by(analysis=aid).all()
-		uservars=[inp.uservarname for inp in inps]
-		return uservars
-	elif vartype=="Output":
+	if vartype=="Output":
 		outs=Output.query.filter_by(analysis=aid).all()
 		uservars=[out.uservarname for out in outs]
+		return uservars
+	elif vartype=="Input":
+		inps=Input.query.filter_by(analysis=aid).all()
+		uservars=[inp.uservarname for inp in inps]
 		return uservars
 	elif vartype=="Control":
 		conts=Control.query.filter_by(analysis=aid).all()
@@ -420,14 +419,14 @@ def getUserVars(vartype):
 	aid=session["aid"]
 	print "Analysis id is",aid
 	uservars=[]
-	if vartype=="Input":
+	if vartype=="Output":
+		outs=Output.query.filter_by(analysis=aid).all()
+		uservars=[out.uservarname for out in outs]
+		return uservars
+	elif vartype=="Input":
 		inps=Input.query.filter_by(analysis=aid).all()
 		print inps
 		uservars=[inp.uservarname for inp in inps]
-		return uservars
-	elif vartype=="Output":
-		outs=Output.query.filter_by(analysis=aid).all()
-		uservars=[out.uservarname for out in outs]
 		return uservars
 	elif vartype=="Control":
 		conts=Control.query.filter_by(analysis=aid).all()
@@ -451,25 +450,7 @@ def readinputs():
 			pid=session["pid"]
 			aid=session["aid"]
 			try:  
-				if session["type"]=="Input":
-					uvars=[uvar for uvar in uservars]
-					for uvar,varnames in vardict.items():
-						for varname in varnames:
-							if varname!='nodata':
-								io=Input(varname,uvar,aid)
-								db_session.add(io)
-					db_session.commit()
-					session["type"]="Control"
-				elif session["type"]=="Control":
-					uvars=[uvar for uvar in uservars]
-					for uvar,varnames in vardict.items():
-						for varname in varnames:
-							if varname!='nodata':
-								io=Control(varname,uvar,aid)
-								db_session.add(io)
-					db_session.commit()
-					session["type"]="Output"
-				else:
+				if session["type"]=="Output":
 					uvars=[uvar for uvar in uservars]
 					for uvar,varnames in vardict.items():
 						for varname in varnames:
@@ -477,10 +458,33 @@ def readinputs():
 								io=Output(varname,uvar,aid)
 								db_session.add(io)
 					db_session.commit()
+					#session["type"]="Control"
+					session["type"]="Input"
+				#elif session["type"]=="Control":
+				elif session["type"]=="Input":
+					uvars=[uvar for uvar in uservars]
+					for uvar,varnames in vardict.items():
+						for varname in varnames:
+							if varname!='nodata':
+								#io=Control(varname,uvar,aid)
+								io=Input(varname,uvar,aid)
+								db_session.add(io)
+					db_session.commit()
+					#session["type"]="Output"
+					session["type"]="Control"
+				else:
+					uvars=[uvar for uvar in uservars]
+					for uvar,varnames in vardict.items():
+						for varname in varnames:
+							if varname!='nodata':
+								#io=Output(varname,uvar,aid)
+								io=Control(varname,uvar,aid)
+								db_session.add(io)
+					db_session.commit()
 					return redirect(url_for("transform_data")) 
 			except KeyError as e:
 				app.logger.exception(e)
-				session["type"]="Input"
+				session["type"]="Output"
 			return redirect(url_for("selectIndicators"))  
 				
 
@@ -525,7 +529,6 @@ def transform_data():
 		except TypeError as e:
 			app.logger.exception(traceback.format_exc())
 			flash('Please select only numeric fields')
-	#session['var_out_info']=var_out_info
 	session['output']=ovars
 	session['input']=ivars
 	session['control']=cvars
@@ -544,12 +547,6 @@ def remOutliers(data):
 @app.route("/correlations",methods=["GET","POST"])
 def correlations():
 	if request.form is not None:
-		'''ovars=session['output']
-		ivars=session['input']
-		lenvars=len(ovars)+len(ivars)
-		if len(request.form.items())!=lenvars:
-			flash("Please choose an option for all the variables.")
-			return render_template("outliers.html",data=session["var_out_info"])'''
 		pid=session["pid"]
 		csvf=data[pid]
 		for k,v in request.form.items():
@@ -639,7 +636,6 @@ def showcorr(vartype=None):
 				cors.append(combo[0])
 				cors.append(combo[1])
 			else:
-				session["plots"].append("")
 				#create list of uncorrelated variables and pass it to vars
 				if combo[0] not in ivars:
 					nocor.append(combo[0])

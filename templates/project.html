@@ -35,7 +35,7 @@
         values[6]="{{params[6]}}"
         
         $(document).ready(divHandler);
-
+        
         $('input').on('input', function() {
             $('#update').val("true");
         });
@@ -50,6 +50,10 @@
          }
 
           $(".questions").append("<p>Thank you for your responses! Press enter to Submit</p><br><button class=\"buttons\" onclick=javascript:checkFields(event)>Submit</button>");
+        
+        
+        $("#mission").css("width",function(){return 20*$(this).val().length});
+
         }
         
         function next_ques(i){
