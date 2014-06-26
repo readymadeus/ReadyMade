@@ -8,19 +8,19 @@
           var username=$("#username");
           var email=$("#email");
           var password=$("#password");
-          if($.trim(username.value)==''){
+          if($.trim(username.val())==''){
               username.css('background-color',"aquamarine");
               errors=true;
             }
 
 
-          if($.trim(email.value)==''){
+          if($.trim(email.val())==''){
               email.css('background-color',"aquamarine");
               errors=true;
             }
 
 
-          if($.trim(password.value)==''){
+          if($.trim(password.val())==''){
               password.css('background-color',"aquamarine");
               errors=true;
             }
