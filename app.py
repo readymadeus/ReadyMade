@@ -91,12 +91,14 @@ def hello():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+	session.clear()
+	app.secret_key = os.urandom(32)
+	logout_user()   
 	if request.method == "POST" and "username" in request.form:
 		username = str(request.form["username"])
 		password = str(request.form["password"])
-		project=[]
-		userfound=False;
-		from models import Project, User
+		userfound=False
+		from models import User
 		u=User.query.filter(User.username==username).filter(User.password==password).first()
 		if u is not None:
 			userfound=True
@@ -105,19 +107,9 @@ def login():
 		if userfound:
 			session["userid"] = u.id
 			remember = request.form.get("remember", "no") == "yes"
-			projects=Project.query.filter(Project.userid==u.id).all()
-			if projects is not None:
-				projs=[]
-				pids=[]
-				for p in projects:
-					projs.append(p)
-					pids.append(p.id)
-			else:
-				pids=[]
-				projs=[]    
-			return render_template("projects.html",username=u.username,projects=projs)
+			return redirect(url_for("showprojects"))
 		else:
-			flash(u"Invalid username.")
+			flash("Invalid username")
 	return render_template("rm_main.html")
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -142,7 +134,7 @@ def signup():
 		if u!=0:
 			session["userid"] = u.id
 			session["username"]=u.username
-			return render_template("projects.html",username=username)
+			return redirect(url_for("showprojects"))
 		else:
 			flash("Username/Email already exists. Please try a different one.")
 			return render_template("signup.html")
@@ -160,6 +152,26 @@ def reauth():
 		flash(u"Reauthenticated.")
 		return redirect(request.args.get("next") or url_for("login"))
 	return render_template("reauth.html")
+
+@app.route("/projects")
+def showprojects():
+	from models import Project
+	uid=session["userid"]
+	username=session["username"]
+	projects=Project.query.filter(Project.userid==uid).all()
+	if projects is not None:
+		print "jere in"
+		projs=[]
+		pids=[]
+		for p in projects:
+			projs.append(p)
+			pids.append(p.id)
+	else:
+		pids=[]
+		projs=[]    
+
+	return render_template("projects.html",username=username,projects=projs)
+
 
 @app.route("/project")
 def project():
@@ -600,10 +612,12 @@ def showcorr(vartype=None):
 				session["rout"]=list(set(request.form.getlist('variables')))
 			corrvars=session["input"]
 		else:
+			print "here in visualize else"
 			if "rinp" not in session:
 				session["rinp"]=list(set(request.form.getlist('variables')))
 			corrvars=session["control"]
 			ivars=session["input"]
+		print "session vars",session["rinp"],session["rout"],session["rcont"]
 		pid=session["pid"]
 		csvf=data[pid]
 		params=[]	
