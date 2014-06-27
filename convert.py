@@ -1,6 +1,7 @@
 import csv
 import re,os
 import pandas as pd
+import numpy as np
 
 def transform(csvfilename):
 	pattern='([a-zA-Z0-9_]+?)\.'
@@ -8,8 +9,12 @@ def transform(csvfilename):
 	csvfile = open(csvfilename, 'rU')
 	filename=re.findall(pattern,csvfilename)[0]
 	csvf=pd.read_csv(csvfilename)
+        for col in csvf.columns:
+          col_dtype = csvf[col].dtype
+          if not (col_dtype in (np.float64, np.int64)):
+            print col + " non-numeric and rejected."
+            del csvf[col]
 	return csvf
-	
 
 def test(csvfilename):
 	pattern='([a-zA-Z0-9_]+?)\.'

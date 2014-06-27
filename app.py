@@ -380,12 +380,21 @@ def selectIndicators():
 		p=Project.query.filter_by(id=pid).first()
 		filename=p.file_name
 		file_loc=p.file_location
-		with open(str(file_loc),"rU") as csvfile:
-			datareader=csv.reader(csvfile,delimiter=',')
-			vars=datareader.next()
-			print "Variable header ",vars
-			session["vars"]=vars
-			session["type"]="Output"
+                print file_loc
+                csvf = pd.read_csv(file_loc)
+                non_numeric_vars = []
+		for col in csvf.columns:
+			col_dtype = csvf[col].dtype
+                       	if not (col_dtype in (np.float64, np.int64)):
+				print col + " non-numeric and rejected."
+                                non_numeric_vars.append(col)
+				del csvf[col]
+		vars = csvf.columns.values.tolist()
+                print vars
+                print non_numeric_vars
+		session["vars"]=vars
+                session["vars_rejected"]=non_numeric_vars
+		session["type"]="Output"
 	uservars=getUserVars(session["type"])
 	print "User variables for type  ",session["type"],"  are  ", 
 	return render_template("select_inds.html",vartype=session["type"],vars=vars,uservars=uservars)
