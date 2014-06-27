@@ -1760,3 +1760,1221 @@ KeyError: 'output'
 2014-04-30 13:42:09,319 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
 2014-04-30 14:27:23,061 - __main__ - DEBUG - Loading...
 2014-04-30 14:27:23,061 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-04-30 17:09:34,133 - __main__ - DEBUG - Loading...
+2014-04-30 17:09:34,133 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-06 14:21:11,965 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 242, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 242, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-06 20:50:37,318 - __main__ - DEBUG - Adding project to the database
+2014-05-06 20:50:37,318 - __main__ - DEBUG - <Project None,u'ewqe',u'asdwe',u'wewe',u'ewe',u'ewe',u'werwr',u'erwer',None,None>
+2014-05-06 20:50:37,357 - __main__ - DEBUG - Successfully added project to database
+2014-05-06 22:02:01,846 - __main__ - DEBUG - Adding project to the database
+2014-05-06 22:02:01,847 - __main__ - DEBUG - <Project None,u'UC Berkeley',u'Darfur Cookstoves',u'education',u'cookstoves',u'Students',u'No',u'blah blah',None,None>
+2014-05-06 22:02:01,861 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 00:46:13,859 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 266, in variables
+    p=Project.query.filter_by(id=pid).first()
+UnboundLocalError: local variable 'Project' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 266, in variables
+    p=Project.query.filter_by(id=pid).first()
+UnboundLocalError: local variable 'Project' referenced before assignment
+2014-05-07 00:47:53,414 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 216, in variables
+    p=Project.query.filter_by(id=pid).first()
+UnboundLocalError: local variable 'Project' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 216, in variables
+    p=Project.query.filter_by(id=pid).first()
+UnboundLocalError: local variable 'Project' referenced before assignment
+2014-05-07 00:49:07,285 - __main__ - DEBUG - Loading...
+2014-05-07 00:49:07,286 - __main__ - DEBUG - ./static/files/uploads/cookstove.csv
+2014-05-07 01:21:20,000 - __main__ - DEBUG - Loading...
+2014-05-07 01:21:20,000 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-07 01:33:42,379 - __main__ - DEBUG - Adding project to the database
+2014-05-07 01:33:42,379 - __main__ - DEBUG - <Project None,u'erer',u'weqwe',u'erer',u'ertet',u'erer',u'wewe',u'erer',None,None>
+2014-05-07 01:33:42,394 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 01:42:59,829 - __main__ - DEBUG - Adding project to the database
+2014-05-07 01:42:59,829 - __main__ - DEBUG - <Project None,u'wewer',u'werhwe',u'getrt',u'werwer',u'wtrt',u'wtwet',u'regeg',None,None>
+2014-05-07 01:42:59,851 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 01:43:04,943 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 217, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 217, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-07 02:14:52,786 - __main__ - DEBUG - Adding project to the database
+2014-05-07 02:14:52,786 - __main__ - DEBUG - <Project None,u'rtet',u'test',u'dfgdfg',u'fgdfg',u'fgdgfg',u'dfgdfgd',u'fewrwer',None,None>
+2014-05-07 02:14:52,795 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 02:14:55,275 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 215, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 215, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-07 02:17:54,432 - __main__ - DEBUG - Adding project to the database
+2014-05-07 02:17:54,433 - __main__ - DEBUG - <Project None,u'test',u'test',u'test',u'test',u'test',u'test',u'test',None,None>
+2014-05-07 02:17:54,441 - __main__ - ERROR - (IntegrityError) (1062, "Duplicate entry 'test' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (27L, 'test', 'test', 'test', 'test', 'test', 'test', 'test', None, None, None)
+Traceback (most recent call last):
+  File "app.py", line 259, in variables
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (IntegrityError) (1062, "Duplicate entry 'test' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (27L, 'test', 'test', 'test', 'test', 'test', 'test', 'test', None, None, None)
+2014-05-07 02:18:59,736 - __main__ - DEBUG - Adding project to the database
+2014-05-07 02:18:59,736 - __main__ - DEBUG - <Project None,u'test2',u'test1',u'dgfgfdg',u'ertrt',u'dfgdg',u'dfgdfg',u'dfgdfg',None,None>
+2014-05-07 02:18:59,744 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 02:20:06,060 - __main__ - DEBUG - Adding project to the database
+2014-05-07 02:20:06,060 - __main__ - DEBUG - <Project None,u'test',u'test',u'test',u'test',u'test',u'test',u'test',None,None>
+2014-05-07 02:20:06,067 - __main__ - ERROR - (IntegrityError) (1062, "Duplicate entry 'test' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (27L, 'test', 'test', 'test', 'test', 'test', 'test', 'test', None, None, None)
+Traceback (most recent call last):
+  File "app.py", line 259, in variables
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (IntegrityError) (1062, "Duplicate entry 'test' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (27L, 'test', 'test', 'test', 'test', 'test', 'test', 'test', None, None, None)
+2014-05-07 02:20:35,048 - __main__ - DEBUG - Adding project to the database
+2014-05-07 02:20:35,048 - __main__ - DEBUG - <Project None,u'dfgg',u'tfsdfsf',u'dfgdfg',u'dfgdfgf',u'fsdffsdf',u'fdsgdfgdf',u'dfdfg',None,None>
+2014-05-07 02:20:35,068 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 02:24:08,155 - __main__ - DEBUG - Adding project to the database
+2014-05-07 02:24:08,156 - __main__ - DEBUG - <Project None,u'project',u'new ',u'fgsg',u'fgfdg',u'fgdfg',u'sdfsdf',u'cvbdfg',None,None>
+2014-05-07 02:24:08,158 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 02:59:07,397 - __main__ - DEBUG - Adding project to the database
+2014-05-07 02:59:07,398 - __main__ - DEBUG - <Project None,u'fgdfgdfg',u'sdffg',u'dbfdgdfg',u'dfgdfg',u'fgsdg',u'fgdfg',u'dbdbdh',None,None>
+2014-05-07 02:59:07,412 - __main__ - DEBUG - Successfully added project to database
+2014-05-07 02:59:49,451 - __main__ - DEBUG - Loading...
+2014-05-07 02:59:49,451 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-09 11:42:14,107 - __main__ - DEBUG - Loading...
+2014-05-09 11:42:14,115 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-10 15:22:49,792 - __main__ - DEBUG - Adding project to the database
+2014-05-10 15:22:49,793 - __main__ - DEBUG - <Project None,u'Berkele',u'Darfur',u'wewer',u'cookstoves',u'stuetns',u'not',u'wrwer',None,None>
+2014-05-10 15:22:49,805 - __main__ - DEBUG - Successfully added project to database
+2014-05-10 18:00:53,159 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 274, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 274, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-10 18:07:23,163 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 274, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 274, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-10 18:07:43,603 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 274, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 274, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-10 18:41:18,216 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 281, in variables
+    inputs=Inputs.query.filter(Inputs.analysis==a.id).filter(Inputs.varname=="").first()
+NameError: global name 'Inputs' is not defined
+Traceback (most recent call last):
+  File "app.py", line 281, in variables
+    inputs=Inputs.query.filter(Inputs.analysis==a.id).filter(Inputs.varname=="").first()
+NameError: global name 'Inputs' is not defined
+2014-05-10 18:42:42,112 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 282, in variables
+    vars=[i.uservarname for i in inputs]
+TypeError: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "app.py", line 282, in variables
+    vars=[i.uservarname for i in inputs]
+TypeError: 'NoneType' object is not iterable
+2014-05-10 23:13:12,161 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 281, in variables
+    inputs=Input.query.filter(Input.analysis==a.id).filter(Input.varname==null).first()
+NameError: global name 'null' is not defined
+Traceback (most recent call last):
+  File "app.py", line 281, in variables
+    inputs=Input.query.filter(Input.analysis==a.id).filter(Input.varname==null).first()
+NameError: global name 'null' is not defined
+2014-05-10 23:16:41,560 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 282, in variables
+    vars=[i.uservarname for i in inputs]
+TypeError: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "app.py", line 282, in variables
+    vars=[i.uservarname for i in inputs]
+TypeError: 'NoneType' object is not iterable
+2014-05-10 23:28:16,228 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 283, in variables
+    vars=[i.uservarname for i in inputs]
+TypeError: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "app.py", line 283, in variables
+    vars=[i.uservarname for i in inputs]
+TypeError: 'NoneType' object is not iterable
+2014-05-10 23:35:41,857 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 283, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/input_vars.html", line 40, in template
+    {% set count=1; %}
+TemplateSyntaxError: expected token 'end of statement block', got ';'
+Traceback (most recent call last):
+  File "app.py", line 283, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+    self.handle_exception(exc_info, source_hint=source)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/input_vars.html", line 40, in template
+    {% set count=1; %}
+TemplateSyntaxError: expected token 'end of statement block', got ';'
+2014-05-10 23:45:34,052 - __main__ - DEBUG - Loading...
+2014-05-10 23:45:34,052 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 01:04:39,206 - __main__ - DEBUG - Loading...
+2014-05-11 01:04:39,206 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 01:07:56,416 - __main__ - DEBUG - Loading...
+2014-05-11 01:07:56,416 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 03:17:27,713 - __main__ - DEBUG - Loading...
+2014-05-11 03:17:27,713 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 03:19:32,148 - __main__ - DEBUG - Loading...
+2014-05-11 03:19:32,149 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 03:21:40,204 - __main__ - DEBUG - Loading...
+2014-05-11 03:21:40,205 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 03:33:51,925 - __main__ - DEBUG - Loading...
+2014-05-11 03:33:51,926 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 13:57:42,821 - __main__ - DEBUG - Loading...
+2014-05-11 13:57:42,839 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 15:15:03,329 - __main__ - DEBUG - Loading...
+2014-05-11 15:15:03,348 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 16:32:28,692 - __main__ - DEBUG - Loading...
+2014-05-11 16:32:28,693 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 16:50:43,936 - __main__ - DEBUG - Loading...
+2014-05-11 16:50:43,937 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 17:15:20,508 - __main__ - DEBUG - Loading...
+2014-05-11 17:15:20,508 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 17:23:15,066 - __main__ - DEBUG - Loading...
+2014-05-11 17:23:15,066 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 17:31:20,064 - __main__ - DEBUG - Loading...
+2014-05-11 17:31:20,064 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 17:47:49,603 - __main__ - DEBUG - Loading...
+2014-05-11 17:47:49,604 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 18:16:34,014 - __main__ - DEBUG - Loading...
+2014-05-11 18:16:34,014 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 18:23:04,114 - __main__ - DEBUG - Loading...
+2014-05-11 18:23:04,114 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 18:27:06,872 - __main__ - DEBUG - Loading...
+2014-05-11 18:27:06,872 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 19:19:17,179 - __main__ - DEBUG - Loading...
+2014-05-11 19:19:17,180 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 19:27:00,789 - __main__ - DEBUG - Loading...
+2014-05-11 19:27:00,789 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-11 19:37:21,862 - __main__ - DEBUG - Adding project to the database
+2014-05-11 19:37:21,863 - __main__ - DEBUG - <Project None,u'UC Berkeley',u'Darfur Cookstoves',u'Finance',u'cookstoves',u'Women',u'No',u'Sustainable development',None,None>
+2014-05-11 19:37:21,872 - __main__ - DEBUG - Successfully added project to database
+2014-05-11 19:39:15,019 - __main__ - DEBUG - Loading...
+2014-05-11 19:39:15,019 - __main__ - DEBUG - ./static/files/uploads/SUMs_Data_for_Alices_Class_v01.csv
+2014-05-11 20:46:00,425 - __main__ - DEBUG - Loading...
+2014-05-11 20:46:00,425 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-12 11:34:17,515 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-05-12 11:36:00,650 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 237, in variables
+    pid=data["project"]
+KeyError: 'project'
+Traceback (most recent call last):
+  File "app.py", line 237, in variables
+    pid=data["project"]
+KeyError: 'project'
+2014-05-12 11:39:39,344 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 238, in variables
+    pid=data["project"]
+KeyError: 'project'
+Traceback (most recent call last):
+  File "app.py", line 238, in variables
+    pid=data["project"]
+KeyError: 'project'
+2014-05-12 11:43:33,459 - __main__ - DEBUG - Adding project to the database
+2014-05-12 11:43:33,459 - __main__ - DEBUG - <Project None,u'Agri Corp',u'Dairy Fund',u'Financial',u'Loans',u'Farmers',u'No',u'to create sustainable and healthy technology',None,None>
+2014-05-12 11:43:33,469 - __main__ - DEBUG - Successfully added project to database
+2014-05-12 11:44:03,233 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 210, in variables
+    pid=data["project"]
+KeyError: 'project'
+Traceback (most recent call last):
+  File "app.py", line 210, in variables
+    pid=data["project"]
+KeyError: 'project'
+2014-05-12 11:44:54,491 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 210, in variables
+    pid=data["project"]#TODO: Remove this
+KeyError: 'project'
+Traceback (most recent call last):
+  File "app.py", line 210, in variables
+    pid=data["project"]#TODO: Remove this
+KeyError: 'project'
+2014-05-12 11:45:16,121 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 267, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 267, in variables
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-12 11:53:37,345 - __main__ - DEBUG - Loading...
+2014-05-12 11:53:37,346 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-12 12:02:29,482 - __main__ - DEBUG - Loading...
+2014-05-12 12:02:29,483 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-12 13:05:07,116 - __main__ - DEBUG - Loading...
+2014-05-12 13:05:07,116 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-21 13:29:04,693 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-05-21 13:29:59,023 - __main__ - DEBUG - Loading...
+2014-05-21 13:29:59,024 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-21 14:47:23,243 - __main__ - DEBUG - Loading...
+2014-05-21 14:47:23,243 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-21 20:28:50,170 - __main__ - DEBUG - Loading...
+2014-05-21 20:28:50,170 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-28 05:22:37,970 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 286, in upload
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 286, in upload
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-28 05:27:58,475 - __main__ - DEBUG - Loading...
+2014-05-28 05:27:58,484 - __main__ - DEBUG - ./static/files/uploads/BCN_data_5-8.csv
+2014-05-28 05:34:27,530 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-05-28 05:34:40,964 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-05-28 10:41:42,056 - __main__ - DEBUG - Loading...
+2014-05-28 10:41:42,065 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-28 10:43:52,673 - __main__ - DEBUG - Loading...
+2014-05-28 10:43:52,674 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-28 10:43:52,675 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 321, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 321, in showvars
+    pid=session["pid"]
+KeyError: 'pid'
+2014-05-28 10:44:22,581 - __main__ - DEBUG - Loading...
+2014-05-28 10:44:22,582 - __main__ - DEBUG - ./static/files/uploads/BCN_data_5-8.csv
+2014-05-28 10:44:37,360 - __main__ - DEBUG - Loading...
+2014-05-28 10:44:37,360 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-28 10:50:39,496 - __main__ - DEBUG - Loading...
+2014-05-28 10:50:39,497 - __main__ - DEBUG - ./static/files/uploads/BCN_data_5-8.csv
+2014-05-28 10:53:38,927 - __main__ - DEBUG - Loading...
+2014-05-28 10:53:38,928 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-05-28 11:44:13,542 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 609, in showcorr
+    nocor=nocor-cors
+TypeError: unsupported operand type(s) for -: 'list' and 'list'
+Traceback (most recent call last):
+  File "app.py", line 609, in showcorr
+    nocor=nocor-cors
+TypeError: unsupported operand type(s) for -: 'list' and 'list'
+2014-05-29 07:29:34,948 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 609, in showcorr
+    nocor=nocor-cors
+TypeError: unsupported operand type(s) for -: 'list' and 'list'
+Traceback (most recent call last):
+  File "app.py", line 609, in showcorr
+    nocor=nocor-cors
+TypeError: unsupported operand type(s) for -: 'list' and 'list'
+2014-05-29 15:11:31,144 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 624, in showcorr
+    return render_template("scatter.html",params=params,vars=nocor,vartype=vartype,msg=msg)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 244, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 76, in block "content"
+    {% if len(vars)>0 %}
+UndefinedError: 'len' is undefined
+Traceback (most recent call last):
+  File "app.py", line 624, in showcorr
+    return render_template("scatter.html",params=params,vars=nocor,vartype=vartype,msg=msg)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
+    context, ctx.app)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
+    rv = template.render(context)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 1, in top-level template code
+    {% extends "layout2.html" %}
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/layout2.html", line 244, in top-level template code
+    <div id="content" class="content">{% block content %}{% endblock %}</div>
+  File "/Users/priyer/Box Sync/GSR/ReadyMade/www/readymade.us/templates/scatter.html", line 76, in block "content"
+    {% if len(vars)>0 %}
+UndefinedError: 'len' is undefined
+2014-05-31 19:53:16,292 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-02 13:24:33,163 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-06 20:28:21,272 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-09 12:33:05,323 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 574, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+Traceback (most recent call last):
+  File "app.py", line 574, in showcorr
+    corrvars=session["input"]
+KeyError: 'input'
+2014-06-10 09:54:52,335 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-10 09:55:42,035 - __main__ - DEBUG - Loading...
+2014-06-10 09:55:42,036 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-10 09:57:01,169 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 578, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+Traceback (most recent call last):
+  File "app.py", line 578, in showcorr
+    corrvars=session["control"]
+KeyError: 'control'
+2014-06-10 15:18:16,180 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-10 15:18:47,415 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-10 20:35:59,265 - __main__ - DEBUG - Adding project to the database
+2014-06-10 20:35:59,265 - __main__ - DEBUG - <Project None,u'UC Berkeley',u'Sahay',u'Employment',u'Helping workers and employers find each other',u'Workers',u'Yes',u'To create employment in the informal labor market in India',None,None>
+2014-06-10 20:35:59,274 - __main__ - DEBUG - Successfully added project to database
+2014-06-10 20:36:27,779 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 291, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 291, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+2014-06-10 20:36:44,300 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 221, in saveproject
+    aid=session["aid"]
+KeyError: 'aid'
+Traceback (most recent call last):
+  File "app.py", line 221, in saveproject
+    aid=session["aid"]
+KeyError: 'aid'
+2014-06-10 22:19:26,944 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 287, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 287, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+2014-06-10 23:04:02,993 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 287, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 287, in variables
+    return render_template("input_vars.html",orgname=orgname,pands=pands)
+UnboundLocalError: local variable 'orgname' referenced before assignment
+2014-06-10 23:05:20,877 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 288, in variables
+    p=Project.query.filter_by(id=pid).first()
+NameError: global name 'pid' is not defined
+Traceback (most recent call last):
+  File "app.py", line 288, in variables
+    p=Project.query.filter_by(id=pid).first()
+NameError: global name 'pid' is not defined
+2014-06-10 23:05:48,575 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 287, in variables
+    pid=session['pid']
+KeyError: 'pid'
+Traceback (most recent call last):
+  File "app.py", line 287, in variables
+    pid=session['pid']
+KeyError: 'pid'
+2014-06-10 23:06:27,371 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 288, in variables
+    p=Project.query.filter_by(id=pid).first()
+UnboundLocalError: local variable 'Project' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 288, in variables
+    p=Project.query.filter_by(id=pid).first()
+UnboundLocalError: local variable 'Project' referenced before assignment
+2014-06-11 01:12:12,320 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 260, in variables
+    session["pid"]=pid
+UnboundLocalError: local variable 'pid' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 260, in variables
+    session["pid"]=pid
+UnboundLocalError: local variable 'pid' referenced before assignment
+2014-06-11 01:12:31,048 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 260, in variables
+    session["pid"]=pid
+UnboundLocalError: local variable 'pid' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 260, in variables
+    session["pid"]=pid
+UnboundLocalError: local variable 'pid' referenced before assignment
+2014-06-11 01:19:10,798 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 297, in variables
+    db_session(a)
+TypeError: __call__() takes exactly 1 argument (2 given)
+Traceback (most recent call last):
+  File "app.py", line 297, in variables
+    db_session(a)
+TypeError: __call__() takes exactly 1 argument (2 given)
+2014-06-11 01:19:52,419 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 298, in variables
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (OperationalError) (1054, "Unknown column 'report_loc' in 'field list'") 'INSERT INTO `Analysis` (projid, report_loc, name, create_date) VALUES (%s, %s, %s, %s)' (u'86', None, None, datetime.datetime(2014, 6, 11, 1, 19, 52, 404851))
+Traceback (most recent call last):
+  File "app.py", line 298, in variables
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (OperationalError) (1054, "Unknown column 'report_loc' in 'field list'") 'INSERT INTO `Analysis` (projid, report_loc, name, create_date) VALUES (%s, %s, %s, %s)' (u'86', None, None, datetime.datetime(2014, 6, 11, 1, 19, 52, 404851))
+2014-06-11 01:21:19,383 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 270, in variables
+    io=Input("",inp,aid)
+UnboundLocalError: local variable 'aid' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 270, in variables
+    io=Input("",inp,aid)
+UnboundLocalError: local variable 'aid' referenced before assignment
+2014-06-11 01:22:15,130 - __main__ - DEBUG - Loading...
+2014-06-11 01:22:15,130 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-11 02:23:31,384 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-11 02:23:31,432 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-11 02:25:30,142 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-11 02:25:30,185 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-11 19:23:42,170 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-11 20:12:40,020 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 613, in showcorr
+    session["plots"].append(filepath[2:])
+KeyError: 'plots'
+Traceback (most recent call last):
+  File "app.py", line 613, in showcorr
+    session["plots"].append(filepath[2:])
+KeyError: 'plots'
+2014-06-11 20:22:30,849 - __main__ - DEBUG - Adding project to the database
+2014-06-11 20:22:30,849 - __main__ - DEBUG - <Project None,u'Starbucks',u'Coffeeeeee',u'',u'loans',u'farmers',u'no',u'',None,None>
+2014-06-11 20:22:30,857 - __main__ - DEBUG - Successfully added project to database
+2014-06-11 20:23:19,041 - __main__ - DEBUG - Loading...
+2014-06-11 20:23:19,050 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-11 20:25:27,647 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 622, in showcorr
+    if combo[0] not in ivars:
+UnboundLocalError: local variable 'ivars' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 622, in showcorr
+    if combo[0] not in ivars:
+UnboundLocalError: local variable 'ivars' referenced before assignment
+2014-06-12 18:23:37,993 - __main__ - DEBUG - Adding project to the database
+2014-06-12 18:23:37,994 - __main__ - DEBUG - <Project None,u'',u'',u'',u'',u'',u'',u'',None,None>
+2014-06-12 18:23:37,998 - __main__ - DEBUG - Successfully added project to database
+2014-06-12 18:24:23,123 - __main__ - DEBUG - Adding project to the database
+2014-06-12 18:24:23,124 - __main__ - DEBUG - <Project None,u'',u'',u'',u'',u'',u'',u'',None,None>
+2014-06-12 18:24:23,134 - __main__ - ERROR - (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+Traceback (most recent call last):
+  File "app.py", line 242, in saveproject
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+2014-06-12 18:25:35,081 - __main__ - DEBUG - Adding project to the database
+2014-06-12 18:25:35,081 - __main__ - DEBUG - <Project None,u'',u'',u'',u'',u'',u'',u'',None,None>
+2014-06-12 18:25:35,091 - __main__ - ERROR - (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+Traceback (most recent call last):
+  File "app.py", line 242, in saveproject
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+2014-06-12 18:28:54,487 - __main__ - DEBUG - Adding project to the database
+2014-06-12 18:28:54,487 - __main__ - DEBUG - <Project None,u'',u'',u'',u'',u'',u'',u'',None,None>
+2014-06-12 18:28:54,497 - __main__ - ERROR - (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+Traceback (most recent call last):
+  File "app.py", line 242, in saveproject
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+2014-06-12 18:29:44,326 - __main__ - DEBUG - Adding project to the database
+2014-06-12 18:29:44,326 - __main__ - DEBUG - <Project None,u'',u'',u'',u'',u'',u'',u'',None,None>
+2014-06-12 18:29:44,336 - __main__ - ERROR - (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+Traceback (most recent call last):
+  File "app.py", line 242, in saveproject
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (33L, '', '', '', '', '', '', '', None, None, None)
+2014-06-12 18:32:49,005 - __main__ - DEBUG - Adding project to the database
+2014-06-12 18:32:49,005 - __main__ - DEBUG - <Project None,u'',u'hello',u'',u'',u'',u'',u'',None,None>
+2014-06-12 18:32:49,016 - __main__ - DEBUG - Successfully added project to database
+2014-06-13 00:29:16,183 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-13 00:45:09,998 - __main__ - DEBUG - Adding project to the database
+2014-06-13 00:45:09,998 - __main__ - DEBUG - <Project None,u'',u'',u'',u'',u'',u'',u'',None,None>
+2014-06-13 00:45:10,007 - __main__ - ERROR - (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (16L, '', '', '', '', '', '', '', None, None, None)
+Traceback (most recent call last):
+  File "app.py", line 242, in saveproject
+    db_session.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 721, in commit
+    self.transaction.commit()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 354, in commit
+    self._prepare_impl()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1818, in flush
+    self._flush(objects)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/session.py", line 1900, in _flush
+    flush_context.execute()
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/unitofwork.py", line 525, in execute
+    uow
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 64, in save_obj
+    table, insert)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 662, in execute
+    params)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 874, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/util/compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/base.py", line 867, in _execute_context
+    context)
+  File "build/bdist.macosx-10.6-x86_64/egg/sqlalchemy/engine/default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/MySQL_python-1.2.4-py2.7-macosx-10.6-x86_64.egg/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (IntegrityError) (1062, "Duplicate entry '' for key 'name'") 'INSERT INTO `Project` (userid, orgname, name, mission, p_user, s_user, sector, prods, other_user, file_name, file_location) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' (16L, '', '', '', '', '', '', '', None, None, None)
+2014-06-13 01:06:58,187 - __main__ - DEBUG - Adding project to the database
+2014-06-13 01:06:58,188 - __main__ - DEBUG - <Project None,u'test',u'test',u'test',u'test',u'test',u'test',u'testre',None,None>
+2014-06-13 01:06:58,198 - __main__ - DEBUG - Successfully added project to database
+2014-06-13 01:08:08,331 - __main__ - DEBUG - Adding project to the database
+2014-06-13 01:08:08,332 - __main__ - DEBUG - <Project None,u'test',u'test1',u'test',u'test',u'test',u'test',u'test',None,None>
+2014-06-13 01:08:08,345 - __main__ - DEBUG - Successfully added project to database
+2014-06-13 01:13:30,201 - __main__ - DEBUG - Loading...
+2014-06-13 01:13:30,202 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-13 01:36:36,075 - __main__ - DEBUG - Loading...
+2014-06-13 01:36:36,076 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-13 01:41:55,808 - __main__ - DEBUG - Loading...
+2014-06-13 01:41:55,808 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-13 01:58:12,186 - __main__ - DEBUG - Loading...
+2014-06-13 01:58:12,186 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-13 02:06:39,150 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 644, in showcorr
+    if combo[0] not in ivars:
+UnboundLocalError: local variable 'ivars' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 644, in showcorr
+    if combo[0] not in ivars:
+UnboundLocalError: local variable 'ivars' referenced before assignment
+2014-06-19 13:25:29,047 - __main__ - DEBUG - Loading...
+2014-06-19 13:25:29,055 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-19 13:40:23,511 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 279, in variables
+    if len(out)>0:
+UnboundLocalError: local variable 'out' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 279, in variables
+    if len(out)>0:
+UnboundLocalError: local variable 'out' referenced before assignment
+2014-06-19 13:41:15,108 - __main__ - DEBUG - Loading...
+2014-06-19 13:41:15,108 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-19 13:41:50,886 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 633, in showcorr
+    session["plots"].append(filepath[2:])
+KeyError: 'plots'
+Traceback (most recent call last):
+  File "app.py", line 633, in showcorr
+    session["plots"].append(filepath[2:])
+KeyError: 'plots'
+2014-06-19 14:02:00,504 - __main__ - DEBUG - Loading...
+2014-06-19 14:02:00,504 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 14:35:36,203 - __main__ - ERROR - 404: Not Found
+Traceback (most recent call last):
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1453, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/priyer/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/flask/app.py", line 1436, in raise_routing_exception
+    raise request.routing_exception
+NotFound: 404: Not Found
+2014-06-26 15:29:18,328 - __main__ - DEBUG - Loading...
+2014-06-26 15:29:18,328 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 15:51:54,724 - __main__ - DEBUG - Loading...
+2014-06-26 15:51:54,724 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 18:50:35,020 - __main__ - DEBUG - Loading...
+2014-06-26 18:50:35,020 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 18:52:58,015 - __main__ - DEBUG - Loading...
+2014-06-26 18:52:58,015 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 18:53:20,024 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 620, in showcorr
+    print "session vars",session["rinp"],session["rout"],session["rcont"]
+KeyError: 'rinp'
+Traceback (most recent call last):
+  File "app.py", line 620, in showcorr
+    print "session vars",session["rinp"],session["rout"],session["rcont"]
+KeyError: 'rinp'
+2014-06-26 18:59:50,454 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 231, in saveproject
+    print "Project id stored in mysession",mysession["pid"]
+NameError: global name 'mysession' is not defined
+Traceback (most recent call last):
+  File "app.py", line 231, in saveproject
+    print "Project id stored in mysession",mysession["pid"]
+NameError: global name 'mysession' is not defined
+2014-06-26 19:02:07,150 - __main__ - DEBUG - Loading...
+2014-06-26 19:02:07,150 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 19:03:41,482 - __main__ - DEBUG - Loading...
+2014-06-26 19:03:41,483 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 19:12:37,932 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 620, in showcorr
+    print "session vars",session["rinp"],session["rout"],session["rcont"]
+KeyError: 'rcont'
+Traceback (most recent call last):
+  File "app.py", line 620, in showcorr
+    print "session vars",session["rinp"],session["rout"],session["rcont"]
+KeyError: 'rcont'
+2014-06-26 19:50:48,290 - __main__ - DEBUG - Loading...
+2014-06-26 19:50:48,290 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 19:51:09,976 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 652, in showcorr
+    if combo[0] not in ivars:
+UnboundLocalError: local variable 'ivars' referenced before assignment
+Traceback (most recent call last):
+  File "app.py", line 652, in showcorr
+    if combo[0] not in ivars:
+UnboundLocalError: local variable 'ivars' referenced before assignment
+2014-06-26 19:55:15,476 - __main__ - DEBUG - Loading...
+2014-06-26 19:55:15,476 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 20:04:57,257 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 607, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+Traceback (most recent call last):
+  File "app.py", line 607, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+2014-06-26 20:05:18,226 - __main__ - DEBUG - Loading...
+2014-06-26 20:05:18,226 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 20:39:42,772 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 609, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+Traceback (most recent call last):
+  File "app.py", line 609, in showcorr
+    corrvars=session['output']
+KeyError: 'output'
+2014-06-26 20:40:06,335 - __main__ - DEBUG - Loading...
+2014-06-26 20:40:06,335 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 20:40:30,760 - __main__ - ERROR - Traceback (most recent call last):
+  File "app.py", line 634, in showcorr
+    numofElems.append("".join(c for c in combos))
+TypeError: sequence item 0: expected string, tuple found
+Traceback (most recent call last):
+  File "app.py", line 634, in showcorr
+    numofElems.append("".join(c for c in combos))
+TypeError: sequence item 0: expected string, tuple found
+2014-06-26 20:49:07,293 - __main__ - DEBUG - Loading...
+2014-06-26 20:49:07,294 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv
+2014-06-26 20:52:10,576 - __main__ - DEBUG - Loading...
+2014-06-26 20:52:10,576 - __main__ - DEBUG - ./static/files/uploads/coffeedat.csv

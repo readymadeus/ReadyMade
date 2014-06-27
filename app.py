@@ -597,7 +597,7 @@ def handleOutliers(data):
 @app.route("/visualize/<vartype>",methods=["POST","GET"])
 def showcorr(vartype=None):
 	try:
-		print "Session Dictionary",session
+		print "session Dictionary",session
 		vartype=str(vartype)
 		if request.form is not None and "vartype" in request.form:
 			vartype=request.form["vartype"]
@@ -612,12 +612,10 @@ def showcorr(vartype=None):
 				session["rout"]=list(set(request.form.getlist('variables')))
 			corrvars=session["input"]
 		else:
-			print "here in visualize else"
 			if "rinp" not in session:
 				session["rinp"]=list(set(request.form.getlist('variables')))
 			corrvars=session["control"]
 			ivars=session["input"]
-		print "session vars",session["rinp"],session["rout"],session["rcont"]
 		pid=session["pid"]
 		csvf=data[pid]
 		params=[]	
@@ -628,42 +626,63 @@ def showcorr(vartype=None):
 		pltpath=app.config['PLOTPATH']+'/'+vartype+'/scatter'
 		#Plotting the scatterplots
 		i=0
+		skipPlot=False
 		if vartype=="control":
 			combos=itertools.combinations(corrvars+ivars,2)
 		else:
-			combos=itertools.combinations(corrvars,2)
-		for combo in combos:
-			#Redundancy removal for input variables in control correlations
-			if vartype=="control" and combo[0] in ivars and combo[1] in ivars:
-				continue
-			x=csvf[combo[0]].fillna(0)
-			#x=csvf[combo[0]].replace('',0)
-			y=csvf[combo[1]].fillna(0)
-			corr=np.corrcoef(x,y)[0][1]
-			corr=round(corr,2)
-			if corr>=0.70:
-				pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
-				filepath='../static/images/plots/'+vartype+'/'+pltfile
-				#Different path for accessing images through python files versus html files
-				session["plots"].append(filepath[2:])
-				count+=1
-				params.append((filepath,corr,combo[0],combo[1]))
-				cors.append(combo[0])
-				cors.append(combo[1])
+			if len(corrvars)==1:
+				skipPlot=True;
 			else:
-				#create list of uncorrelated variables and pass it to vars
-				if combo[0] not in ivars:
-					nocor.append(combo[0])
-				if combo[1] not in ivars:
-					nocor.append(combo[1])
-			cors=list(set(cors))
-			nocor=list(set(nocor))
-			nocor=[item for item in nocor if item not in cors]
-		if count==0:
-			msg="none"
+				combos=itertools.combinations(corrvars,2)
+			
+		if skipPlot is False:	
+			combos=itertools.combinations(corrvars,2)
+			for combo in combos:
+				#Redundancy removal for input variables in control correlations
+				if vartype=="control" and combo[0] in ivars and combo[1] in ivars:
+					continue
+				x=csvf[combo[0]].fillna(0)
+				#x=csvf[combo[0]].replace('',0)
+				y=csvf[combo[1]].fillna(0)
+				corr=np.corrcoef(x,y)[0][1]
+				corr=round(corr,2)
+				if corr>=0.70:
+					pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
+					filepath='../static/images/plots/'+vartype+'/'+pltfile
+					#Different path for accessing images through python files versus html files
+					session["plots"].append(filepath[2:])
+					count+=1
+					params.append((filepath,corr,combo[0],combo[1]))
+					cors.append(combo[0])
+					cors.append(combo[1])
+				else:
+					#create list of uncorrelated variables and pass it to vars
+					if vartype=="control":
+						if combo[0] not in ivars:
+							nocor.append(combo[0])
+						if combo[1] not in ivars:
+							nocor.append(combo[1])
+						cors=list(set(cors))
+						nocor=list(set(nocor))
+						nocor=[item for item in nocor if item not in cors]
+			if count==0:
+				msg="none"
+			else:
+				msg="corr"
+			return render_template("scatter.html",params=params,vars=nocor,vartype=vartype,msg=msg)
 		else:
-			msg="corr"
-		return render_template("scatter.html",params=params,vars=nocor,vartype=vartype,msg=msg)
+			if vartype=="output":
+				session["rout"]=session["output"]
+				vartype="input"
+			elif vartype=="input":
+				session["rinp"]=session["input"]
+				vartype="control"
+			elif vartype=="control":
+				session["rcont"]=session["control"]
+				vartype=="regress"
+			else: 
+				return redirect(url_for("regress"))
+			return redirect(url_for("showcorr",vartype=vartype))
 	except Exception as e:
 		app.logger.exception(traceback.format_exc())
 		flash('Sorry, an internal error occurred.')

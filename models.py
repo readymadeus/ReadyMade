@@ -27,7 +27,7 @@ class Project(Base):
 	id=Column(Integer,primary_key=True)
 	userid=Column(Integer,ForeignKey('User.id'))
 	orgname=Column(String(100))
-	name=Column(String(100),unique=True)
+	name=Column(String(100))
 	mission=Column(String(100))
 	p_user=Column(String(100))
 	s_user=Column(String(100))

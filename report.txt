@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    
+    <title> Regressions  </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+      body{
+        position: absolute;
+        width: 1024px;
+        height: 100%;
+      }
+
+      input{
+        font:inherit;
+      }
+
+      .content {
+        width: 100%;
+        height: 100%;
+        
+      }
+      .header {
+        width: 140%;
+        height: 15%;
+        background-color: rgb(55,55,55);
+      }
+      .title-position {
+        position: absolute;
+        width: 155px;
+        text-align: left;
+        height: 109.9124472574px;
+        left: 820.1943467504988px;
+       
+      }
+      
+      .title-font {
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-family:'Playfair Display';
+        font-size: 72px;
+      }
+      .subtitle-position {
+        position: absolute;
+        text-align: right;
+        font-family: Play;
+        font-size: 48px;
+        width: 960.6026392962px;
+        height: 64.9303797468px;
+        left: 372.0455891724px;
+        top: 159.14978902950023px;
+      }
+      .subtitle-font {
+        font-family:'Playfair Display';
+        color: rgb(205,201,201);
+        font-size: 48px;
+      }
+
+      .box-font {
+        font-family:'Roboto Condensed';
+        color: black;
+        font-size: 38px;
+      }
+
+      .content{
+        width: 140%;
+        height: 50%;
+        background-color: #FFF;
+      }
+
+      .footer{
+        height: 10%;
+        width:40%;
+        position: relative;
+        top: 100%;
+      }
+      
+      .steps{
+        width:40%;
+        float: left;
+        margin-left: 100px;
+        margin-top: 50px;
+      }
+
+      .left{
+        width:40%;
+        float: left;
+        margin-left: 100px;
+        margin-top: 50px;
+      }
+
+      .center{
+        width:40%;
+        float: left;
+        margin-left: 100px;
+        margin-top: 50px;
+      }
+
+      .right{
+        width:40%;
+        float: right;
+        margin-right: 100px;
+        margin-top: 50px;
+      }
+
+      .vline {
+        background-color: #000;
+        width: 0.05%;
+        float: left;
+        height: 90%;
+      }
+
+
+      .login{
+        width:50%;
+        float: right;
+        margin-top: 50px;
+      }
+
+      .login-title{
+        font-family: 'Roboto Slab';
+        font-size: 28px;
+      }
+
+      .login-text{
+        font-family: 'Roboto Slab';
+        font-size: 22px;
+      }
+
+      .icons{
+        width:50px;
+        height: 50px;
+      }
+
+      .buttons{
+        width: inherit;
+        height: 40px;
+        font-family: "Roboto Slab";
+        font-size: 18px;
+        overflow: visible;
+      }
+
+      .smallbuttons{
+        width: inherit;
+        height: 20px;
+        font-family: "Roboto Slab";
+        font-size: 12px;
+        overflow: visible;
+      }
+
+      .bigbuttons{
+        width: 100px;
+        height: 40px;
+        font-family: "Roboto Slab";
+        font-size: 18px;
+        overflow: visible;
+      }
+
+      .subheader{
+        width: 140%;
+        height: 70px;
+      }
+
+      .box{
+        width:15%;
+        height:75%;
+        background-color: rgb(105,105,105);
+        border-radius: 20px;
+        float:left;
+        text-align: center;
+      }
+
+      .box-highlighted{
+        width:15%;
+        height:75%;
+        background-color: #C0C0C0;
+        border-radius: 20px;
+        float:left;
+        text-align: center;
+      }
+
+      .logout{
+        width: 25%;
+        float: right;
+      }
+
+      .text {
+        color: rgb(0,0,0);
+        font-family:'Roboto Slab';
+        font-size: 24px;
+      }
+
+      .mediumtext{
+        color: rgb(0,0,0);
+        font-family:'Roboto Slab';
+        font-size: 18px;
+      }
+      .smalltext {
+        color: rgb(0,0,0);
+        font-family:'Roboto Slab';
+        font-size: 12px;
+      }
+
+      .flashes{
+        color: rgb(255,0,0);
+        font-family:'Roboto Slab';
+        font-size: 12px;
+      }
+
+      .plot{
+        margin-left: 25px;
+        width: 600px;
+        height: 600px;
+        float: left;
+      }
+
+      table,td{
+        border:1px solid black;
+      }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto|Droid+Sans|Source+Sans+Pro|Ubuntu|Raleway|Arimo|Play|Roboto+Slab|Josefin+Sans|Asap|Playfair+Display|Exo|Monda" rel="stylesheet" type="text/css">
+    <div class="header">
+      <div class="title-position"><span class="title-font">ReadyMade</span>
+      </div>
+    </div>
+    <div class="subheader">
+        <div class="box-highlighted box-font" id="answer">Answer</div>
+        <div class="box box-font" id="upload">Upload</div>
+        <div class="box box-font" id="analyze">Analyze</div>
+        <div style="width:40%;"></div>
+        <form action="/logout" method="GET"
+        <div class="logout">
+          <button class="buttons">Logout</button>
+        </div>
+        </form>
+    </div>
+   </div>    
+  
+  </head>
+  
+  <body>
+    <div id="content" class="content"> 
+<script>
+  $(document).ready(function(){
+    $("#answer").removeClass("box-highlighted").addClass("box");
+    $("#analyze").addClass("box-highlighted").removeClass("box");
+  })
+</script>
+<p class="login-title" style="text-align:center;"}>Regression Analysis</p>
+
+<div class="summary">
+<p class="mediumtext">Formula </p>
+<hr/>
+<p class="mediumtext">Purchases from rural producers (US$) - adjusted~Amount of RC working capital loan (US$) disbursed+Country daily minimum wage+Number of suppliers+Number of suppliers (with 5,000 member cap)</p>
+<hr/>
+<p class="mediumtext">R-squared (adjusted): 0.35</p>
+<p class="mediumtext">F-stat: 13.82</p>
+<p class="mediumtext">p-value: 0.0</p>
+<p class="mediumtext">Degrees of Freedom: 5</p>
+<p class="mediumtext">No. of observations: 98</p>
+</div>
+<div class="table">
+<span class="mediumtext">
+<table>
+<tr>
+<th></th>
+<th>Coefficient</th>
+<th>p-value</th>
+<th>Std Error</th>
+<th>t-stat</th>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>INPUTS</td>
+</tr>
+
+<tr>
+  <td>Amount of RC working capital loan (US$) disbursed</td>
+  <td>3.0675</td>
+  <td>0.0</td>
+  <td>0.65</td>
+  <td>4.73</td>
+</tr>
+
+
+<tr>
+</tr>
+
+<tr>
+<td>CONTROLS</td>
+</tr>
+
+<tr>
+  <td>Country daily minimum wage</td>
+  <td>97276.7619</td>
+  <td>0.1021</td>
+  <td>58925.61</td>
+  <td>1.65</td>
+</tr>
+
+<tr>
+  <td>Number of suppliers</td>
+  <td>-45.6936</td>
+  <td>0.1575</td>
+  <td>32.07</td>
+  <td>-1.42</td>
+</tr>
+
+<tr>
+  <td>Number of suppliers (with 5,000 member cap)</td>
+  <td>709.5482</td>
+  <td>0.0007</td>
+  <td>202.71</td>
+  <td>3.5</td>
+</tr>
+
+
+</table>
+</span>
+</div>
+
+<br/><br/>
+<form action="report" method="GET">
+<button class="buttons">See Report</button>
+</form>
+</div>
+    <div id="footer" class="footer smalltext">
+      
+      &copy; Copyright 2014 by Team ReadyMade</a>.
+      
+    </div>    
+  </body>
+
+</html>
