@@ -6,25 +6,49 @@
     function checkFields(e){
           var blankFields=10;
           var allInputs=$(":text");
+          var inputs=new Array();
           for(var i=0;i<allInputs.length;i++){
             if($.trim(allInputs[i].value)!=''){
               blankFields-=1;
+              inputs.push(allInputs[i].value);
             }
+            
           }
           if(blankFields<10){
-            document.controlform.submit();
+            var duplicates=0;
+            var unique_length=getUniqueArrayLength(inputs);
+            if(unique_length<inputs.length){
+              duplicates=1;
+            }
+            if(duplicates==0){
+              document.outputform.submit();
+            }
+            else{
+              e.preventDefault();
+              $("#content").prepend("<p class=\"flashes\">Please enter unique names for variables</p>");
+            }
           }else{
             e.preventDefault();
             $("#content").prepend("<p class=\"flashes\">Please enter at least one variable name</p>");
           }
         }  
-           
+          
+    function getUniqueArrayLength(inputArray){
+      var outputArray = [];
+      for (var i = 0; i < inputArray.length; i++){
+        if ((jQuery.inArray(inputArray[i], outputArray)) == -1){
+          outputArray.push(inputArray[i]);
+        }
+      }
+      return outputArray.length;
+    }     
+
     </script>
       <p class="text">Enter Control Variables</p>
       <form name="controlform" action="{{url_for('upload')}}" method="POST">
       <div class="questions mediumtext">
-        <p style="width:30%;">Control variables are the variables that most likely directly influence the outcome variable(s), and this needed to be included in the analysis to reduce bias. These measures provide important information about the process or the context in which dairy coop operates to provide loans to dairy coop. What are the variables that {{orgname}} measures because they provide important information about the process or the context in which {{orgname}} operates to provide {{pands}}. List all the variables for which you have collected data.</p>
-      <p>How does {{orgname}} measure {{pands}}? You may provide up to ten control variables.</p><br/>
+        <p style="width:55%;">Control variables are the variables that directly influence the outcome variable(s), and contols need to be included in the analysis to reduce bias. What are the variables that {{orgname}} measures because they provide important information about the process or the context in which {{orgname}} operates to provide {{pands}}. List upto ten variables for which you have collected data.</p>
+      <br/>
        1. <input id="name" name="controls"> <br/>
        2. <input id="name" name="controls"> <br/>
        3. <input id="name" name="controls"> <br/>

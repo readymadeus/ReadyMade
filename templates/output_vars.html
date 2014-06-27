@@ -6,19 +6,43 @@
     function checkFields(e){
           var blankFields=5;
           var allInputs=$(":text");
+          var inputs=new Array();
           for(var i=0;i<allInputs.length;i++){
             if($.trim(allInputs[i].value)!=''){
               blankFields-=1;
+              inputs.push(allInputs[i].value);
             }
+            
           }
           if(blankFields<5){
-            document.outputform.submit();
+            var duplicates=0;
+            var unique_length=getUniqueArrayLength(inputs);
+            if(unique_length<inputs.length){
+              duplicates=1;
+            }
+            if(duplicates==0){
+              document.outputform.submit();
+            }
+            else{
+              e.preventDefault();
+              $("#content").prepend("<p class=\"flashes\">Please enter unique names for variables</p>");
+            }
           }else{
             e.preventDefault();
             $("#content").prepend("<p class=\"flashes\">Please enter at least one variable name</p>");
           }
         }  
-           
+          
+    function getUniqueArrayLength(inputArray){
+      var outputArray = [];
+      for (var i = 0; i < inputArray.length; i++){
+        if ((jQuery.inArray(inputArray[i], outputArray)) == -1){
+          outputArray.push(inputArray[i]);
+        }
+      }
+      return outputArray.length;
+    }     
+
     </script>
       <p class="text">Enter Output Variables</p>
       <form name="outputform" action="{{url_for('variables')}}" method="POST">
