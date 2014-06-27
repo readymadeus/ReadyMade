@@ -671,9 +671,12 @@ def showcorr(vartype=None):
 							nocor.append(combo[0])
 						if combo[1] not in ivars:
 							nocor.append(combo[1])
-						cors=list(set(cors))
-						nocor=list(set(nocor))
-						nocor=[item for item in nocor if item not in cors]
+					else:
+						nocor.append(combo[0])
+						nocor.append(combo[1])
+					cors=list(set(cors))
+					nocor=list(set(nocor))
+					nocor=[item for item in nocor if item not in cors]
 			if count==0:
 				msg="none"
 			else:
