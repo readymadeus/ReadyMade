@@ -630,6 +630,7 @@ def showcorr(vartype=None):
 		params=[]	
 		nocor=[]
 		cors=[]
+		vars=[]
 		count=0
 		plots=[]
 		pltpath=app.config['PLOTPATH']+'/'+vartype+'/scatter'
@@ -661,7 +662,8 @@ def showcorr(vartype=None):
 					#Different path for accessing images through python files versus html files
 					session["plots"].append(filepath[2:])
 					count+=1
-					params.append((filepath,corr,combo[0],combo[1]))
+					#params.append((filepath,corr,combo[0],combo[1]))
+					params.append((filepath,corr))
 					cors.append(combo[0])
 					cors.append(combo[1])
 				else:
@@ -674,14 +676,20 @@ def showcorr(vartype=None):
 					else:
 						nocor.append(combo[0])
 						nocor.append(combo[1])
-					cors=list(set(cors))
-					nocor=list(set(nocor))
-					nocor=[item for item in nocor if item not in cors]
+			cors=list(set(cors))
+			nocor=list(set(nocor))
+			nocor=[item for item in nocor if item not in cors]
+			vars.append(cors)
+			vars.append(nocor)
 			if count==0:
 				msg="none"
 			else:
 				msg="corr"
-			return render_template("scatter.html",params=params,vars=nocor,vartype=vartype,msg=msg)
+			if len(params)>3:
+				height=str(int(len(params)/3)*500)+"px"
+			else:
+				height="500px"
+			return render_template("scatter.html",params=params,vars=vars,vartype=vartype,msg=msg,height=height)
 		else:
 			if vartype=="output":
 				session["rout"]=session["output"]
@@ -755,6 +763,7 @@ def regress():
 				cdata.append(tstat)
 				controlData.append(cdata)
 			r.append(controlData)
+			r.append(o)
 			regs.append(r)
 			count+=1
 			data["regs"]=regs
