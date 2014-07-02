@@ -63,7 +63,7 @@ def create_pdf(data):
 	for plot in plots:
 		plot_img=Image(plot,width=200,height=200)
 		report.append(plot_img)
-	plot_text="Therefore, we narrowed our investigation to one key performance variable, "+outputs+", which provides similar results as using any of the other available outcomes variables (confirmed by our statistical analysis). Similarly, We also decided to use only "+inputs+" for input variables and "+controls+" to control for environmental characteristics."
+	plot_text="Therefore, we narrowed our investigation to key performance variable(s), "+outputs+", which provides similar results as using any of the other available outcomes variables (confirmed by our statistical analysis). Similarly, We also decided to use only "+inputs+" for input variables and "+controls+" to control for environmental characteristics."
 	report.append(Paragraph(plot_text,styles['Normal']))
 
 	#Regression
@@ -87,6 +87,7 @@ def create_pdf(data):
 		controlData=regs[7]
 		for cdata in controlData:
 			contents.append(cdata)
+		output_var=regs[8]
 		table = Table(contents)
 		table.setStyle(TableStyle([
 	                       ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
@@ -100,9 +101,9 @@ def create_pdf(data):
 			else:
 				polarity="negative"
 				change="decrease"
-			conclusion="The regression indicates that "+ str(orgname)+" "+str(product)+" have a "+polarity+" relationship with "+pname+" inputs: Every 1 unit of "+orgname+" "+product+" to "+pname+" is associated with a(n) "+change+" of "+str(r2)+" units in "+orgname+" inputs."
+			conclusion="The regression indicates that "+ str(orgname)+" "+str(product)+" have a "+polarity+" relationship with "+pname+" inputs: Every 1 unit of "+orgname+" "+product+" to "+pname+" is associated with a(n) "+change+" of "+str(idata[1])+" units in "+str(output_var)
 		else:
-			conclusion="The regression indicates that "+ str(orgname)+" "+str(product)+" do not have a significant relationship with "+pname+"\'s inputs i.e any change in the units of "+orgname+" "+product+"\'s to "+pname+" is not associated with any change of units in "+orgname+"\'s inputs."
+			conclusion="The regression indicates that "+ str(orgname)+" "+str(product)+" do not have a significant relationship with "+pname+"\'s inputs i.e any change in the units of "+orgname+" "+product+"\'s to "+pname+" is not associated with any change of units in "+str(output_var)
 		report.append(Paragraph("Conclusion",styles['Heading3']))
 		report.append(Paragraph(conclusion,styles['Normal']))
 	print 'writing into pdf file'
