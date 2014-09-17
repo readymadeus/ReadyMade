@@ -33,6 +33,12 @@
 <span class="login-title"><p>ReadyMade Analysis Report</p></span>
 <br><br>
 <p><span class="smalltext">Analysis on: {{data[0]}} </span> <br><br>
+<form name="analysis" action="{{url_for('saveanalysis')}}" method="POST">
+<span class="mediumtext">Please enter name for your analysis if you wish to save it.</span>
+<input type="text" name="analysis">
+<button class="buttons" id="savebutton" onclick=javascript:checkFields(event)>Save Analysis</button>
+</form>
+<hr/><br/>
 
 <span class="login-text">Introduction: </span><br>
 <p class="mediumtext">The organization {{data[2]}} used ReadyMade in order to conduct an impact analysis for their project {{data[1]}}. The mission of {{data[2]}} is {{data[3]}} {{data[2]}} serves its mission by providing {{data[4]}} to their primary user group - '{{data[5]}}'. </p> <br><br>
@@ -134,18 +140,14 @@ In keeping with the ReadyMade tenet to keep the analysis simple, we look for one
 <br>
 {% endfor %}
 <br/><br/>
-</p>
 <p>
 <a href="{{data[11]}}" target="_blank"><button class="bigbuttons">Download PDF </button></a>
 
 </p>
 <br><br>
-<form name="analysis" action="{{url_for('saveanalysis')}}" method="POST">
-<span class="mediumtext">Please enter name for your analysis if you wish to save it.</span>
-<input type="text" name="analysis">
-<button class="buttons" id="savebutton" onclick=javascript:checkFields(event)>Save Analysis</button>
-</form>
+
 <p class="text" style="text-align:center">Thank you for using ReadyMade.</p>
+</p>
 
 
 {% endblock %}
