@@ -15,6 +15,7 @@ import numpy as np
 from models import User, Project, Input, Control, Output, Analysis
 import pandas as pd
 import sys
+import hashlib
 
 app=Flask(__name__)
 data=dict()
@@ -96,7 +97,9 @@ def login():
 	logout_user()   
 	if request.method == "POST" and "username" in request.form:
 		username = str(request.form["username"])
-		password = str(request.form["password"])
+		key_string = str(request.form["password"])
+		salt = "1Ha7"
+		password = salt+":"+hashlib.md5( salt + key_string).hexdigest()
 		userfound=False
 		from models import User
 		u=User.query.filter(User.username==username).filter(User.password==password).first()
@@ -129,7 +132,9 @@ def signup():
 	if request.method=='POST' and request.form is not None:
 		username=request.form["username"]
 		email=request.form["email"]
-		password=request.form["password"]
+		key_string = str(request.form["password"])
+		salt = "1Ha7"
+		password = salt+":"+hashlib.md5( salt + key_string).hexdigest()
 		u=insertUsers([username,email,password])
 		if u!=0:
 			session["userid"] = u.id
