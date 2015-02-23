@@ -5,6 +5,37 @@ from database import Base
 from datetime import datetime
 
 #Base = declarative_base()
+'''
+Mapping Tables
+
+
+class UserSession(Base):
+	__tablename__ = 'UserSession'
+	id=Column(Integer,primary_key=True)
+	username=Column(String(80),unique=True)
+	email=Column(String(120),unique=True)
+	password=Column(String(120))
+	projects=relationship('Project')
+
+	def __init__(self,username,email,password):
+		self.username=username
+		self.email=email
+		self.password=password
+
+	def __repr__(self):
+		return '<User %r,%r,%r>' %(self.id,self.username,self.password)
+
+
+''' 
+
+
+
+
+'''
+Details Tables
+
+'''
+
 class User(Base):
 	__tablename__ = 'User'
 	id=Column(Integer,primary_key=True)
