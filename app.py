@@ -128,13 +128,14 @@ def login():
         u=User.query.filter(User.username==username).filter(User.password==password).first()
         if u is not None:
             userfound=True
-            #return 
-
-            #user_session[u.id]=session['uid']#storing the unique session id against the user
-            #isess=session['uid']#unique session id is the index
-            #sessions.add(user_session[u.id])
-            print "session id", session['_id']
-            sessionid=session['_id']
+            #sessionid=session['id']
+            sessionid=config.sessionid
+            session['id']=sessionid
+            print "session id",session
+            '''
+            For production,
+            sessionid is uuid.
+            '''
             data[sessionid]=dict()
             data[sessionid]["username"]=u.username
             data[sessionid]["userid"]=u.id
@@ -150,7 +151,7 @@ def login():
 
 @app.route('/set_cookie')
 def cookie_insertion():
-    sessionid=session['_id']
+    sessionid=session['id']
     username=data[sessionid]["username"]
     print username, sessionid
     redirect_to_projects = redirect(url_for("showprojects"))
@@ -160,7 +161,7 @@ def cookie_insertion():
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
-    sessionid=session['_id']
+    sessionid=session['id']
     redirect_to_login=redirect(url_for("login"))
     response=app.make_response(redirect_to_login)
     print request.cookies
@@ -187,7 +188,7 @@ def signup():
         if u!=0:
             '''session["userid"] = u.id
             session["username"]=u.username'''
-            sessionid=session['_id']
+            sessionid=session['id']
             data[sessionid]=dict()
             data[sessionid]["username"]=u.username
             data[sessionid]["userid"]=u.id
@@ -213,7 +214,7 @@ def reauth():
 @app.route("/projects")
 def showprojects():
     from models import Project
-    sessionid=session['_id']
+    sessionid=session['id']
     uid=data[sessionid]["userid"]
     username=data[sessionid]["username"]
     projects=Project.query.filter(Project.userid==uid).all()
@@ -237,7 +238,7 @@ def project():
 
 @app.route('/interview',methods=["POST","GET"])
 def questionnaire():
-        sessionid=session['_id']
+        sessionid=session['id']
         if "pid" in request.form and request.form["pid"]!="":
             print request.form
             pid=request.form["pid"]
@@ -269,7 +270,7 @@ def answer():
 
 @app.route('/analyses',methods=["POST","GET"])
 def analyses():
-    sessionid=session['_id']
+    sessionid=session['id']
     pid=data[sessionid]["pid"]
     analyses=[]
     a=Analysis.query.filter_by(projid=pid).all()
@@ -285,7 +286,7 @@ def analyses():
 @app.route('/saveproject',methods=["POST","GET"])
 def saveproject():
     if request.method=="POST" and request.form is not None:
-        sessionid=session['_id']
+        sessionid=session['id']
         try:
             if request.form["proj_status"]=="old":
                 pid=data[sessionid]["pid"]
@@ -329,7 +330,7 @@ def saveproject():
 @app.route('/variables',methods=["POST","GET"])
 def variables():
     if request.method=="POST" and request.form is not None:
-        sessionid=session['_id']
+        sessionid=session['id']
         try:
             if 'vartype' in request.form:
                 pid=data[sessionid]["pid"]
@@ -382,7 +383,7 @@ def variables():
 @app.route('/upload',methods=["POST","GET"])
 def upload():
     if request.method == "POST" and request.form is not None:
-        sessionid=session['_id']
+        sessionid=session['id']
         try:
             pid=data[sessionid]["pid"]
             aid=data[sessionid]["aid"]
@@ -408,7 +409,7 @@ def allowed_file(filename):
 
 @app.route('/showvars',methods=["POST","GET"])
 def showvars():
-    sessionid=session['_id']
+    sessionid=session['id']
     data[sessionid]["plots"]=[]
     filename=""
     if request.method == "POST":
@@ -449,7 +450,7 @@ def showvars():
 
 @app.route("/select_vars",methods=["GET","POST"])
 def selectIndicators():
-    sessionid=session['_id']
+    sessionid=session['id']
     if "vars" in data[sessionid].keys() and data[sessionid]["vars"] is not None:
         vars=data[sessionid]["vars"]
     else:
@@ -477,7 +478,7 @@ def selectIndicators():
     return render_template("select_inds.html",vartype=data[sessionid]["type"],vars=vars,uservars=uservars)
 
 def getUserVars(vartype):
-    sessionid=session['_id']
+    sessionid=session['id']
     aid=data[sessionid]["aid"]
     print "Analysis id is",aid
     uservars=[]
@@ -498,14 +499,14 @@ def getUserVars(vartype):
 
 @app.route("/reselect_vars/<vartype>",methods=["GET","POST"])
 def reselectIndicators(vartype):
-    sessionid=session['_id']
+    sessionid=session['id']
     vars=data[sessionid]["vars"]
     uservars=getUserVars(vartype)
     print "User variables for type  ",data[sessionid]["type"],"  are  ",uservars
     return render_template("select_inds.html",vartype=vartype,vars=vars,uservars=uservars)
 
 def getUserVars(vartype):
-    sessionid=session['_id']
+    sessionid=session['id']
     aid=data[sessionid]["aid"]
     print "Analysis id is",aid
     uservars=[]
@@ -528,7 +529,7 @@ def getUserVars(vartype):
 @app.route("/store",methods=["POST","GET"])
 def readinputs():
     if request.form is not None:
-        sessionid=session['_id']
+        sessionid=session['id']
         uservars=request.form.keys()
         vardict={}
         for uvar in uservars:
@@ -581,7 +582,7 @@ def readinputs():
 
 @app.route("/transform_data")
 def transform_data():
-    sessionid=session['_id']
+    sessionid=session['id']
     pid=data[sessionid]["pid"]
     aid=data[sessionid]["aid"]
     p=Project.query.filter(Project.id==pid).first()
@@ -639,7 +640,7 @@ def remOutliers(data):
 @app.route("/correlations",methods=["GET","POST"])
 def correlations():
     if request.form is not None:
-        sessionid=session['_id']
+        sessionid=session['id']
         pid=data[sessionid]["pid"]
         csvf=data[pid]
         for k,v in request.form.items():
@@ -678,7 +679,7 @@ def handleOutliers(data):
 @app.route("/visualize/<vartype>",methods=["POST","GET"])
 def showcorr(vartype=None):
     try:
-        sessionid=session['_id']
+        sessionid=session['id']
         print "data[sessionid] Dictionary",data[sessionid]
         vartype=str(vartype)
         if request.form is not None and "vartype" in request.form:
@@ -784,7 +785,7 @@ def showcorr(vartype=None):
 @app.route("/regress",methods=["POST","GET"])
 def regress():
     if True:
-        sessionid=session['_id']
+        sessionid=session['id']
         pid=data[sessionid]["pid"]
         regs=[]
         csvf=data[pid]
@@ -848,7 +849,7 @@ def regress():
 @app.route("/report",methods=["GET","POST"])
 def report():
     #Generate the PDF file
-    sessionid=session['_id']
+    sessionid=session['id']
     plots=data[sessionid]["plots"]
     pdfplots=[]
     htmlplots=[]
@@ -893,7 +894,7 @@ def report():
 @app.route("/saving",methods=["POST"])
 def saveanalysis():
     if request.form is not None:
-        sessionid=session['_id']
+        sessionid=session['id']
         if "analysis" in request.form:
             aname=request.form["analysis"]
             aid=data[sessionid]["aid"]
