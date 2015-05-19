@@ -128,8 +128,7 @@ def login():
         u=User.query.filter(User.username==username).filter(User.password==password).first()
         if u is not None:
             userfound=True
-            #sessionid=session['id']
-            sessionid=config.sessionid
+            sessionid=session['_id']
             session['id']=sessionid
             print "session id",session
             '''
