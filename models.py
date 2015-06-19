@@ -1,40 +1,41 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, LargeBinary
 from sqlalchemy.orm import relationship, backref
 from database import Base
 from datetime import datetime
 
-#Base = declarative_base()
-'''
-Mapping Tables
 
 
 class UserSession(Base):
 	__tablename__ = 'UserSession'
-	id=Column(Integer,primary_key=True)
-	username=Column(String(80),unique=True)
-	email=Column(String(120),unique=True)
-	password=Column(String(120))
-	projects=relationship('Project')
+	id=Column(LargeBinary,primary_key=True)
+	username=Column(String(80))
+	userid=Column(Integer)
+	pid=Column(Integer)
+	aid=Column(Integer)
+	plots=Column(String(100))
+	variables=Column(String(5000))
+	vars_reject=Column(String(5000))
+	vartype=Column(String(100))
+	input_vars=Column(String(5000))
+	output_vars=Column(String(5000))
+	control_vars=Column(String(5000))
+	rinp=Column(String(5000))
+	rout=Column(String(5000))
+	rcont=Column(String(5000))
+	regs=Column(String(5000))
+	csvfpdfile=Column(String(100))
 
-	def __init__(self,username,email,password):
+	def __init__(self,id,userid,username):
+		self.id=id
+		self.userid=userid
 		self.username=username
-		self.email=email
-		self.password=password
 
 	def __repr__(self):
-		return '<User %r,%r,%r>' %(self.id,self.username,self.password)
-
-
-''' 
+		return '<User %r,%r,%r>' %(self.id,self.username,self.userid)
 
 
 
-
-'''
-Details Tables
-
-'''
 
 class User(Base):
 	__tablename__ = 'User'

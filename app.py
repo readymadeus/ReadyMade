@@ -12,11 +12,11 @@ from database import db_session, init_db, insertUsers, queryUser
 from models import User
 from werkzeug import secure_filename
 import numpy as np
-from models import User, Project, Input, Control, Output, Analysis
+from models import User, Project, Input, Control, Output, Analysis, UserSession
 import pandas as pd
 import sys
 import hashlib
-import uuid
+import uuid, random
 
 
 
@@ -83,29 +83,33 @@ def test_query():
 
 app.register_blueprint(util)
 
-class User(UserMixin):
+'''class User(UserMixin):
     def __init__(self, name, id, active=True):
         self.name = name
         self.id = id
         self.active = active
 
     def is_active(self):
-        return self.active
+        return self.active'''
 
 
-class Anonymous(AnonymousUser):
-    name = u"Anonymous"
+'''class Anonymous(AnonymousUser):
+    name = u"Anonymous"'''
 
 
-SECRET_KEY = "yeah, not actually a secret"
 DEBUG = True
 
 app.config.from_object(__name__)
 
 login_manager = LoginManager()
+login_manager.init_app(app)
 
-login_manager.anonymous_user = Anonymous
-login_manager.login_view = "login"
+@login_manager.user_loader
+def load_user(userid):
+    return User.get(userid)
+
+#login_manager.anonymous_user = Anonymous
+#login_manager.login_view = "login"
 login_manager.refresh_view = "reauth"
 login_manager.setup_app(app)
 
@@ -115,8 +119,7 @@ def hello():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    #session['uid']=uuid.uuid4()
-    app.secret_key = os.urandom(32)
+    app.secret_key = '\xcf{x94\xd1\xce~\xa8R5/T\xbb}x98N\x9e\x0e1}\x9bsf6Y)x'
     logout_user()   
     if request.method == "POST" and "username" in request.form:
         username = str(request.form["username"])
@@ -128,47 +131,46 @@ def login():
         u=User.query.filter(User.username==username).filter(User.password==password).first()
         if u is not None:
             userfound=True
-            sessionid=session['_id']
+            print "******************session****************"
+            sessionid=random.randint(10000,65535)
+            print sessionid
             session['id']=sessionid
-            print "session id",session
-            '''
-            For production,
-            sessionid is uuid.
-            '''
+            '''session['userid']=u.id
             data[sessionid]=dict()
             data[sessionid]["username"]=u.username
-            data[sessionid]["userid"]=u.id
-            '''session["userid"] = u.id
-            session["username"]=u.username'''
+            data[sessionid]["userid"]=u.id'''
+            user_sess=UserSession(int(sessionid),int(u.id),str(u.username))
+            db_session.add(user_sess)
+            db_session.commit()
         if userfound:
-            #session["userid"] = u.id
             remember = request.form.get("remember", "no") == "yes"
-            return redirect(url_for('cookie_insertion'))
+            return redirect(url_for("showprojects"))
         else:
             flash("Invalid username")
     return render_template("rm_main.html")
 
-@app.route('/set_cookie')
+'''@app.route('/set_cookie')
 def cookie_insertion():
-    sessionid=session['id']
+    sessionid=session['_id']
     username=data[sessionid]["username"]
     print username, sessionid
     redirect_to_projects = redirect(url_for("showprojects"))
     response = app.make_response(redirect_to_projects)  
     response.set_cookie(sessionid,username)
-    return response
+    return response'''
 
-@app.route("/logout", methods=["GET", "POST"])
+@app.route("/logout")
+@login_required
 def logout():
-    sessionid=session['id']
+    '''sessionid=session['_id']
     redirect_to_login=redirect(url_for("login"))
     response=app.make_response(redirect_to_login)
     print request.cookies
     response.set_cookie(sessionid, '', expires=0)
-    app.secret_key = os.urandom(32)
+    app.secret_key = os.urandom(32)'''
     logout_user()   
     flash("Logged out.")
-    session.clear()
+    #session.clear()
     return response
 
 @app.route("/gotosignup",methods=["GET"])
@@ -187,7 +189,7 @@ def signup():
         if u!=0:
             '''session["userid"] = u.id
             session["username"]=u.username'''
-            sessionid=session['id']
+            sessionid=session['_id']
             data[sessionid]=dict()
             data[sessionid]["username"]=u.username
             data[sessionid]["userid"]=u.id
@@ -196,7 +198,7 @@ def signup():
             flash("Username/Email already exists. Please try a different one.")
             return render_template("signup.html")
 
-@login_manager.user_loader
+'''@login_manager.user_loader
 def load_user(id):
     return USERS.get(int(id))
 
@@ -208,14 +210,18 @@ def reauth():
         confirm_login()
         flash(u"Reauthenticated.")
         return redirect(request.args.get("next") or url_for("login"))
-    return render_template("reauth.html")
+    return render_template("reauth.html")'''
 
 @app.route("/projects")
 def showprojects():
     from models import Project
     sessionid=session['id']
-    uid=data[sessionid]["userid"]
-    username=data[sessionid]["username"]
+    print sessionid
+    #uid=data[sessionid]["userid"]
+    #username=data[sessionid]["username"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    uid=user_sess.userid
+    username=user_sess.username
     projects=Project.query.filter(Project.userid==uid).all()
     if projects is not None:
         print "Projects Page"
@@ -671,7 +677,7 @@ def correlations():
 
 
 def handleOutliers(data):
-    outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]
+    outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]#maybe store this in local dict
     indices=outliers.index
     return indices
 
