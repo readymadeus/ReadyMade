@@ -19,30 +19,8 @@ import hashlib
 import uuid, random
 
 
-
-'''
-when user logs in:
-check whether cookie has session id
-if yes, store that session id 
-if not, create a new session id and store in cookie
-use that session id as index of dictionary to store variables
-@app.route('/set_cookie')
-def cookie_insertion():
-    redirect_to_index = redirect('/index')
-    response = current_app.make_response(redirect_to_index )  
-    response.set_cookie('cookie_name',value='values')
-    return response
-
-
-when user logs out:
-clear session cache
-
-'''
-
-
 app=Flask(__name__)
 data=dict()
-sessions=[]
 UPLOAD_FOLDER=config.ROOT_PATH+'/static/files/uploads'
 LOG_FILE=config.ROOT_PATH+'/app.log'
 PLOTPATH=config.ROOT_PATH+"/static/images/plots"
@@ -83,23 +61,24 @@ def test_query():
 
 app.register_blueprint(util)
 
-'''class User(UserMixin):
+class User(UserMixin):
     def __init__(self, name, id, active=True):
         self.name = name
         self.id = id
         self.active = active
 
     def is_active(self):
-        return self.active'''
+        return self.active
 
 
-'''class Anonymous(AnonymousUser):
-    name = u"Anonymous"'''
+class Anonymous(AnonymousUser):
+    name = u"Anonymous"
 
 
 DEBUG = True
 
 app.config.from_object(__name__)
+app.secret_key = '\xcf{x94\xd1\xce~\xa8R5/T\xbb}x98N\x9e\x0e1}\x9bsf6Y)x'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -108,8 +87,8 @@ login_manager.init_app(app)
 def load_user(userid):
     return User.get(userid)
 
-#login_manager.anonymous_user = Anonymous
-#login_manager.login_view = "login"
+login_manager.anonymous_user = Anonymous
+login_manager.login_view = "login"
 login_manager.refresh_view = "reauth"
 login_manager.setup_app(app)
 
@@ -119,7 +98,6 @@ def hello():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    app.secret_key = '\xcf{x94\xd1\xce~\xa8R5/T\xbb}x98N\x9e\x0e1}\x9bsf6Y)x'
     logout_user()   
     if request.method == "POST" and "username" in request.form:
         username = str(request.form["username"])
@@ -149,29 +127,18 @@ def login():
             flash("Invalid username")
     return render_template("rm_main.html")
 
-'''@app.route('/set_cookie')
-def cookie_insertion():
-    sessionid=session['_id']
-    username=data[sessionid]["username"]
-    print username, sessionid
-    redirect_to_projects = redirect(url_for("showprojects"))
-    response = app.make_response(redirect_to_projects)  
-    response.set_cookie(sessionid,username)
-    return response'''
-
-@app.route("/logout")
-@login_required
+@app.route("/logout",methods=["GET","POST"])
 def logout():
-    '''sessionid=session['_id']
-    redirect_to_login=redirect(url_for("login"))
-    response=app.make_response(redirect_to_login)
-    print request.cookies
-    response.set_cookie(sessionid, '', expires=0)
-    app.secret_key = os.urandom(32)'''
-    logout_user()   
+    app.secret_key = '\xcf{x94\xd1\xce~\xa8R5/T\xbb}x98N\x9e\x0e1}\x9bsf6Y)x'
+    logout_user()    
     flash("Logged out.")
-    #session.clear()
-    return response
+    sessionid=session['id']
+    user_sess=UserSession.query.filter_by(id=sessionid).first()
+    db_session.delete(user_sess)
+    db_session.commit()
+    session.pop('variables','')
+    session.clear()
+    return redirect(url_for("login"))
 
 @app.route("/gotosignup",methods=["GET"])
 def gotosignup():
@@ -179,6 +146,7 @@ def gotosignup():
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
+    logout_user()   
     if request.method=='POST' and request.form is not None:
         username=request.form["username"]
         email=request.form["email"]
@@ -187,20 +155,21 @@ def signup():
         password = salt+":"+hashlib.md5( salt + key_string).hexdigest()
         u=insertUsers([username,email,password])
         if u!=0:
-            '''session["userid"] = u.id
-            session["username"]=u.username'''
-            sessionid=session['_id']
+            print "******************session****************"
+            sessionid=random.randint(10000,65535)
+            print sessionid
+            session['id']=sessionid
+            '''session['userid']=u.id
             data[sessionid]=dict()
             data[sessionid]["username"]=u.username
-            data[sessionid]["userid"]=u.id
-            return redirect(url_for('cookie_insertion'))
+            data[sessionid]["userid"]=u.id'''
+            user_sess=UserSession(int(sessionid),int(u.id),str(u.username))
+            db_session.add(user_sess)
+            db_session.commit()
+            return redirect(url_for("showprojects"))
         else:
             flash("Username/Email already exists. Please try a different one.")
             return render_template("signup.html")
-
-'''@login_manager.user_loader
-def load_user(id):
-    return USERS.get(int(id))
 
 
 @app.route("/reauth", methods=["GET", "POST"])
@@ -208,18 +177,22 @@ def load_user(id):
 def reauth():
     if request.method == "POST":
         confirm_login()
+        print "reauth"
         flash(u"Reauthenticated.")
         return redirect(request.args.get("next") or url_for("login"))
-    return render_template("reauth.html")'''
+    return render_template("reauth.html")
 
 @app.route("/projects")
 def showprojects():
-    from models import Project
+    if not current_user.is_authenticated:
+        return current_app.login_manager.unauthorized()
     sessionid=session['id']
     print sessionid
     #uid=data[sessionid]["userid"]
     #username=data[sessionid]["username"]
     user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    if user_sess is None:
+        return login_manager.unauthorized()
     uid=user_sess.userid
     username=user_sess.username
     projects=Project.query.filter(Project.userid==uid).all()
@@ -248,7 +221,8 @@ def questionnaire():
             print request.form
             pid=request.form["pid"]
             print "project id",pid
-            data[sessionid]["pid"]=pid
+            UserSession.query.filter_by(id=sessionid).update({"pid":pid})
+            db_session.commit()
             p=Project.query.filter(Project.id==pid).first()
             params=[]
             params.append(p.orgname)
@@ -261,13 +235,13 @@ def questionnaire():
             print "Parameters to html",params
             return render_template("project.html",params=params)
         else:
-            try:
-                userid=data[sessionid]["userid"]
+            user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+            if user_sess is None:
+                return login_manager.unauthorized()
+            else:
                 responses=[]
                 return render_template("qanda.html",responses=responses)
-            except KeyError:
-                flash('Please login to access the page')
-                return redirect(url_for('login'))
+
 
 @app.route('/answer',methods=["POST","GET"])
 def answer():
@@ -275,138 +249,159 @@ def answer():
 
 @app.route('/analyses',methods=["POST","GET"])
 def analyses():
-    sessionid=session['id']
-    pid=data[sessionid]["pid"]
-    analyses=[]
-    a=Analysis.query.filter_by(projid=pid).all()
-    print "Analysis, ",a
-    if a is not None:
-        for each in a:
-            if each.name is not None and each.report_loc is not None:
-                report_loc=each.report_loc
-                report_name=each.name+" on "+str(each.create_date)
-                analyses.append((report_name,report_loc))
-    return render_template("analysis.html",analyses=analyses)
+    sessionid=session["id"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    if user_sess is None:
+        return login_manager.unauthorized()
+    else:
+        pid=user_sess.pid
+        analyses=[]
+        a=Analysis.query.filter_by(projid=pid).all()
+        print "Analysis, ",a
+        if a is not None:
+            for each in a:
+                if each.name is not None and each.report_loc is not None:
+                    report_loc=each.report_loc
+                    report_name=each.name+" on "+str(each.create_date)
+                    analyses.append((report_name,report_loc))
+        return render_template("analysis.html",analyses=analyses)
 
 @app.route('/saveproject',methods=["POST","GET"])
 def saveproject():
     if request.method=="POST" and request.form is not None:
-        sessionid=session['id']
-        try:
-            if request.form["proj_status"]=="old":
-                pid=data[sessionid]["pid"]
-                print "Project id stored in data[sessionid]",data[sessionid]["pid"]
-                '''from models import Project
-                p=Project.query.filter_by(id=pid).first()'''
-                if 'update' in request.form:
-                    udpates=request.form["update"]
-                    #TODO update flow
-                return redirect(url_for('analyses'))
-            else:
-                orgname=request.form["orgname"]
-                name=request.form["name"]
-                pands=request.form["product"]
-                client=request.form["client"]
-                users=request.form["sec_client"]
-                mission=request.form["mission"]
-                sector=request.form["industry"]
-                from models import Project
-                print data
-                userid=data[sessionid]["userid"]
-                if userid is not None: 
-                    p=Project(userid,orgname,name,sector,pands,client,users,mission)
-                    try:
-                        app.logger.debug("Adding project to the database")
-                        app.logger.debug(p)
-                        db_session.add(p)
-                        db_session.commit()
-                        app.logger.debug("Successfully added project to database")
-                        data[sessionid]["pid"]=p.id
-                    except Exception as e:
-                        app.logger.exception(e)
-                        flash("Project Name already exists. Please enter a different one")
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+        if user_sess is not None:
+            try:
+                if request.form["proj_status"]=="old":
+                    pid=user_sess.pid
+                    print "Project id stored in session",pid
+                    '''from models import Project
+                    p=Project.query.filter_by(id=pid).first()'''
+                    if 'update' in request.form:
+                        udpates=request.form["update"]
+                        #TODO update flow
                     return redirect(url_for('analyses'))
                 else:
-                    flash("User ID missing. Please login again")
-                    return redirect(url_for('logout'))
-        except:
-            app.logger.exception(traceback.format_exc())
+                    orgname=request.form["orgname"]
+                    name=request.form["name"]
+                    pands=request.form["product"]
+                    client=request.form["client"]
+                    users=request.form["sec_client"]
+                    mission=request.form["mission"]
+                    sector=request.form["industry"]
+                    from models import Project
+                    print data
+                    userid=user_sess.userid
+                    if userid is not None: 
+                        p=Project(userid,orgname,name,sector,pands,client,users,mission)
+                        try:
+                            app.logger.debug("Adding project to the database")
+                            app.logger.debug(p)
+                            db_session.add(p)
+                            db_session.commit()
+                            app.logger.debug("Successfully added project to database")
+                            UserSession.query.filter_by(id=sessionid).update({"pid":pid})
+                            db_session.commit()
+                        except Exception as e:
+                            app.logger.exception(e)
+                            flash("Project Name already exists. Please enter a different one")
+                        return redirect(url_for('analyses'))
+                    else:
+                        flash("User ID missing. Please login again")
+                        return redirect(url_for('logout'))
+            except:
+                app.logger.exception(traceback.format_exc())
+        else:
+            return login_manager.unauthorized()
 
 @app.route('/variables',methods=["POST","GET"])
 def variables():
     if request.method=="POST" and request.form is not None:
-        sessionid=session['id']
-        try:
-            if 'vartype' in request.form:
-                pid=data[sessionid]["pid"]
-                print "Project id stored in data[sessionid]",data[sessionid]["pid"]
-                from models import Project
-                p=Project.query.filter_by(id=pid).first()
-                orgname=p.orgname
-                pands=p.prods
-                if request.form["vartype"]=="output":
-                    aid=data[sessionid]["aid"]
-                    outputs=request.form.getlist("outputs")
-                    for out in outputs:
-                        if len(out)>0:
-                            io=Output("",out,aid)
-                            db_session.add(io)
-                            db_session.commit() 
-                    return render_template("input_vars.html",orgname=orgname,pands=pands)
-                elif request.form["vartype"]=="input":
-                    aid=data[sessionid]["aid"]
-                    inputs=request.form.getlist("inputs")
-                    for inp in inputs:
-                        if len(inp)>0:
-                            io=Input("",inp,aid)
-                            db_session.add(io)
-                            db_session.commit() 
-                    return render_template("control_vars.html",orgname=orgname,pands=pands)
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+        if user_sess is not None:
+            try:
+                if 'vartype' in request.form:
+                    pid=user_sess.pid
+                    print "Project id stored in session",pid
+                    from models import Project
+                    p=Project.query.filter_by(id=pid).first()
+                    orgname=p.orgname
+                    pands=p.prods
+                    if request.form["vartype"]=="output":
+                        aid=user_sess.aid
+                        outputs=request.form.getlist("outputs")
+                        for out in outputs:
+                            if len(out)>0:
+                                io=Output("",out,aid)
+                                db_session.add(io)
+                                db_session.commit() 
+                        return render_template("input_vars.html",orgname=orgname,pands=pands)
+                    elif request.form["vartype"]=="input":
+                        aid=user_sess.aid
+                        inputs=request.form.getlist("inputs")
+                        for inp in inputs:
+                            if len(inp)>0:
+                                io=Input("",inp,aid)
+                                db_session.add(io)
+                                db_session.commit() 
+                        return render_template("control_vars.html",orgname=orgname,pands=pands)
+                    else:
+                        a=Analysis(pid)
+                        db_session.add(a)
+                        db_session.commit()
+                        aid=a.id 
+                        UserSession.query.filter_by(id=sessionid).update({"aid":aid})
+                        db_session.commit()
+                        return render_template("output_vars.html",orgname=orgname,pands=pands)  
                 else:
+                    from models import Project
+                    pid=user_sess.pid
+                    p=Project.query.filter_by(id=pid).first()
+                    print "project", pid, p
+                    orgname=p.orgname
+                    pands=p.prods
                     a=Analysis(pid)
                     db_session.add(a)
                     db_session.commit()
-                    aid=a.id 
-                    data[sessionid]["aid"]=aid
-                    return render_template("output_vars.html",orgname=orgname,pands=pands)  
-            else:
-                from models import Project
-                pid=data[sessionid]['pid']
-                p=Project.query.filter_by(id=pid).first()
-                orgname=p.orgname
-                pands=p.prods
-                a=Analysis(pid)
-                db_session.add(a)
-                db_session.commit()
-                aid=a.id
-                data[sessionid]["aid"]=aid
-                return render_template("output_vars.html",orgname=orgname,pands=pands)
-        except:
-            app.logger.exception(traceback.format_exc())
+                    aid=a.id
+                    UserSession.query.filter_by(id=sessionid).update({"aid":aid})
+                    db_session.commit()
+                    return render_template("output_vars.html",orgname=orgname,pands=pands)
+            except:
+                app.logger.exception(traceback.format_exc())
+        else:
+            return login_manager.unauthorized()
+
 
 
 @app.route('/upload',methods=["POST","GET"])
 def upload():
     if request.method == "POST" and request.form is not None:
-        sessionid=session['id']
-        try:
-            pid=data[sessionid]["pid"]
-            aid=data[sessionid]["aid"]
-            controls=request.form.getlist("controls")           
-            for c in controls:
-                if len(c)>0:
-                    io=Control("",c,aid)
-                    db_session.add(io)
-                    db_session.commit()
-            p=Project.query.filter_by(id=pid).first()
-            filename=p.file_name
-            if filename!=None:
-                print filename
-            else:
-                filename=""
-            return render_template("indicators.html",varfile=filename)
-        except:
-            app.logger.exception(traceback.format_exc())
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+        if user_sess is not None:
+            try:
+                pid=user_sess.pid
+                aid=user_sess.aid
+                controls=request.form.getlist("controls")           
+                for c in controls:
+                    if len(c)>0:
+                        io=Control("",c,aid)
+                        db_session.add(io)
+                        db_session.commit()
+                p=Project.query.filter_by(id=pid).first()
+                filename=p.file_name
+                if filename!=None:
+                    print filename
+                else:
+                    filename=""
+                return render_template("indicators.html",varfile=filename)
+            except:
+                app.logger.exception(traceback.format_exc())
+        else:
+            return login_manager.unauthorized()
     return redirect(url_for('questionnaire'))
 
 def allowed_file(filename):
@@ -414,88 +409,113 @@ def allowed_file(filename):
 
 @app.route('/showvars',methods=["POST","GET"])
 def showvars():
-    sessionid=session['id']
-    data[sessionid]["plots"]=[]
-    filename=""
-    if request.method == "POST":
-        try:
-            file=request.files['varlist']
-            if file and allowed_file(file.filename): 
-                    app.logger.debug("Loading...")
-                    filename=secure_filename(file.filename)
-                    folder=app.config['UPLOAD_FOLDER']
-                    filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    app.logger.debug(filepath)
-                    file.save(filepath)
-                    pid=data[sessionid]["pid"]
-                    Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
-                    db_session.commit()
-                    if "vars" in data[sessionid].keys():
-                        data[sessionid]["vars"]=None
-                    return redirect(url_for("selectIndicators"))
-            else:
-                if "varfile" in request.form and allowed_file(request.form["varfile"]):
-                    app.logger.debug("Loading...")
-                    filename=request.form["varfile"]
-                    folder=app.config['UPLOAD_FOLDER']
-                    filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    app.logger.debug(filepath)
-                    pid=data[sessionid]["pid"]
-                    Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
-                    db_session.commit()
-                    if "vars" in data[sessionid].keys():
-                        data[sessionid]["vars"]=None
-                    return redirect(url_for("selectIndicators"))
+    sessionid=session["id"]
+    session["plots"]=[]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    if user_sess is not None:
+        filename=""
+        if request.method == "POST":
+            try:
+                file=request.files['varlist']
+                if file and allowed_file(file.filename): 
+                        app.logger.debug("Loading...")
+                        filename=secure_filename(file.filename)
+                        folder=app.config['UPLOAD_FOLDER']
+                        filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                        app.logger.debug(filepath)
+                        file.save(filepath)
+                        pid=user_sess.pid
+                        Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
+                        db_session.commit()
+                        '''if "vars" in data[sessionid].keys():
+                            data[sessionid]["vars"]=None'''
+                        return redirect(url_for("selectIndicators"))
                 else:
-                    flash("Please upload the data file in the correct format")
-                    return render_template("indicators.html")
-        except:
-            app.logger.exception(traceback.format_exc())
-            return render_template("indicators.html",varfile=filename)
+                    if "varfile" in request.form and allowed_file(request.form["varfile"]):
+                        app.logger.debug("Loading...")
+                        filename=request.form["varfile"]
+                        folder=app.config['UPLOAD_FOLDER']
+                        filepath=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                        app.logger.debug(filepath)
+                        pid=user_sess.pid
+                        Project.query.filter_by(id=pid).update({"file_name":filename,"file_location":filepath})
+                        db_session.commit()
+                        '''if "vars" in data[sessionid].keys():
+                            data[sessionid]["vars"]=None'''
+                        return redirect(url_for("selectIndicators"))
+                    else:
+                        flash("Please upload the data file in the correct format")
+                        return render_template("indicators.html")
+            except:
+                app.logger.exception(traceback.format_exc())
+                return render_template("indicators.html",varfile=filename)
+    else:
+        return login_manager.unauthorized()
 
 @app.route("/select_vars",methods=["GET","POST"])
 def selectIndicators():
-    sessionid=session['id']
-    if "vars" in data[sessionid].keys() and data[sessionid]["vars"] is not None:
-        vars=data[sessionid]["vars"]
+    sessionid=session["id"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    if user_sess is not None:
+        if 'variables' in session.keys():
+            variables=session['variables']
+            vartype=user_sess.vartype
+            print "***var type",vartype
+            print "*** variables", variables
+            print "*** variables type", type(variables)
+            #var_array=user_sess.variables
+            #ariables=var_array.tolist()
+            #print "*** after variables", user_sess.variables
+            #print "***after variables type", type(variables)
+        else:
+            variables=[]
+            pid=user_sess.pid
+            p=Project.query.filter_by(id=pid).first()
+            filename=p.file_name
+            file_loc=p.file_location
+            csvf = pd.read_csv(file_loc)
+            non_numeric_vars = []
+            for col in csvf.columns:
+                col_dtype = csvf[col].dtype
+                if not (col_dtype in (np.float64, np.int64)):
+                    print col + " non-numeric and rejected."
+                    non_numeric_vars.append(col)
+                    print "dev csvf"
+                    del csvf[col]
+            print "outside for"
+            variables = csvf.columns.values.tolist()
+            #var_array=np.asarray(variables)
+            print "select vars: Variables",variables
+            print "select vars: non numerics",non_numeric_vars
+            #UserSession.query.filter_by(id=sessionid).update({"variables":var_array})
+            session['variables']=variables
+            #UserSession.query.filter_by(id=sessionid).update({"vars_reject":non_numeric_vars})
+            UserSession.query.filter_by(id=sessionid).update({"vartype":"output"})
+            db_session.commit()
+        print user_sess
+        print "user session var type", user_sess.vartype
+        vartype=user_sess.vartype
+        uservars=getUserVars(vartype)
+        print "User variables for type  ",vartype,"  are  ", uservars
+        return render_template("select_inds.html",vartype=vartype,vars=variables,uservars=uservars)
     else:
-        vars=[]
-        pid=data[sessionid]["pid"]
-        p=Project.query.filter_by(id=pid).first()
-        filename=p.file_name
-        file_loc=p.file_location
-        csvf = pd.read_csv(file_loc)
-        non_numeric_vars = []
-        for col in csvf.columns:
-            col_dtype = csvf[col].dtype
-            if not (col_dtype in (np.float64, np.int64)):
-                print col + " non-numeric and rejected."
-                non_numeric_vars.append(col)
-                del csvf[col]
-        vars = csvf.columns.values.tolist()
-        print vars
-        print non_numeric_vars
-        data[sessionid]["vars"]=vars
-        data[sessionid]["vars_rejected"]=non_numeric_vars
-        data[sessionid]["type"]="Output"
-    uservars=getUserVars(data[sessionid]["type"])
-    print "User variables for type  ",data[sessionid]["type"],"  are  ", 
-    return render_template("select_inds.html",vartype=data[sessionid]["type"],vars=vars,uservars=uservars)
+        return login_manager.unauthorized()
 
 def getUserVars(vartype):
-    sessionid=session['id']
-    aid=data[sessionid]["aid"]
+    sessionid=session["id"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    aid=user_sess.aid
     print "Analysis id is",aid
     uservars=[]
-    if vartype=="Output":
+    if vartype=="output":
         outs=Output.query.filter_by(analysis=aid).all()
         uservars=[out.uservarname for out in outs]
         return uservars
-    elif vartype=="Input":
+    elif vartype=="input":
         inps=Input.query.filter_by(analysis=aid).all()
         uservars=[inp.uservarname for inp in inps]
         return uservars
-    elif vartype=="Control":
+    elif vartype=="control":
         conts=Control.query.filter_by(analysis=aid).all()
         uservars=[cont.uservarname for cont in conts]
         return uservars
@@ -504,27 +524,31 @@ def getUserVars(vartype):
 
 @app.route("/reselect_vars/<vartype>",methods=["GET","POST"])
 def reselectIndicators(vartype):
-    sessionid=session['id']
-    vars=data[sessionid]["vars"]
+    sessionid=session["id"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    #variables=user_sess.variables
+    variables=session['variables']
+    print "reselect : variables",variables
     uservars=getUserVars(vartype)
-    print "User variables for type  ",data[sessionid]["type"],"  are  ",uservars
-    return render_template("select_inds.html",vartype=vartype,vars=vars,uservars=uservars)
+    print "User variables for type  ",vartype,"  are  ",uservars
+    return render_template("select_inds.html",vartype=vartype,vars=variables,uservars=uservars)
 
 def getUserVars(vartype):
-    sessionid=session['id']
-    aid=data[sessionid]["aid"]
+    sessionid=session["id"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    aid=user_sess.aid
     print "Analysis id is",aid
     uservars=[]
-    if vartype=="Output":
+    if vartype=="output":
         outs=Output.query.filter_by(analysis=aid).all()
         uservars=[out.uservarname for out in outs]
         return uservars
-    elif vartype=="Input":
+    elif vartype=="input":
         inps=Input.query.filter_by(analysis=aid).all()
         print inps
         uservars=[inp.uservarname for inp in inps]
         return uservars
-    elif vartype=="Control":
+    elif vartype=="control":
         conts=Control.query.filter_by(analysis=aid).all()
         uservars=[cont.uservarname for cont in conts]
         return uservars
@@ -534,7 +558,8 @@ def getUserVars(vartype):
 @app.route("/store",methods=["POST","GET"])
 def readinputs():
     if request.form is not None:
-        sessionid=session['id']
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
         uservars=request.form.keys()
         vardict={}
         for uvar in uservars:
@@ -543,22 +568,23 @@ def readinputs():
             flash("Please select at least one variable")
             return redirect(url_for("selectIndicators"))
         else:
-            userid=data[sessionid]["userid"]
-            pid=data[sessionid]["pid"]
-            aid=data[sessionid]["aid"]
+            userid=user_sess.userid
+            pid=user_sess.pid
+            aid=user_sess.aid
             try:  
-                if data[sessionid]["type"]=="Output":
+                vartype=user_sess.vartype
+                if vartype=="output":
                     uvars=[uvar for uvar in uservars]
                     for uvar,varnames in vardict.items():
                         for varname in varnames:
                             if varname!='nodata':
                                 io=Output(varname,uvar,aid)
                                 db_session.add(io)
-                    db_session.commit()
                     #session["type"]="Control"
-                    data[sessionid]["type"]="Input"
+                    UserSession.query.filter_by(id=sessionid).update({"vartype":"input"})
+                    db_session.commit()
                 #elif session["type"]=="Control":
-                elif data[sessionid]["type"]=="Input":
+                elif vartype=="input":
                     uvars=[uvar for uvar in uservars]
                     for uvar,varnames in vardict.items():
                         for varname in varnames:
@@ -566,9 +592,9 @@ def readinputs():
                                 #io=Control(varname,uvar,aid)
                                 io=Input(varname,uvar,aid)
                                 db_session.add(io)
-                    db_session.commit()
                     #session["type"]="Output"
-                    data[sessionid]["type"]="Control"
+                    UserSession.query.filter_by(id=sessionid).update({"vartype":"control"})
+                    db_session.commit()
                 else:
                     uvars=[uvar for uvar in uservars]
                     for uvar,varnames in vardict.items():
@@ -581,15 +607,17 @@ def readinputs():
                     return redirect(url_for("transform_data")) 
             except KeyError as e:
                 app.logger.exception(e)
-                data[sessionid]["type"]="Output"
+                UserSession.query.filter_by(id=sessionid).update({"vartype":"output"})
+                db_session.commit()
             return redirect(url_for("selectIndicators"))  
                 
 
 @app.route("/transform_data")
 def transform_data():
-    sessionid=session['id']
-    pid=data[sessionid]["pid"]
-    aid=data[sessionid]["aid"]
+    sessionid=session["id"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    pid=user_sess.pid
+    aid=user_sess.aid
     p=Project.query.filter(Project.id==pid).first()
     inputs=Input.query.filter(Input.analysis==aid).all()
     controls=Control.query.filter(Control.analysis==aid).all()
@@ -627,17 +655,24 @@ def transform_data():
         except TypeError as e:
             app.logger.exception(traceback.format_exc())
             flash('Please select only numeric fields')
-    data[sessionid]['output']=ovars
-    data[sessionid]['input']=ivars
-    data[sessionid]['control']=cvars
+    #UserSession.query.filter_by(id=sessionid).update({"output":ovars})
+    #UserSession.query.filter_by(id=sessionid).update({"input":ivars})
+    #UserSession.query.filter_by(id=sessionid).update({"control":cvars})
+    #UserSession.query.filter_by(id=sessionid).update({"csvf":csvf})
+    print "before storing in session"
+    session["ovars"]=ovars
+    session["ivars"]=ivars
+    session["cvars"]=cvars
+    print "type csvf",type(csvf)
     data[pid]=csvf
+    #db_session.commit()
     return render_template("outliers.html",data=var_out_info)
 
-def remOutliers(data):
-    outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]
+def remOutliers(datapts):
+    outliers=datapts[abs(datapts-np.mean(datapts)) >=1.95*np.std(datapts)]
     indices=outliers.index
     removed=len(outliers)
-    total=len(data)
+    total=len(datapts)
     percent=(float(removed)/float(total))*100
     return (indices,removed,total,percent)
     
@@ -645,8 +680,9 @@ def remOutliers(data):
 @app.route("/correlations",methods=["GET","POST"])
 def correlations():
     if request.form is not None:
-        sessionid=session['id']
-        pid=data[sessionid]["pid"]
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+        pid=user_sess.pid
         csvf=data[pid]
         for k,v in request.form.items():
             if v=="yes":
@@ -655,61 +691,98 @@ def correlations():
                 for index in indices: 
                     csvf=csvf.replace(to_replace=csvf[k][index],value=mean)#replacing outliers with the mean
                 print indices, len(indices)
-        ovars=data[sessionid]['output']
-        ivars=data[sessionid]['input']
-        cvars=data[sessionid]['control']
+        '''pid=user_sess.pid
+        aid=user_sess.aid
+        p=Project.query.filter(Project.id==pid).first()
+        inputs=Input.query.filter(Input.analysis==aid).all()
+        controls=Control.query.filter(Control.analysis==aid).all()
+        outputs=Output.query.filter(Output.analysis==aid).all()
+        ovars=[o.varname for o in outputs if o.varname != None and o.varname!='']
+        ivars=[i.varname for i in inputs if i.varname != None and i.varname!='']
+        cvars=[c.varname for c in controls if c.varname != None and c.varname!='']
+        ovars=user_sess.output
+        ivars=user_sess.input
+        cvars=user_sess.control'''
+        ovars=session["ovars"]
+        ivars=session["ivars"]
+        cvars=session["cvars"]
+        
         if len(ovars)>1:
             return redirect(url_for("showcorr",vartype="output"))
         elif len(ivars)>1:
-            data[sessionid]["rout"]=ovars
+            '''UserSession.query.filter_by(id=sessionid).update({"rout":ovars})
+            db_session.commit()'''
+            session["rout"]=ovars
             return redirect(url_for("showcorr",vartype="input"))
         elif len(cvars)>1:
-            data[sessionid]["rout"]=ovars
-            data[sessionid]["rinp"]=ivars
+            '''UserSession.query.filter_by(id=sessionid).update({"rout":ovars})
+            UserSession.query.filter_by(id=sessionid).update({"rinp":ivars})
+            db_session.commit()'''
+            session["rout"]=ovars
+            session["rinp"]=ivars
             return redirect(url_for("showcorr",vartype="control"))
         else:
-            data[sessionid]["rout"]=ovars
-            data[sessionid]["rinp"]=ivars
-            data[sessionid]["rcont"]=cvars
+            '''UserSession.query.filter_by(id=sessionid).update({"rout":ovars})
+            UserSession.query.filter_by(id=sessionid).update({"rinp":ivars})
+            UserSession.query.filter_by(id=sessionid).update({"rcont":cvars})
+            db_session.commit()'''
+            session["rout"]=ovars
+            session["rinp"]=ivars
+            session["rcont"]=cvars
             return redirect(url_for("showcorr",vartype="regress"))
     else:
         return redirect(url_for("correlations"))
 
 
-def handleOutliers(data):
-    outliers=data[abs(data-np.mean(data)) >=1.95*np.std(data)]#maybe store this in local dict
+def handleOutliers(datapts):
+    outliers=datapts[abs(datapts-np.mean(datapts)) >=1.95*np.std(datapts)]#maybe store this in local dict
     indices=outliers.index
     return indices
 
 @app.route("/visualize/<vartype>",methods=["POST","GET"])
 def showcorr(vartype=None):
     try:
-        sessionid=session['id']
-        print "data[sessionid] Dictionary",data[sessionid]
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+        pid=user_sess.pid
+        aid=user_sess.aid
+        p=Project.query.filter(Project.id==pid).first()
         vartype=str(vartype)
         if request.form is not None and "vartype" in request.form:
             vartype=request.form["vartype"]
         if vartype=="regress":
-            if "rcont" not in data[sessionid]:
-                data[sessionid]["rcont"]=list(set(request.form.getlist('variables')))
+            if "rcont" not in session.keys():  
+                rcont=list(set(request.form.getlist('variables')))
+                '''UserSession.query.filter_by(id=sessionid).update({"rcont":rcont})
+                db_session.commit()'''
+                session["rcont"]=rcont
             return redirect(url_for("regress"))
         elif vartype=="output":
-            corrvars=data[sessionid]['output']
+            corrvars=session["ovars"]
         elif vartype=="input":
-            if "rout" not in data[sessionid]:
-                data[sessionid]["rout"]=list(set(request.form.getlist('variables')))
-            corrvars=data[sessionid]["input"]
+            if "rout" not in session.keys():
+                rout=list(set(request.form.getlist('variables')))
+                '''UserSession.query.filter_by(id=sessionid).update({"rout":rout})
+                db_session.commit()'''
+                session["rout"]=rout
+            corrvars=session["ivars"]
         else:
-            if "rinp" not in data[sessionid]:
-                data[sessionid]["rinp"]=list(set(request.form.getlist('variables')))
-            corrvars=data[sessionid]["control"]
-            ivars=data[sessionid]["input"]
-        pid=data[sessionid]["pid"]
+            if "rinp" not in session.keys():
+                rinp=list(set(request.form.getlist('variables')))
+                '''UserSession.query.filter_by(id=sessionid).update({"rinp":rinp})
+                corrvars=user_sess.control'''
+                session["rinp"]=rinp
+            corrvars=session["cvars"]
+            #ivars=user_sess.input
+            #ivars=session["ivars"]
+            ivars=session["ivars"]
+        pid=user_sess.pid
+        #csvf=user_sess.csvf
         csvf=data[pid]
         params=[]   
         nocor=[]
         cors=[]
-        vars=[]
+        variables=[]
         count=0
         plots=[]
         pltpath=app.config['PLOTPATH']+'/'+vartype+'/scatter'
@@ -739,7 +812,7 @@ def showcorr(vartype=None):
                     pltfile=analysis.scatter(x,y,count,combo[0],combo[1],pltpath,vartype,corr)
                     filepath='../static/images/plots/'+vartype+'/'+pltfile
                     #Different path for accessing images through python files versus html files
-                    data[sessionid]["plots"].append(filepath[2:])
+                    session["plots"].append(filepath[2:])
                     count+=1
                     #params.append((filepath,corr,combo[0],combo[1]))
                     params.append((filepath,corr))
@@ -755,11 +828,14 @@ def showcorr(vartype=None):
                     else:
                         nocor.append(combo[0])
                         nocor.append(combo[1])
+            '''UserSession.query.filter_by(id=sessionid).update({"plots":plots})
+            db_session.commit()'''
+            session["plots"]=plots
             cors=list(set(cors))
             nocor=list(set(nocor))
             nocor=[item for item in nocor if item not in cors]
-            vars.append(cors)
-            vars.append(nocor)
+            variables.append(cors)
+            variables.append(nocor)
             if count==0:
                 msg="none"
             else:
@@ -768,16 +844,22 @@ def showcorr(vartype=None):
                 height=str(int(len(params)/3)*500)+"px"
             else:
                 height="500px"
-            return render_template("scatter.html",params=params,vars=vars,vartype=vartype,msg=msg,height=height)
+            return render_template("scatter.html",params=params,vars=variables,vartype=vartype,msg=msg,height=height)
         else:
             if vartype=="output":
-                data[sessionid]["rout"]=data[sessionid]["output"]
+                rout=session["ovars"]
+                #UserSession.query.filter_by(id=sessionid).update({"rout":rout})
+                session["rout"]=rout
                 vartype="input"
             elif vartype=="input":
-                data[sessionid]["rinp"]=data[sessionid]["input"]
+                rinp=session["ivars"]
+                #UserSession.query.filter_by(id=sessionid).update({"rinp":rinp})
+                session["rinp"]=rinp
                 vartype="control"
             elif vartype=="control":
-                data[sessionid]["rcont"]=data[sessionid]["control"]
+                rcnt=session["cvars"]
+                #UserSession.query.filter_by(id=sessionid).update({"rcont":rcnt})
+                session["rcont"]=rcont
                 vartype=="regress"
             else: 
                 return redirect(url_for("regress"))
@@ -790,14 +872,15 @@ def showcorr(vartype=None):
 @app.route("/regress",methods=["POST","GET"])
 def regress():
     if True:
-        sessionid=session['id']
-        pid=data[sessionid]["pid"]
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+        pid=user_sess.pid
         regs=[]
         csvf=data[pid]
         reg=pd.DataFrame()
-        outs=data[sessionid]['rout']
-        inps=data[sessionid]['rinp']
-        controls=data[sessionid]['rcont']
+        outs=session["rout"]
+        inps=session["rinp"]
+        controls=session["rcont"]
         count=0
         for o in outs:
             r=[]
@@ -846,7 +929,9 @@ def regress():
             r.append(o)
             regs.append(r)
             count+=1
-            data["regs"]=regs
+            '''UserSession.query.filter_by(id=sessionid).update({"rcont":rcnt})
+            db_session.commit()'''
+            session["regs"]=regs
         return render_template("regression.html",regs=regs)
     else:
         return redirect(url_for("logout"))
@@ -854,8 +939,9 @@ def regress():
 @app.route("/report",methods=["GET","POST"])
 def report():
     #Generate the PDF file
-    sessionid=session['id']
-    plots=data[sessionid]["plots"]
+    sessionid=session["id"]
+    user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
+    plots=session["plots"]
     pdfplots=[]
     htmlplots=[]
     for plot in plots:
@@ -863,17 +949,20 @@ def report():
         htmlplots.append(".."+plot)
     from datetime import date
     today=date.today()
-    pid=data[sessionid]["pid"]
+    pid=user_sess.pid
     p=Project.query.filter_by(id=pid).first()
     pname=p.name
     orgname=p.orgname
     mission=p.mission
     product=p.prods
     puser=p.p_user
-    inputs=','.join(data[sessionid]['rinp'])
-    outputs=','.join(data[sessionid]['rout'])
-    controls=','.join(data[sessionid]['rcont'])
-    regs=data["regs"]
+    rinp=session["rinp"]
+    rout=session["rout"]
+    rcont=session["rcont"]
+    inputs=','.join(rinp)
+    outputs=','.join(rout)
+    controls=','.join(rcont)
+    regs=session["regs"]
     pdfdata=[]
     pdfdata.append(str(today))
     pdfdata.append(pname)
@@ -891,7 +980,8 @@ def report():
     else:
         pdfile='..'+genpdf.create_pdf(pdfdata)
     pdfdata.append(pdfile)
-    data[sessionid]['pdfile']=pdfile
+    UserSession.query.filter_by(id=sessionid).update({"pdfile":pdfile})
+    db_session.commit()
     #Changing this part for the HTML page to access the images
     pdfdata[9]=htmlplots
     return render_template("report.html",data=pdfdata)
@@ -899,11 +989,12 @@ def report():
 @app.route("/saving",methods=["POST"])
 def saveanalysis():
     if request.form is not None:
-        sessionid=session['id']
+        sessionid=session["id"]
+        user_sess=UserSession.query.filter(UserSession.id==sessionid).first()
         if "analysis" in request.form:
             aname=request.form["analysis"]
-            aid=data[sessionid]["aid"]
-            pdfile=data[sessionid]['pdfile']
+            aid=user_sess.aid
+            pdfile=user_sess.pdfile
             Analysis.query.filter_by(id=aid).update({"name":aname,"report_loc":pdfile})
             db_session.commit()
             return render_template("Thanks.html")
