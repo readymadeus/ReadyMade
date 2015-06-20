@@ -980,7 +980,7 @@ def report():
     else:
         pdfile='..'+genpdf.create_pdf(pdfdata)
     pdfdata.append(pdfile)
-    UserSession.query.filter_by(id=sessionid).update({"pdfile":pdfile})
+    UserSession.query.filter_by(id=sessionid).update({"csvfpdfile":pdfile})
     db_session.commit()
     #Changing this part for the HTML page to access the images
     pdfdata[9]=htmlplots
@@ -994,7 +994,7 @@ def saveanalysis():
         if "analysis" in request.form:
             aname=request.form["analysis"]
             aid=user_sess.aid
-            pdfile=user_sess.pdfile
+            pdfile=user_sess.csvfpdfile
             Analysis.query.filter_by(id=aid).update({"name":aname,"report_loc":pdfile})
             db_session.commit()
             return render_template("Thanks.html")
