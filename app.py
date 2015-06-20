@@ -830,7 +830,7 @@ def showcorr(vartype=None):
                         nocor.append(combo[1])
             '''UserSession.query.filter_by(id=sessionid).update({"plots":plots})
             db_session.commit()'''
-            session["plots"]=plots
+            
             cors=list(set(cors))
             nocor=list(set(nocor))
             nocor=[item for item in nocor if item not in cors]
