@@ -301,7 +301,7 @@ def saveproject():
                             db_session.add(p)
                             db_session.commit()
                             app.logger.debug("Successfully added project to database")
-                            UserSession.query.filter_by(id=sessionid).update({"pid":pid})
+                            UserSession.query.filter_by(id=sessionid).update({"pid":p.id})
                             db_session.commit()
                         except Exception as e:
                             app.logger.exception(e)
